@@ -907,10 +907,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44430cc7616ee1f4a9ab689b83567425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1867178659}
   cameraHolder: {fileID: 788676039}
-  movementSpeed: 10
-  rotationSensitivity: 2
+  movementSpeed: 4
+  rotationSensitivity: 0.3
   maxForce: 1
 --- !u!54 &1867178659
 Rigidbody:
@@ -946,7 +945,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867178656}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d6b3ba41c3aa5bd468260a423f2aaec7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
