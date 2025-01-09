@@ -4,21 +4,32 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
-    [Header("Camera")]
+    [Header("Components")]
     [SerializeField] private GameObject cameraHolder;
+    [SerializeField] private Transform objectGrabPointTransform;
 
-    [Header("Settings")]
+    private Rigidbody rb;
+
+    [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 4f;
     [SerializeField] private float rotationSensitivity = 0.3f;
     [SerializeField] private float maxForce = 1f;
 
-    private Rigidbody rb;
-    private Vector2 movementInput, lookInput;
+    private Vector2 movementInput;
+    private Vector2 lookInput;
     private float verticalLookRotation;
 
-    void Start()
+    [Header("PickUp Settings")]
+    [SerializeField] private float pickUpDistance = 2f;
+    [SerializeField] private LayerMask pickUpLayerMask;
+
+    private ObjectGrabbable grabbedObject;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        grabbedObject = null;
+
         Cursor.lockState = CursorLockMode.Locked; // nasconde l'icona del cursore
     }
 
@@ -40,6 +51,19 @@ public class PlayerController : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         lookInput = context.ReadValue<Vector2>();
+    }
+
+    public void TogglePickUp(InputAction.CallbackContext context)
+    {
+        if (grabbedObject == null)
+        {
+            PickUp();
+        } else
+        {
+            grabbedObject.Drop();
+            grabbedObject = null;
+        }
+        
     }
 
     public void MovePlayer()
@@ -71,5 +95,18 @@ public class PlayerController : MonoBehaviour
 
         // Applica la rotazione verticale
         cameraHolder.transform.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);
+    }
+
+    public void PickUp()
+    {
+        Transform cameraHolderTransform = cameraHolder.transform;
+        if(Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+        {
+            if (hit.transform.TryGetComponent(out grabbedObject))
+            {
+                grabbedObject.Grab(objectGrabPointTransform);
+                Debug.Log(grabbedObject.transform);
+            }
+        }
     }
 }
