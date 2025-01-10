@@ -87,7 +87,8 @@ public class PlayerController : MonoBehaviour
     public void RotateCamera()
     {
         // Rotazione orizzontale
-        transform.Rotate(Vector3.up * lookInput.x * rotationSensitivity);
+        Quaternion horizontalRotation = Quaternion.Euler(0f, lookInput.x * rotationSensitivity, 0f);
+        rb.MoveRotation(rb.rotation * horizontalRotation);
 
         // Rotazione verticale
         verticalLookRotation -= lookInput.y * rotationSensitivity;
