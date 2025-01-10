@@ -6,7 +6,7 @@ public class ObjectGrabbable : MonoBehaviour
     private Transform objectGrabPointTransform;
 
     private float defaultLinearDamping;
-    private float holdingLinearDamping = 10;
+    private float holdingLinearDamping = 5;
 
     private float defaultAngularDamping;
     private float holdingAngularDamping = 10;
@@ -19,7 +19,6 @@ public class ObjectGrabbable : MonoBehaviour
         objectRigidbody = GetComponent<Rigidbody>();
 
         defaultInterpolation = objectRigidbody.interpolation;
-        objectRigidbody.interpolation = holdingInterpolation;
 
         defaultLinearDamping = objectRigidbody.linearDamping;
     }
@@ -28,8 +27,15 @@ public class ObjectGrabbable : MonoBehaviour
     {
         if (objectGrabPointTransform != null)
         {
+            // Raggiunge la nuova posizione dell'oggetto
             objectRigidbody.linearVelocity = 10 * (objectGrabPointTransform.position - transform.position);
-            Debug.Log(objectRigidbody.linearVelocity);
+
+            // Calcola il vettore di correzione
+            Vector3 correctionAxis = Vector3.Cross(transform.up, Vector3.up);
+            float correctionMagnitude = correctionAxis.magnitude;
+
+            // Applica una forza rotazionale correttiva
+            objectRigidbody.AddTorque(correctionAxis.normalized * correctionMagnitude * 10f);
         }
     }
 
@@ -39,6 +45,7 @@ public class ObjectGrabbable : MonoBehaviour
         objectRigidbody.useGravity = false;
         objectRigidbody.linearDamping = holdingLinearDamping;
         objectRigidbody.angularDamping = holdingAngularDamping;
+        objectRigidbody.interpolation = holdingInterpolation;
     }
 
     public void Drop()
