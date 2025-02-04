@@ -1,9 +1,6 @@
 using UnityEngine;
 
-public class Fillable : MonoBehaviour
+public interface Fillable
 {
-    public void fill()
-    {
-        Debug.Log("Fillable object filled!");
-    }
+    public int Fill(int volume);
 }

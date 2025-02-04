@@ -124,7 +124,7 @@
                     "name": "",
                     "id": "91fe9018-8f8a-44be-b67a-390aeee8757d",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "ContexInteract",

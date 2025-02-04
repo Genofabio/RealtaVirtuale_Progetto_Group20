@@ -1,9 +1,6 @@
 using UnityEngine;
 
-public class Pourable : MonoBehaviour
+public interface Pourable
 {
-    public void Pour(Fillable contenitor) 
-    { 
-        Debug.Log($"Pourable object {name} versato in Fillable object {contenitor.name}!"); 
-    }
+    public void Pour(Fillable contenitor);
 }
