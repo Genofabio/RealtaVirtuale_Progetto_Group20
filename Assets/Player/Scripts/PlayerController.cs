@@ -20,10 +20,14 @@ public class PlayerController : MonoBehaviour
     private float verticalLookRotation;
 
     [Header("PickUp Settings")]
-    [SerializeField] private float pickUpDistance = 2f;
+    [SerializeField] private float pickUpDistance = 3f;
     [SerializeField] private LayerMask pickUpLayerMask;
 
     private Grabbable grabbedObject;
+
+    [Header("Crosshair")]
+    public CrosshairController crosshair;
+    
 
     void Awake()
     {
@@ -41,7 +45,7 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         RotateCamera();
-        checkInterfaceImplementation();
+        UpdateCrosshair();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -71,20 +75,24 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if (grabbedObject != null)
+        if (context.performed)
         {
-            if(grabbedObject.TryGetComponent<Pourable>(out var pourableObject))
+            if (grabbedObject != null)
             {
-                Transform cameraHolderTransform = cameraHolder.transform;
-                if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+                if (grabbedObject.TryGetComponent<Pourable>(out var pourableObject))
                 {
-                    if (hit.transform.TryGetComponent<Fillable>(out var fillableObject))
+                    Transform cameraHolderTransform = cameraHolder.transform;
+                    if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
                     {
-                        pourableObject.Pour(fillableObject);
+                        if (hit.transform.TryGetComponent<Fillable>(out var fillableObject))
+                        {
+                            pourableObject.Pour(fillableObject);
+                        }
                     }
                 }
             }
-        } 
+        }
+        
     }
 
     public void MovePlayer()
@@ -133,23 +141,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void checkInterfaceImplementation()
+    public void UpdateCrosshair()
     {
         Transform cameraHolderTransform = cameraHolder.transform;
         if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
         {
             if (hit.transform.TryGetComponent<Grabbable>(out var grabbable))
             {
-                print($"{hit.transform.name} implementa Grabbable!");
-            }
+                crosshair.SetCrosshairActive();
+            } 
             if (hit.transform.TryGetComponent<Pourable>(out var pourable))
             {
-                print($"{hit.transform.name} implementa Pourable!");
-            }
+                crosshair.SetCrosshairActive();
+            } 
             if (hit.transform.TryGetComponent<Fillable>(out var fillable))
             {
-                print($"{hit.transform.name} implementa Fillable!");
+                crosshair.SetCrosshairActive();
             }
+        } else
+        {
+            crosshair.SetCrosshairInactive();
         }
     }
 }
