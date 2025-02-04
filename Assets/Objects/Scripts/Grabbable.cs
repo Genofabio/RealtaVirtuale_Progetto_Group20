@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObjectGrabbable : MonoBehaviour
+public class Grabbable : MonoBehaviour
 {
     private Rigidbody objectRigidbody;
     private Transform objectGrabPointTransform;

@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float pickUpDistance = 2f;
     [SerializeField] private LayerMask pickUpLayerMask;
 
-    private ObjectGrabbable grabbedObject;
+    private Grabbable grabbedObject;
 
     void Awake()
     {
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         RotateCamera();
+        checkInterfaceImplementation();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         lookInput = context.ReadValue<Vector2>();
+
     }
 
     public void TogglePickUp(InputAction.CallbackContext context)
@@ -58,12 +60,31 @@ public class PlayerController : MonoBehaviour
         if (grabbedObject == null)
         {
             PickUp();
-        } else
+        }
+        else
         {
             grabbedObject.Drop();
             grabbedObject = null;
         }
-        
+
+    }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (grabbedObject != null)
+        {
+            if(grabbedObject.TryGetComponent<Pourable>(out var pourableObject))
+            {
+                Transform cameraHolderTransform = cameraHolder.transform;
+                if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+                {
+                    if (hit.transform.TryGetComponent<Fillable>(out var fillableObject))
+                    {
+                        pourableObject.Pour(fillableObject);
+                    }
+                }
+            }
+        } 
     }
 
     public void MovePlayer()
@@ -101,12 +122,33 @@ public class PlayerController : MonoBehaviour
     public void PickUp()
     {
         Transform cameraHolderTransform = cameraHolder.transform;
-        if(Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+        if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
         {
             if (hit.transform.TryGetComponent(out grabbedObject))
             {
+                Debug.Log("Oggetto raccolto!");
                 grabbedObject.Grab(objectGrabPointTransform);
                 Debug.Log(grabbedObject.transform);
+            }
+        }
+    }
+
+    public void checkInterfaceImplementation()
+    {
+        Transform cameraHolderTransform = cameraHolder.transform;
+        if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+        {
+            if (hit.transform.TryGetComponent<Grabbable>(out var grabbable))
+            {
+                print($"{hit.transform.name} implementa Grabbable!");
+            }
+            if (hit.transform.TryGetComponent<Pourable>(out var pourable))
+            {
+                print($"{hit.transform.name} implementa Pourable!");
+            }
+            if (hit.transform.TryGetComponent<Fillable>(out var fillable))
+            {
+                print($"{hit.transform.name} implementa Fillable!");
             }
         }
     }
