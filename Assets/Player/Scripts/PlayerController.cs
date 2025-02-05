@@ -189,10 +189,21 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out grabbedObject))
             {
-                if(grabbedObject.TryGetComponent<Becher>(out var becher))
+                Vector3 objectSize = Vector3.zero;
+                if (grabbedObject.TryGetComponent<Collider>(out Collider collider))
+                {
+                    objectSize = collider.bounds.size;
+                }
+                
+                Vector3 offset = cameraHolderTransform.right * (objectSize.x * 0.5f + 0.1f) + cameraHolderTransform.up * (objectSize.y * 0.5f + 0.1f); 
+
+                objectGrabPointTransform.position = grabbedObject.transform.position + offset;
+
+                if (grabbedObject.TryGetComponent<Becher>(out var becher))
                 {
                     Debug.Log("da implementare");
                 }
+
                 grabbedObject.Grab(objectGrabPointTransform);
                 audioSource.clip = playerAudio.GetAudioClip(PlayerAudioKey.PickUp);
                 audioSource.Play();

@@ -14,21 +14,39 @@ public class Grabbable : MonoBehaviour
     private RigidbodyInterpolation defaultInterpolation;
     private RigidbodyInterpolation holdingInterpolation = RigidbodyInterpolation.Interpolate;
 
+    private bool justGrabbed;
+
+    private float velocityMultiplier;
+    [SerializeField] private float initialVelocityMultiplier;
+    [SerializeField] private float finalVelocityMultiplier;
+
+
     private void Awake()
     {
         objectRigidbody = GetComponent<Rigidbody>();
 
         defaultInterpolation = objectRigidbody.interpolation;
-
         defaultLinearDamping = objectRigidbody.linearDamping;
+
+        initialVelocityMultiplier = 3f;
+        finalVelocityMultiplier = 10f;
     }
 
     private void FixedUpdate()
     {
         if (objectGrabPointTransform != null)
         {
+
+            Vector3 distance = objectGrabPointTransform.position - transform.position;
+
+            if(justGrabbed && distance.magnitude < 0.01f)
+            {
+                velocityMultiplier = finalVelocityMultiplier;
+                justGrabbed = false;
+            } 
+
             // Raggiunge la nuova posizione dell'oggetto
-            objectRigidbody.linearVelocity = 10 * (objectGrabPointTransform.position - transform.position);
+            objectRigidbody.linearVelocity = velocityMultiplier * (objectGrabPointTransform.position - transform.position);
 
             // Calcola il vettore di correzione
             Vector3 correctionAxis = Vector3.Cross(transform.up, Vector3.up);
@@ -46,6 +64,8 @@ public class Grabbable : MonoBehaviour
         objectRigidbody.linearDamping = holdingLinearDamping;
         objectRigidbody.angularDamping = holdingAngularDamping;
         objectRigidbody.interpolation = holdingInterpolation;
+        justGrabbed = true;
+        velocityMultiplier = initialVelocityMultiplier;
     }
 
     public void Drop()
