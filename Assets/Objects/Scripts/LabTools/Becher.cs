@@ -9,6 +9,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     public float currentVolume;
     private bool isFilterOn = false;
     private Filter filter = null;
+    [SerializeField] private Transform filterPosition;
 
     private void OnValidate()
     {
@@ -95,7 +96,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
 
     public void SetFilterOn(Filter filter)
     {
-        if(/*filter == null &&*/ isFilterOn == false) { 
+        if(isFilterOn == false) { 
             this.filter = filter;
             isFilterOn = true;
             Debug.Log("Filtro applicato");
@@ -127,5 +128,10 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     public bool IsFilterOn()
     {
         return isFilterOn;
+    }
+
+    public Transform getFilterPosition()
+    {
+        return filterPosition;
     }
 }

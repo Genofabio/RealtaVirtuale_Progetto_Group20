@@ -12,7 +12,20 @@ public class PaperFilter : MonoBehaviour, Filter
     {
         becher.SetFilterOn(this);
         this.becher = becher;
-        //posizionare il filtro sopra il becher graficamente
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+        Destroy(rb);
+
+        transform.position = becher.getFilterPosition().position;
+        transform.SetParent(becher.getFilterPosition());
+    }
+
+    void Update()
+    {
+        if (/*isAttached && */becher != null)
+        {
+            transform.position = becher.getFilterPosition().position;
+        }
     }
 
     public bool IsFilterOn()

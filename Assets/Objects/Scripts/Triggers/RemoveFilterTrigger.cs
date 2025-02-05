@@ -2,37 +2,28 @@ using UnityEngine;
 
 public class RemoveFilterTrigger : MonoBehaviour    
 {
-    [SerializeField] Becher _becher;
+    //[SerializeField] Becher _becher;
     private Filter _filter = null;
-    [SerializeField] bool _removeFilterOnExit = true;
-    [SerializeField] bool _attachFilterOnEnter = true;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    //[SerializeField] bool _removeFilterOnExit = true;
+    //[SerializeField] bool _attachFilterOnEnter = true;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<Filter>(out var filter))
-        {
-            Debug.Log("Filtro allontanato dal becher");
-            filter.RemoveFilter();
-            _filter = null;
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log("Enter" + other);
+    //    if (other.TryGetComponent<PaperFilter>(out var filter))
+    //    {
+    //        Debug.Log("Filtro sul becher");
+    //        _filter = filter;
+    //    }
+    //}
     private void OnTriggerExit(Collider other)
     {
-        if(other.TryGetComponent<Filter>(out var filter))
+        Debug.Log("Exit" + other);
+        if (other.TryGetComponent<PaperFilter>(out var filter))
         {
-            Debug.Log("filtro sul becher");
-            _filter = filter;
+            Debug.Log("Filtro allontanato...");
+            filter.RemoveFilter();
+            _filter = null;
         }
     }
 }

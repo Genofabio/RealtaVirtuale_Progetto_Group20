@@ -136,7 +136,17 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                 }
-            }
+            } else if (grabbedObject == null)
+            {
+                Transform cameraHolderTransform = cameraHolder.transform;
+                if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+                {
+                    if (hit.transform.TryGetComponent<PrecisionBalance>(out var balance))
+                    {
+                        balance.Tare();
+                    }
+                }
+            } 
         }
     }
 
@@ -179,6 +189,10 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out grabbedObject))
             {
+                if(grabbedObject.TryGetComponent<Becher>(out var becher))
+                {
+                    Debug.Log("da implementare");
+                }
                 grabbedObject.Grab(objectGrabPointTransform);
                 audioSource.clip = playerAudio.GetAudioClip(PlayerAudioKey.PickUp);
                 audioSource.Play();
