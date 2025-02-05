@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     [Header("Crosshair")]
     public CrosshairController crosshair;
     
-
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -61,14 +60,17 @@ public class PlayerController : MonoBehaviour
 
     public void TogglePickUp(InputAction.CallbackContext context)
     {
-        if (grabbedObject == null)
+        if (context.performed)
         {
-            PickUp();
-        }
-        else
-        {
-            grabbedObject.Drop();
-            grabbedObject = null;
+            if (grabbedObject == null)
+            {
+                PickUp();
+            }
+            else
+            {
+                grabbedObject.Drop();
+                grabbedObject = null;
+            }
         }
 
     }
