@@ -125,17 +125,17 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 //oggetto di tipo filtro
-                //else if (grabbedObject.TryGetComponent<Filter>(out var filterObject))
-                //{
-                //    Transform cameraHolderTransform = cameraHolder.transform;
-                //    if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
-                //    {
-                //        if (hit.transform.TryGetComponent<Becher>(out var becherObject))
-                //        {
-                //            filterObject.ApplyFilter(becherObject);
-                //        }
-                //    }
-                //}
+                else if (grabbedObject.TryGetComponent<Filter>(out var filterObject))
+                {
+                    Transform cameraHolderTransform = cameraHolder.transform;
+                    if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+                    {
+                        if (hit.transform.TryGetComponent<Becher>(out var becherObject))
+                        {
+                            filterObject.ApplyFilter(becherObject);
+                        }
+                    }
+                }
             }
         }
     }
@@ -184,12 +184,6 @@ public class PlayerController : MonoBehaviour
                 audioSource.Play();
             }
         }
-    }
-
-    public void PickUpThisItem(Grabbable item)
-    {
-        grabbedObject = item;
-        grabbedObject.Grab(objectGrabPointTransform);
     }
 
     public void UpdateCrosshair()
