@@ -26,8 +26,13 @@ public class PlayerController : MonoBehaviour
     private Grabbable grabbedObject;
 
     [Header("Crosshair")]
-    public CrosshairController crosshair;
-    
+    [SerializeField] private CrosshairController crosshair;
+
+    [Header("Audio")]
+    [SerializeField] private PlayerAudio playerAudio;
+    [SerializeField] private AudioSource audioSource;
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -136,9 +141,9 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out grabbedObject))
             {
-                Debug.Log("Oggetto raccolto!");
                 grabbedObject.Grab(objectGrabPointTransform);
-                Debug.Log(grabbedObject.transform);
+                audioSource.clip = playerAudio.GetAudioClip(PlayerAudioKey.PickUp);
+                audioSource.Play();
             }
         }
     }
