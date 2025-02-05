@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
         {
             if (grabbedObject != null)
             {
+                //Oggetto di tipo Pourable, gestione del versaggio del liquido dentro un oggetto Fillable
                 if (grabbedObject.TryGetComponent<Pourable>(out var pourableObject))
                 {
                     Transform cameraHolderTransform = cameraHolder.transform;
@@ -97,9 +98,46 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                 }
+                //Oggetto di tipo Dropper, gestione di PickUp e Drop
+                else if (grabbedObject.TryGetComponent<Dropper>(out var dropperObject))
+                {
+                    if (dropperObject.GetFull())
+                    {
+                        Transform cameraHolderTransform = cameraHolder.transform;
+                        if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+                        {
+                            if (hit.transform.TryGetComponent<Fillable>(out var fillableObject))
+                            {
+                                dropperObject.Drop(fillableObject);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Transform cameraHolderTransform = cameraHolder.transform;
+                        if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+                        {
+                            if (hit.transform.TryGetComponent<Pourable>(out var pourableObject2))
+                            {
+                                dropperObject.PickUp(pourableObject2);
+                            }
+                        }
+                    }
+                }
+                //oggetto di tipo filtro
+                //else if (grabbedObject.TryGetComponent<Filter>(out var filterObject))
+                //{
+                //    Transform cameraHolderTransform = cameraHolder.transform;
+                //    if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+                //    {
+                //        if (hit.transform.TryGetComponent<Becher>(out var becherObject))
+                //        {
+                //            filterObject.ApplyFilter(becherObject);
+                //        }
+                //    }
+                //}
             }
         }
-        
     }
 
     public void MovePlayer()
@@ -146,6 +184,12 @@ public class PlayerController : MonoBehaviour
                 audioSource.Play();
             }
         }
+    }
+
+    public void PickUpThisItem(Grabbable item)
+    {
+        grabbedObject = item;
+        grabbedObject.Grab(objectGrabPointTransform);
     }
 
     public void UpdateCrosshair()
