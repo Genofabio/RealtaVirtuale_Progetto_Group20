@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        pickUpLayerMask = ~LayerMask.GetMask("Ignore Raycast");
         rb = GetComponent<Rigidbody>();
         grabbedObject = null;
 
@@ -125,17 +126,17 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 //oggetto di tipo filtro
-                else if (grabbedObject.TryGetComponent<Filter>(out var filterObject))
-                {
-                    Transform cameraHolderTransform = cameraHolder.transform;
-                    if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
-                    {
-                        if (hit.transform.TryGetComponent<Becher>(out var becherObject))
-                        {
-                            filterObject.ApplyFilter(becherObject);
-                        }
-                    }
-                }
+                //else if (grabbedObject.TryGetComponent<Filter>(out var filterObject))
+                //{
+                //    Transform cameraHolderTransform = cameraHolder.transform;
+                //    if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+                //    {
+                //        if (hit.transform.TryGetComponent<Becher>(out var becherObject))
+                //        {
+                //            filterObject.ApplyFilter(becherObject);
+                //        }
+                //    }
+                //}
             } else if (grabbedObject == null)
             {
                 Transform cameraHolderTransform = cameraHolder.transform;
@@ -198,12 +199,6 @@ public class PlayerController : MonoBehaviour
                 Vector3 offset = cameraHolderTransform.right * (objectSize.x * 0.5f + 0.1f) + cameraHolderTransform.up * (objectSize.y * 0.5f + 0.1f); 
 
                 objectGrabPointTransform.position = grabbedObject.transform.position + offset;
-
-                if (grabbedObject.TryGetComponent<Becher>(out var becher))
-                {
-                    Debug.Log("da implementare");
-                }
-
                 grabbedObject.Grab(objectGrabPointTransform);
                 audioSource.clip = playerAudio.GetAudioClip(PlayerAudioKey.PickUp);
                 audioSource.Play();
