@@ -13,24 +13,11 @@ public class PaperFilter : MonoBehaviour, Filter
         becher.SetFilterOn(this);
         this.becher = becher;
 
-        Rigidbody rb = GetComponent<Rigidbody>();
-        Destroy(rb);
+        //Rigidbody rb = GetComponent<Rigidbody>();
+        //Destroy(rb);
 
-        transform.position = becher.getFilterPosition().position;
-        transform.SetParent(becher.getFilterPosition());
-    }
-
-    void Update()
-    {
-        if (/*isAttached && */becher != null)
-        {
-            transform.position = becher.getFilterPosition().position;
-        }
-    }
-
-    public bool IsFilterOn()
-    {
-        return becher != null;
+        //transform.position = becher.getFilterPosition().position;
+        //transform.SetParent(becher.getFilterPosition());
     }
 
     public void RemoveFilter()
@@ -40,4 +27,17 @@ public class PaperFilter : MonoBehaviour, Filter
         becher = null;
         //rimuovere il filtro graficamente
     }
+
+    //void Update()
+    //{
+    //    if (/*isAttached && */becher != null)
+    //    {
+    //        transform.position = becher.getFilterPosition().position;
+    //    }
+    //}
+
+    //public bool IsFilterOn()
+    //{
+    //    return becher != null;
+    //}
 }

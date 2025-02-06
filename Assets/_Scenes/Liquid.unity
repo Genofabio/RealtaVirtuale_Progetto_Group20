@@ -310,6 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab66d4604ae8b43a9f66379b942674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialVelocityMultiplier: 0
+  finalVelocityMultiplier: 0
 --- !u!54 &87018326
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -488,6 +490,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab66d4604ae8b43a9f66379b942674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialVelocityMultiplier: 0
+  finalVelocityMultiplier: 0
 --- !u!114 &153190835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab66d4604ae8b43a9f66379b942674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialVelocityMultiplier: 0
+  finalVelocityMultiplier: 0
 --- !u!54 &650126974
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -987,6 +993,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab66d4604ae8b43a9f66379b942674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialVelocityMultiplier: 0
+  finalVelocityMultiplier: 0
 --- !u!54 &1214852399
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1138,6 +1146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab66d4604ae8b43a9f66379b942674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialVelocityMultiplier: 0
+  finalVelocityMultiplier: 0
 --- !u!54 &1277911909
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1279,7 +1289,7 @@ GameObject:
   - component: {fileID: 1533514173}
   - component: {fileID: 1533514175}
   - component: {fileID: 1533514174}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FilterBoxController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1313,6 +1323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c5b627c0ea30646b4581532f5bbc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _becher: {fileID: 650126979}
 --- !u!65 &1533514175
 BoxCollider:
   m_ObjectHideFlags: 0

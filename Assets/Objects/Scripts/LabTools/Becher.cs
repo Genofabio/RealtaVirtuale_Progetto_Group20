@@ -100,8 +100,6 @@ public class Becher : MonoBehaviour, Fillable, Pourable
             this.filter = filter;
             isFilterOn = true;
             Debug.Log("Filtro applicato");
-            //in questo caso il becher non deve essere grabbable, e se premo il tasto destro devo prendere il filtro
-            //inoltre se verso un liquido nel becher con il filtro acceso, devo chiamare il metodo Filter del filtro
         } else
         {
             Debug.Log(isFilterOn);
@@ -109,29 +107,16 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         }
     }
 
-    public Filter SetFilterOff()
+    public void SetFilterOff()
     {
         if(isFilterOn == true /*&& filter != null*/)
         {
-            Filter returnFilter = filter;
             filter = null;
             isFilterOn = false;
-            return returnFilter;
 
         } else
         {
             Debug.Log("Non c'è nessun filtro"); //tecnicamente non deve mai comparirre sto messaggio
-            return null;
         }
-    }
-
-    public bool IsFilterOn()
-    {
-        return isFilterOn;
-    }
-
-    public Transform getFilterPosition()
-    {
-        return filterPosition;
     }
 }
