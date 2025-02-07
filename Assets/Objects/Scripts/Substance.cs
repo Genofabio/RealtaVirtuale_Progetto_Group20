@@ -5,7 +5,7 @@ public class Substance
 {
     [SerializeField] private string substanceName;
     [SerializeField] private float quantity;
-    [SerializeField] private Color color;
+    //[SerializeField] private Color color;
 
     public string SubstanceName
     {
@@ -19,16 +19,16 @@ public class Substance
         set { quantity = Mathf.Max(0, value); }
     }
 
-    public Color SubstanceColor
-    {
-        get { return color; }
-        set { color = value; }
-    }
+    //public Color SubstanceColor
+    //{
+    //    get { return color; }
+    //    set { color = value; }
+    //}
 
-    public Substance(string name, Color col, float qty)
+    public Substance(string name, float qty)
     {
         SubstanceName = name;
-        SubstanceColor = col;
+        //SubstanceColor = col;
         Quantity = qty;
     }
 }

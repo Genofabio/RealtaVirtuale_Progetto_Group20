@@ -81,6 +81,10 @@ public class Becher : MonoBehaviour, Fillable, Pourable
 
     public void Fill(List<Substance> substances)
     {
+        if(isFilterOn)
+        {
+            filter.FilterLiquid(substances);
+        }
         foreach (var substance in substances)
         {
             AddSubstance(substance);
@@ -135,7 +139,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
             float pouredAmount = (sub.Quantity / totalAmount) * amountToPour;
             if (pouredAmount > 0)
             {
-                pouredSubstances.Add(new Substance(sub.SubstanceName, sub.SubstanceColor, pouredAmount));
+                pouredSubstances.Add(new Substance(sub.SubstanceName, pouredAmount));
                 sub.Quantity -= pouredAmount;
             }
         }
@@ -162,7 +166,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
             float extractedAmount = (sub.Quantity / totalAmount) * amountToExtract;
             if (extractedAmount > 0)
             {
-                extractedSubstances.Add(new Substance(sub.SubstanceName, sub.SubstanceColor, extractedAmount));
+                extractedSubstances.Add(new Substance(sub.SubstanceName, extractedAmount));
                 sub.Quantity -= extractedAmount;
             }
         }
