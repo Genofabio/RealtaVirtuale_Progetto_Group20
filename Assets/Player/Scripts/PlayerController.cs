@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerAudio playerAudio;
     [SerializeField] private AudioSource audioSource;
 
+    private bool isPouring = false;
 
     void Awake()
     {
@@ -40,6 +41,30 @@ public class PlayerController : MonoBehaviour
         grabbedObject = null;
 
         Cursor.lockState = CursorLockMode.Locked; // nasconde l'icona del cursore
+    }
+
+    void Update()
+    {
+        if (isPouring && grabbedObject != null)
+        {
+            if (grabbedObject.TryGetComponent<Pourable>(out var pourableObject))
+            {
+                Transform cameraHolderTransform = cameraHolder.transform;
+                if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+                {
+                    if (hit.transform.TryGetComponent<Fillable>(out var fillableObject))
+                    {
+                        float pourAmount = Time.deltaTime * 10;
+                        pourableObject.Pour(fillableObject, pourAmount);
+                        //isPouring = true;
+                    }
+                    else
+                    {
+                        isPouring = false;
+                    }
+                }
+            }
+        }
     }
 
     void FixedUpdate()
@@ -109,7 +134,7 @@ public class PlayerController : MonoBehaviour
                     {
                         if (hit.transform.TryGetComponent<Fillable>(out var fillableObject))
                         {
-                            pourableObject.Pour(fillableObject);
+                            isPouring = true;
                         }
                     }
                 }
@@ -162,6 +187,9 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             } 
+        } else if(context.canceled)
+        {
+            isPouring = false;
         }
     }
 

@@ -39,7 +39,7 @@ public class Grabbable : MonoBehaviour
 
             Vector3 distance = objectGrabPointTransform.position - transform.position;
 
-            if (justGrabbed && distance.magnitude < 0.01f)
+            if (justGrabbed && distance.magnitude < 0.05f)
             {
                 velocityMultiplier = finalVelocityMultiplier;
                 justGrabbed = false;

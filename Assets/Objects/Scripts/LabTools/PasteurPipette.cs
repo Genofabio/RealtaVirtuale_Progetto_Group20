@@ -4,7 +4,7 @@ public class PasteurPipe : MonoBehaviour, Dropper
 {
     bool Full;
     [SerializeField] private float Capacity;
-    Liquid liquid;
+    LiquidRenderer liquid;
 
     private void OnValidate()
     {
@@ -24,7 +24,7 @@ public class PasteurPipe : MonoBehaviour, Dropper
         }
         Full = false;
 
-        liquid = GetComponentInChildren<Liquid>();
+        liquid = GetComponentInChildren<LiquidRenderer>();
         if (liquid == null)
         {
             Debug.Log("Liquid NOT found");
@@ -37,40 +37,40 @@ public class PasteurPipe : MonoBehaviour, Dropper
 
     public void Drop(Fillable contenitor)
     {
-        if(Full)
-        {
-            if(contenitor.Fill(Capacity) == 0)
-            {
-                Full = false;
-                Debug.Log("Droppato quantità: " + Capacity);
-                liquid.SetFillSize(0f);
-            }
-            else
-            {
-                Debug.Log("Contenitore pieno, non puoi droppare");
-            }
-        } else
-        {
-            Debug.Log("Pipetta vuota");
-        }
+        //if(Full)
+        //{
+        //    if(contenitor.Fill(Capacity) == 0)
+        //    {
+        //        Full = false;
+        //        Debug.Log("Droppato quantità: " + Capacity);
+        //        liquid.SetFillSize(0f);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("Contenitore pieno, non puoi droppare");
+        //    }
+        //} else
+        //{
+        //    Debug.Log("Pipetta vuota");
+        //}
     }
 
     public void PickUp(Pourable contenitor)
     {
-        if(!Full)
-        {
-            if (contenitor.PickUpVolume(Capacity))
-            {
-                Full = true;
-                Debug.Log("Pipetta riempita");
-                liquid.SetFillSize(1f);
-            }
-            else
-            {
-                Debug.Log("Non c'è abbastanza volume da prendere");
-            }
+        //if(!Full)
+        //{
+        //    if (contenitor.PickUpVolume(Capacity))
+        //    {
+        //        Full = true;
+        //        Debug.Log("Pipetta riempita");
+        //        liquid.SetFillSize(1f);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("Non c'è abbastanza volume da prendere");
+        //    }
 
-        }
+        //}
     }
 
     public bool GetFull()
