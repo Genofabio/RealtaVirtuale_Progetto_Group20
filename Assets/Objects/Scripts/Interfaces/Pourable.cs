@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public interface Pourable
 {
-    public void Pour(Fillable contenitor);
+    public void Pour(Fillable targetContainer, float amountToPour);
 
-    public bool PickUpVolume(float volume);
+    public List<Substance> PickUpVolume(float amountToExtract);
 }

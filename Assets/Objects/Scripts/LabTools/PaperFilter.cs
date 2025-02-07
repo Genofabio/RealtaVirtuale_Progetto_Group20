@@ -10,21 +10,21 @@ public class PaperFilter : MonoBehaviour, Filter
 
     public void ApplyFilter(Becher becher)
     {
-        becher.SetFilterOn(this);
+        //becher.SetFilterOn(this);
         this.becher = becher;
 
         Rigidbody rb = GetComponent<Rigidbody>();
         Destroy(rb);
 
-        transform.position = becher.getFilterPosition().position;
-        transform.SetParent(becher.getFilterPosition());
+        //transform.position = becher.getFilterPosition().position;
+        //transform.SetParent(becher.getFilterPosition());
     }
 
     void Update()
     {
         if (/*isAttached && */becher != null)
         {
-            transform.position = becher.getFilterPosition().position;
+            //transform.position = becher.getFilterPosition().position;
         }
     }
 
@@ -36,7 +36,7 @@ public class PaperFilter : MonoBehaviour, Filter
     public void RemoveFilter()
     {
         Debug.Log("Rimuovo il filtro...");
-        becher.SetFilterOff();
+        //becher.SetFilterOff();
         becher = null;
         //rimuovere il filtro graficamente
     }

@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.Port;
 
 public class SubstanceVial : MonoBehaviour, Pourable
 {
-    public float currentVolume;
-    public float maxVolume;
-    Liquid liquid;
+    [SerializeField] private Substance substance;
+    [SerializeField] private float maxVolume;
+    private Liquid liquid;
 
     private void OnValidate()
     {
@@ -13,7 +14,6 @@ public class SubstanceVial : MonoBehaviour, Pourable
         {
             Debug.LogWarning("maxVolume deve essere maggiore di 0. Fialetta piena di 10ml.");
             maxVolume = 10f;
-            currentVolume = 10f;
         }
     }
 
@@ -23,7 +23,6 @@ public class SubstanceVial : MonoBehaviour, Pourable
         {
             Debug.LogWarning("maxVolume deve essere maggiore di 0. Fialetta piena di 10ml.");
             maxVolume = 10f;
-            currentVolume = 10f;
         }
 
         liquid = GetComponentInChildren<Liquid>();
@@ -33,31 +32,44 @@ public class SubstanceVial : MonoBehaviour, Pourable
         }
         else
         {
-            liquid.SetFillSize(currentVolume / maxVolume);
+            liquid.SetFillSize(GetCurrentVolume() / maxVolume);
         }
     }
 
-    public bool PickUpVolume(float volume)
+    public float GetCurrentVolume()
     {
-        if (currentVolume >= volume)
-        {
-            currentVolume -= volume;
-            liquid.SetFillSize(currentVolume / maxVolume);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return substance.Quantity;
     }
 
-    public void Pour(Fillable contenitor)
+    public List<Substance> PickUpVolume(float amountToExtract)
     {
-        if (currentVolume > 0)
-        {
-            currentVolume = contenitor.Fill(currentVolume);
-            liquid.SetFillSize(currentVolume / maxVolume);
-        }
+        float totalAmount = GetCurrentVolume();
+        if (totalAmount == 0 || amountToExtract <= 0) return new List<Substance>();
+        if (amountToExtract > totalAmount) amountToExtract = totalAmount;
+
+        List<Substance> extractedSubstance = new List<Substance>();
+        extractedSubstance.Add(new Substance(substance.SubstanceName, substance.SubstanceColor, amountToExtract));
+        substance.Quantity -= amountToExtract;
+
+        liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+
+        return extractedSubstance;
+    }
+
+    public void Pour(Fillable targetContainer, float amountToPour)
+    {
+        float totalAmount = GetCurrentVolume();
+        if (totalAmount == 0 || amountToPour <= 0) return;
+        if (amountToPour > totalAmount) amountToPour = totalAmount;
+
+        List<Substance> pouredSubstance = new List<Substance>();
+        pouredSubstance.Add(new Substance(substance.SubstanceName, substance.SubstanceColor, amountToPour));
+        substance.Quantity -= amountToPour;
+
+        liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+
+        // Versa nel becher di destinazione
+        targetContainer.Fill(pouredSubstance);
     }
 
 
