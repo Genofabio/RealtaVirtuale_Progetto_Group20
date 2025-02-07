@@ -15,6 +15,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     private Filter filter = null;
 
     private float becherMass;
+    private float liquidWeight;
 
     public List<Substance> Contents => contents;
 
@@ -94,8 +95,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     public void RefreshTotalWeight()
     {
         TryGetComponent<Rigidbody>(out var rb);
-        float liquidWeight = 0f;
         if (contents.Count != 0)
+            liquidWeight = 0;
         {
             foreach (var substance in contents)
             {
