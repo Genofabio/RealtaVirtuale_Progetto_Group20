@@ -81,6 +81,20 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void MoveGrabbedObject(InputAction.CallbackContext context)
+    {
+        float scrollValue = context.ReadValue<float>(); // Ottieni il valore della rotella
+
+        if (scrollValue > 0 && grabbedObject != null) // Rotella scorsa verso l'alto
+        {
+            grabbedObject.MoveFarther();
+        }
+        else if (scrollValue < 0 && grabbedObject != null) // Rotella scorsa verso il basso
+        {
+            grabbedObject.MoveCloser();
+        }
+    }
+
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -190,16 +204,23 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out grabbedObject))
             {
-                Vector3 objectSize = Vector3.zero;
-                if (grabbedObject.TryGetComponent<Collider>(out Collider collider))
-                {
-                    objectSize = collider.bounds.size;
-                }
-                
-                Vector3 offset = cameraHolderTransform.right * (objectSize.x * 0.5f + 0.1f) + cameraHolderTransform.up * (objectSize.y * 0.5f + 0.1f); 
+                // Ottieni la posizione locale dell'oggetto rispetto alla telecamera
+                Vector3 localObjectPosition = cameraHolderTransform.InverseTransformPoint(grabbedObject.transform.position);
 
-                objectGrabPointTransform.position = grabbedObject.transform.position + offset;
+                // Imposta la Y come quella del point di grab, per non cambiarla
+                localObjectPosition.y = cameraHolderTransform.InverseTransformPoint(objectGrabPointTransform.position).y;
+
+                // Allinea la X in base alla posizione di objectGrabPointTransform
+                localObjectPosition.x = cameraHolderTransform.InverseTransformPoint(objectGrabPointTransform.position).x;
+
+                // Calcola la nuova posizione globale
+                Vector3 newPosition = cameraHolderTransform.TransformPoint(localObjectPosition);
+
+                // Imposta la nuova posizione di objectGrabPointTransform
+                objectGrabPointTransform.position = newPosition;
                 grabbedObject.Grab(objectGrabPointTransform);
+
+                // Riproduci l'audio
                 audioSource.clip = playerAudio.GetAudioClip(PlayerAudioKey.PickUp);
                 audioSource.Play();
             }

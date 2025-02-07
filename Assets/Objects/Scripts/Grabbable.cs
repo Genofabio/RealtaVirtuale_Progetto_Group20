@@ -39,11 +39,11 @@ public class Grabbable : MonoBehaviour
 
             Vector3 distance = objectGrabPointTransform.position - transform.position;
 
-            if(justGrabbed && distance.magnitude < 0.01f)
+            if (justGrabbed && distance.magnitude < 0.01f)
             {
                 velocityMultiplier = finalVelocityMultiplier;
                 justGrabbed = false;
-            } 
+            }
 
             // Raggiunge la nuova posizione dell'oggetto
             objectRigidbody.linearVelocity = velocityMultiplier * (objectGrabPointTransform.position - transform.position);
@@ -77,5 +77,19 @@ public class Grabbable : MonoBehaviour
         objectRigidbody.interpolation = defaultInterpolation;
     }
 
+    public void MoveCloser()
+    {
+        if (objectGrabPointTransform != null)
+        {
+            objectGrabPointTransform.position -= objectGrabPointTransform.forward * 0.3f;
+        }
+    }
 
+    public void MoveFarther()
+    {
+        if (objectGrabPointTransform != null)
+        {
+            objectGrabPointTransform.position += objectGrabPointTransform.forward * 0.3f;
+        }
+    }
 }
