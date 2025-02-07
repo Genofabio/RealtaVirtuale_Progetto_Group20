@@ -20,9 +20,6 @@ public class PrecisionBalance : MonoBehaviour
 
     public void WeightObjects()
     {
-        //obj.TryGetComponent<Rigidbody>(out var rigidBody);
-        //Debug.Log("Oggetto in bilancia, peso: " + RoundToSignificantFigures(rigidBody.mass, 4));
-
         totalWeight = 0f;
         foreach (var obj in objects)
         {
@@ -34,8 +31,7 @@ public class PrecisionBalance : MonoBehaviour
     public void Tare()
     {
         tare = -totalWeight;
-        //totalWeight = 0f;
-        Debug.Log("Taratura bilancia effettuata, peso totale: " + totalWeight);
+        Debug.Log("Taratura bilancia effettuata, peso totale: " + RoundToSignificantFigures(totalWeight + tare, 4));
     }
 
     private float RoundToSignificantFigures(float value, int sigFigures)
