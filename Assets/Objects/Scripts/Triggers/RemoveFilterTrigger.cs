@@ -7,7 +7,7 @@ public class RemoveFilterTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Enter" + other);
+        //Debug.Log("Enter" + other);
         if (other.TryGetComponent<PaperFilter>(out var filter))
         {
             Debug.Log("Filtro sul becher");
@@ -17,7 +17,7 @@ public class RemoveFilterTrigger : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Exit" + other);
+        //Debug.Log("Exit" + other);
         if (other.TryGetComponent<PaperFilter>(out var filter))
         {
             Debug.Log("Filtro allontanato...");
