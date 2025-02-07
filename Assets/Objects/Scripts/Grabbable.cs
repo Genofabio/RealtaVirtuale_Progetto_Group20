@@ -28,7 +28,7 @@ public class Grabbable : MonoBehaviour
         defaultInterpolation = objectRigidbody.interpolation;
         defaultLinearDamping = objectRigidbody.linearDamping;
 
-        initialVelocityMultiplier = 3f;
+        initialVelocityMultiplier = 5f;
         finalVelocityMultiplier = 10f;
     }
 
@@ -39,7 +39,7 @@ public class Grabbable : MonoBehaviour
 
             Vector3 distance = objectGrabPointTransform.position - transform.position;
 
-            if (justGrabbed && distance.magnitude < 0.05f)
+            if (justGrabbed && distance.magnitude < 0.4f)
             {
                 velocityMultiplier = finalVelocityMultiplier;
                 justGrabbed = false;
@@ -75,21 +75,5 @@ public class Grabbable : MonoBehaviour
         objectRigidbody.linearDamping = defaultLinearDamping;
         objectRigidbody.angularDamping = defaultAngularDamping;
         objectRigidbody.interpolation = defaultInterpolation;
-    }
-
-    public void MoveCloser()
-    {
-        if (objectGrabPointTransform != null)
-        {
-            objectGrabPointTransform.position -= objectGrabPointTransform.forward * 0.3f;
-        }
-    }
-
-    public void MoveFarther()
-    {
-        if (objectGrabPointTransform != null)
-        {
-            objectGrabPointTransform.position += objectGrabPointTransform.forward * 0.3f;
-        }
     }
 }

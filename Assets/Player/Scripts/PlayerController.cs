@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
                     {
                         float pourAmount = Time.deltaTime * 10;
                         pourableObject.Pour(fillableObject, pourAmount);
-                        //isPouring = true;
                     }
                     else
                     {
@@ -110,13 +109,27 @@ public class PlayerController : MonoBehaviour
     {
         float scrollValue = context.ReadValue<float>(); // Ottieni il valore della rotella
 
-        if (scrollValue > 0 && grabbedObject != null) // Rotella scorsa verso l'alto
+        if (grabbedObject == null) return; // Se non c'è un oggetto preso, esci
+
+        float minDistance = 1.0f;
+        float maxDistance = 3.0f; 
+
+        Vector3 direction = objectGrabPointTransform.forward * 0.3f;
+        Vector3 newPosition = objectGrabPointTransform.position;
+
+        if (scrollValue > 0)
         {
-            grabbedObject.MoveFarther();
+            newPosition += direction;
         }
-        else if (scrollValue < 0 && grabbedObject != null) // Rotella scorsa verso il basso
+        else if (scrollValue < 0) 
         {
-            grabbedObject.MoveCloser();
+            newPosition -= direction;
+        }
+
+        float distance = Vector3.Distance(newPosition, cameraHolder.transform.position);
+        if (distance >= minDistance && distance <= maxDistance)
+        {
+            objectGrabPointTransform.position = newPosition;
         }
     }
 
