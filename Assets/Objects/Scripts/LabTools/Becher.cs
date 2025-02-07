@@ -12,7 +12,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
 
     private bool isFilterOn = false;
     private Filter filter = null;
-    [SerializeField] private Transform filterPosition;
+
+    private float becherMass;
 
     public List<Substance> Contents => contents;
 
@@ -42,6 +43,11 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         {
             liquid.SetFillSize(GetCurrentVolume() / maxVolume);
         }
+
+        TryGetComponent<Rigidbody>(out var rb);
+        becherMass = rb.mass;
+
+        RefreshTotalWeight();
     }
 
     public float GetCurrentVolume()
@@ -79,6 +85,20 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         liquid.SetFillSize(totalAmount / maxVolume);
     }
 
+    public void RefreshTotalWeight()
+    {
+        TryGetComponent<Rigidbody>(out var rb);
+        float liquidWeight = 0f;
+        if (contents.Count != 0)
+        {
+            foreach (var substance in contents)
+            {
+                liquidWeight += substance.Quantity / 1000;
+            }
+        }
+        rb.mass = becherMass + liquidWeight;
+    }
+
     public void Fill(List<Substance> substances)
     {
         if(isFilterOn)
@@ -88,6 +108,9 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         foreach (var substance in substances)
         {
             AddSubstance(substance);
+
+            TryGetComponent<Rigidbody>(out var rb);
+            rb.mass += substance.Quantity/1000;
         }
     }
 
@@ -141,6 +164,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
             {
                 pouredSubstances.Add(new Substance(sub.SubstanceName, pouredAmount));
                 sub.Quantity -= pouredAmount;
+
+                RefreshTotalWeight();
             }
         }
 
@@ -168,6 +193,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
             {
                 extractedSubstances.Add(new Substance(sub.SubstanceName, extractedAmount));
                 sub.Quantity -= extractedAmount;
+
+                RefreshTotalWeight();
             }
         }
 
