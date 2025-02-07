@@ -5,4 +5,5 @@ public interface Fillable
 {
     public void Fill(List<Substance> substances);
     public float GetRemainingVolume();
+    public void MixSubstances();
 }

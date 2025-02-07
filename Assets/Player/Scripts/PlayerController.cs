@@ -177,18 +177,18 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                 }
-                //oggetto di tipo filtro
-                //else if (grabbedObject.TryGetComponent<Filter>(out var filterObject))
-                //{
-                //    Transform cameraHolderTransform = cameraHolder.transform;
-                //    if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
-                //    {
-                //        if (hit.transform.TryGetComponent<Becher>(out var becherObject))
-                //        {
-                //            filterObject.ApplyFilter(becherObject);
-                //        }
-                //    }
-                //}
+                //Oggetto di tipo StirringRod, gestione del mescolamento di sostanze
+                else if (grabbedObject.TryGetComponent<StirringRod>(out var rod))
+                {
+                    Transform cameraHolderTransform = cameraHolder.transform;
+                    if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+                    {
+                        if (hit.transform.TryGetComponent<Fillable>(out var fillableObject))
+                        {
+                            rod.Mix(fillableObject);
+                        }
+                    }
+                }
             } else if (grabbedObject == null)
             {
                 Transform cameraHolderTransform = cameraHolder.transform;

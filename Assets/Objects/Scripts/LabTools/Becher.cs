@@ -9,6 +9,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     [SerializeField] private float maxVolume;
 
     private LiquidRenderer liquid;
+    private bool isMixed = false;
 
     private bool isFilterOn = false;
     private Filter filter = null;
@@ -85,6 +86,11 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         liquid.SetFillSize(totalAmount / maxVolume);
     }
 
+    public void MixSubstances()
+    {
+        isMixed = true;
+    }
+
     public void RefreshTotalWeight()
     {
         TryGetComponent<Rigidbody>(out var rb);
@@ -112,40 +118,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
             TryGetComponent<Rigidbody>(out var rb);
             rb.mass += substance.Quantity/1000;
         }
+        isMixed = false;
     }
-
-    //public float Fill(float volume)
-    //{
-    //    if (currentVolume == maxVolume)
-    //    {
-    //        Debug.Log("NON ENTRAAAAAAAAAAA");
-    //        return volume;
-    //    }
-    //    else if (currentVolume + volume <= maxVolume)
-    //    {
-    //        if(isFilterOn)
-    //        {
-    //            filter.FilterLiquid();
-    //        }
-    //        currentVolume += volume;
-    //        liquid.SetFillSize(currentVolume / maxVolume);
-    //        //Debug.Log("ci entrava tutto");
-    //        return 0;
-
-    //    }
-    //    else
-    //    {
-    //        if(isFilterOn)
-    //        {
-    //            Debug.Log("Non c'è spazio a sufficienza per filtrare tutto il liquido");
-    //        }
-    //        float remainingVolume = maxVolume - currentVolume;
-    //        currentVolume = maxVolume;
-    //        liquid.SetFillSize(currentVolume / maxVolume);  
-    //        //Debug.Log("Va di fori: " + remainingVolume);
-    //        return remainingVolume;
-    //    }
-    //}
 
     public void Pour(Fillable targetContainer, float amountToPour)
     {
@@ -203,16 +177,6 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         liquid.SetFillSize(GetCurrentVolume() / maxVolume);
 
         return extractedSubstances;
-        //if (currentVolume >= volume)
-        //{
-        //    currentVolume -= volume;
-        //    liquid.SetFillSize(currentVolume / maxVolume);
-        //    return true;
-        //}
-        //else
-        //{
-        //    return false;
-        //}
     }
 
     public void SetFilterOn(Filter filter)
