@@ -286,7 +286,6 @@ MonoBehaviour:
   substance:
     substanceName: 
     quantity: 0
-    color: {r: 0, g: 0, b: 0, a: 0}
   maxVolume: 10
 --- !u!114 &87018325
 MonoBehaviour:
@@ -494,6 +493,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de4255441bc0334c98b32f5af30d738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filtrableSubstances: []
+  toFilterVolume: 0
+  filteredVolume: 0
 --- !u!65 &153190836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1135,7 +1137,6 @@ MonoBehaviour:
   contents:
   - substanceName: H20
     quantity: 5
-    color: {r: 0, g: 0, b: 0, a: 0}
   maxVolume: 20
   filterPosition: {fileID: 0}
 --- !u!114 &988482618
@@ -2094,7 +2095,6 @@ MonoBehaviour:
   contents:
   - substanceName: HCl
     quantity: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
   maxVolume: 20
   filterPosition: {fileID: 0}
 --- !u!1 &1937065528
