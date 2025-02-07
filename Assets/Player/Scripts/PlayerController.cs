@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
                 //Oggetto di tipo Dropper, gestione di PickUp e Drop
                 else if (grabbedObject.TryGetComponent<Dropper>(out var dropperObject))
                 {
-                    if (dropperObject.GetFull())
+                    if (dropperObject.IsFull())
                     {
                         Transform cameraHolderTransform = cameraHolder.transform;
                         if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
                         {
                             if (hit.transform.TryGetComponent<Pourable>(out var pourableObject2))
                             {
-                                dropperObject.PickUp(pourableObject2);
+                                dropperObject.Suck(pourableObject2);
                             }
                         }
                     }

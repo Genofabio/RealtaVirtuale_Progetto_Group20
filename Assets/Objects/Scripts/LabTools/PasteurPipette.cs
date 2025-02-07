@@ -1,29 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PasteurPipe : MonoBehaviour, Dropper
 {
-    bool Full;
-    [SerializeField] private float Capacity;
-    LiquidRenderer liquid;
+    private List<Substance> contents = new List<Substance>();
 
-    private void OnValidate()
+    [SerializeField] private float capacity;
+    private bool full;
+
+    private LiquidRenderer liquid;
+
+    private void Start()
     {
-        if (Capacity <= 0)
-        {
-            Debug.LogWarning("Capacity deve essere maggiore di 0; valore settato a 5ml.");
-            Capacity = 5f;
-        }
-    }
-
-    void Start()
-    {
-        if(Capacity <= 0)
-        {
-            Debug.LogWarning("Capacity deve essere maggiore di 0; valore settato a 5ml.");
-            Capacity = 5f;
-        }
-        Full = false;
-
         liquid = GetComponentInChildren<LiquidRenderer>();
         if (liquid == null)
         {
@@ -31,50 +19,56 @@ public class PasteurPipe : MonoBehaviour, Dropper
         }
         else
         {
-            liquid.SetFillSize(0f);
+            liquid.SetFillSize(0);
         }
     }
 
-    public void Drop(Fillable contenitor)
+    public void Suck(Pourable source)
     {
-        //if(Full)
-        //{
-        //    if(contenitor.Fill(Capacity) == 0)
-        //    {
-        //        Full = false;
-        //        Debug.Log("Droppato quantità: " + Capacity);
-        //        liquid.SetFillSize(0f);
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("Contenitore pieno, non puoi droppare");
-        //    }
-        //} else
-        //{
-        //    Debug.Log("Pipetta vuota");
-        //}
+        if (source == null || full) return;
+
+        List<Substance> extractedSubstances = source.PickUpVolume(capacity);
+        if (extractedSubstances.Count == 0 ) return;
+
+        foreach (var sub in extractedSubstances)
+        {
+            AddSubstance(sub);
+        }
+
+        full = true;
+        liquid.SetFillSize(1);
     }
 
-    public void PickUp(Pourable contenitor)
+    public void Drop(Fillable targetContainer)
     {
-        //if(!Full)
-        //{
-        //    if (contenitor.PickUpVolume(Capacity))
-        //    {
-        //        Full = true;
-        //        Debug.Log("Pipetta riempita");
-        //        liquid.SetFillSize(1f);
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("Non c'è abbastanza volume da prendere");
-        //    }
+        if (targetContainer == null || !full) return;
 
-        //}
+        float targetRemainingVolume = targetContainer.GetRemainingVolume();
+        if (targetRemainingVolume < capacity) return;
+
+        targetContainer.Fill(contents);
+
+        full = false;
+        contents = new List<Substance>();
+        liquid.SetFillSize(0);
     }
 
-    public bool GetFull()
+    private void AddSubstance(Substance substance)
     {
-        return Full;
+        if (substance.Quantity <= 0) return;
+        Substance existing = contents.Find(s => s.SubstanceName == substance.SubstanceName);
+        if (existing != null)
+        {
+            existing.Quantity += substance.Quantity;
+        }
+        else
+        {
+            contents.Add(substance);
+        }
+    }
+
+    public bool IsFull()
+    {
+        return full;
     }
 }
