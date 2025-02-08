@@ -25,20 +25,19 @@ public class PrecisionBalance : MonoBehaviour
         {
             totalWeight += obj.mass;
         }
-        Debug.Log("Peso totale: " + RoundToSignificantFigures(totalWeight + tare, 4));
+        Debug.Log("Peso totale: " + RoundToDecimalPlaces(totalWeight + tare, 4));
     }
 
     public void Tare()
     {
         tare = -totalWeight;
-        Debug.Log("Taratura bilancia effettuata, peso totale: " + RoundToSignificantFigures(totalWeight + tare, 4));
+        Debug.Log("Taratura bilancia effettuata, peso totale: " + RoundToDecimalPlaces(totalWeight + tare, 4));
     }
 
-    private float RoundToSignificantFigures(float value, int sigFigures)
+    private float RoundToDecimalPlaces(float value, int decimalPlaces)
     {
-        if (value == 0) return 0;
-
-        float scale = Mathf.Pow(10, sigFigures - Mathf.FloorToInt(Mathf.Log10(Mathf.Abs(value))) - 1);
-        return Mathf.Round(value * scale) / scale;
+        float factor = Mathf.Pow(10, decimalPlaces);
+        return Mathf.Round(value * factor) / factor;
     }
+
 }
