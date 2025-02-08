@@ -40,19 +40,22 @@ public class SubstanceVial : MonoBehaviour, Pourable
         return substance.Quantity;
     }
 
-    public List<Substance> PickUpVolume(float amountToExtract)
+    public SubstancesMix PickUpVolume(float amountToExtract)
     {
         float totalAmount = GetCurrentVolume();
-        if (totalAmount == 0 || amountToExtract <= 0) return new List<Substance>();
+        SubstancesMix extractedMix = new SubstancesMix(new List<Substance>(), false, -1);
+        if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 
         List<Substance> extractedSubstance = new List<Substance>();
         extractedSubstance.Add(new Substance(substance.SubstanceName, amountToExtract));
         substance.Quantity -= amountToExtract;
 
+        extractedMix.Substances = extractedSubstance;
+
         liquid.SetFillSize(GetCurrentVolume() / maxVolume);
 
-        return extractedSubstance;
+        return extractedMix;
     }
 
     public void Pour(Fillable targetContainer, float amountToPour)
@@ -64,11 +67,12 @@ public class SubstanceVial : MonoBehaviour, Pourable
         List<Substance> pouredSubstance = new List<Substance>();
         pouredSubstance.Add(new Substance(substance.SubstanceName, amountToPour));
         substance.Quantity -= amountToPour;
+        SubstancesMix pouredMix = new SubstancesMix(pouredSubstance, false, -1);
 
         liquid.SetFillSize(GetCurrentVolume() / maxVolume);
 
         // Versa nel becher di destinazione
-        targetContainer.Fill(pouredSubstance);
+        targetContainer.Fill(pouredMix);
     }
 
 

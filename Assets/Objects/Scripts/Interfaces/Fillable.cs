@@ -3,7 +3,7 @@ using UnityEngine;
 
 public interface Fillable
 {
-    public void Fill(List<Substance> substances);
+    public void Fill(SubstancesMix mix);
     public float GetRemainingVolume();
     public void MixSubstances();
 }

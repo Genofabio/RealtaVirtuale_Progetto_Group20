@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PasteurPipe : MonoBehaviour, Dropper
 {
-    private List<Substance> contents = new List<Substance>();
+    [SerializeField] private SubstancesMix substancesMix;
 
     [SerializeField] private float capacity;
     private bool full;
@@ -27,13 +27,10 @@ public class PasteurPipe : MonoBehaviour, Dropper
     {
         if (source == null || full) return;
 
-        List<Substance> extractedSubstances = source.PickUpVolume(capacity);
-        if (extractedSubstances.Count == 0 ) return;
+        SubstancesMix extractedMix = source.PickUpVolume(capacity);
+        if (extractedMix.Substances.Count == 0 ) return;
 
-        foreach (var sub in extractedSubstances)
-        {
-            AddSubstance(sub);
-        }
+        substancesMix.AddSubstancesMix(extractedMix);
 
         full = true;
         liquid.SetFillSize(1);
@@ -46,26 +43,26 @@ public class PasteurPipe : MonoBehaviour, Dropper
         float targetRemainingVolume = targetContainer.GetRemainingVolume();
         if (targetRemainingVolume < capacity) return;
 
-        targetContainer.Fill(contents);
+        targetContainer.Fill(substancesMix);
 
         full = false;
-        contents = new List<Substance>();
+        substancesMix = new SubstancesMix(new List<Substance>(), false, -1);
         liquid.SetFillSize(0);
     }
 
-    private void AddSubstance(Substance substance)
-    {
-        if (substance.Quantity <= 0) return;
-        Substance existing = contents.Find(s => s.SubstanceName == substance.SubstanceName);
-        if (existing != null)
-        {
-            existing.Quantity += substance.Quantity;
-        }
-        else
-        {
-            contents.Add(substance);
-        }
-    }
+    //private void AddSubstance(Substance substance)
+    //{
+    //    if (substance.Quantity <= 0) return;
+    //    Substance existing = sub.Find(s => s.SubstanceName == substance.SubstanceName);
+    //    if (existing != null)
+    //    {
+    //        existing.Quantity += substance.Quantity;
+    //    }
+    //    else
+    //    {
+    //        contents.Add(substance);
+    //    }
+    //}
 
     public bool IsFull()
     {

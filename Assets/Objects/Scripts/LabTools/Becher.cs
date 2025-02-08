@@ -1,125 +1,135 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using static UnityEditor.Experimental.GraphView.Port;
 using static UnityEngine.Rendering.DebugUI;
 
 public class Becher : MonoBehaviour, Fillable, Pourable
 {
-    [SerializeField] private List<Substance> contents;
-    [SerializeField] private float maxVolume;
+    [SerializeField] private SubstancesMix substancesMix;
+    [SerializeField] private float capacity;
 
-    private LiquidRenderer liquid;
-    private bool isMixed = false;
+    //private LiquidRenderer liquidRenderer;
+    private MeshRenderer becherRenderer;
+    //[SerializeField] private Material errorMaterial;
+    //private bool errorMix;
+
+    //private bool isMixed = false;
 
     private bool isFilterOn = false;
     private Filter filter = null;
 
+    private Rigidbody becherRigidbody;
     private float becherMass;
-    private float liquidWeight;
 
-    public List<Substance> Contents => contents;
+    private ExperimentController experimentController;
 
-    private void OnValidate()
-    {
-        if (maxVolume <= 0)
-        {
-            Debug.LogWarning("maxVolume deve essere maggiore di 0. Impostazione modificata a 20ml.");
-            maxVolume = 20f; 
-        }
-    }
+    private LiquidRenderer liquidRenderer;
+    //private StepSubstanceMix stepSubstanceMix;
+
+    //private List<Substance> starterMix;
+    //private List<Substance> finalMix;
+
+    //public List<Substance> Contents => substancesMix;
 
     void Start()
     {
-        if (maxVolume <= 0)
+        if (capacity <= 0)
         {
             Debug.LogWarning("Capacity deve essere maggiore di 0. Impostazione modificata a 20ml.");
-            maxVolume = 20f;
+            capacity = 20f;
         }
 
-        liquid = GetComponentInChildren<LiquidRenderer>();
-        if (liquid == null)
+        liquidRenderer = GetComponentInChildren<LiquidRenderer>();
+        if (liquidRenderer == null)
         {
             Debug.Log("Liquid NOT found");
         }
         else
         {
-            liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+            liquidRenderer.SetFillSize(GetCurrentVolume() / capacity);
         }
+        becherRenderer = GetComponent<MeshRenderer>();
 
-        TryGetComponent<Rigidbody>(out var rb);
-        becherMass = rb.mass;
+        becherRigidbody = GetComponent<Rigidbody>();
+        becherMass = becherRigidbody.mass;
 
         RefreshTotalWeight();
+
+        experimentController = FindFirstObjectByType<ExperimentController>();
+
+        //if (stepSubstanceMix == null)
+        //{
+        //    experimentController = FindFirstObjectByType<ExperimentController>();
+        //    stepSubstanceMix = experimentController.GetCurrentStep();
+        //    finalMix = stepSubstanceMix.finalMix;
+        //    experimentController.OnUpdateStep += UpdateStep;
+        //    CheckMixAndSetMaterial(finalMix);
+        //}
+
     }
 
-    public float GetCurrentVolume()
+    private void OnValidate()
     {
-        float sum = 0f;
-        foreach (var substance in contents)
+        if (capacity <= 0)
         {
-            sum += substance.Quantity;
+            Debug.LogWarning("maxVolume deve essere maggiore di 0. Impostazione modificata a 20ml.");
+            capacity = 20f;
         }
-        return sum;
+    }
+
+    private float GetCurrentVolume()
+    {
+        return substancesMix.GetCurrentVolume();
     }
 
     public float GetRemainingVolume()
     {
-        return maxVolume - GetCurrentVolume();
+        return capacity - GetCurrentVolume();
     }
 
-    public void AddSubstance(Substance substance)
-    {
-        if (substance.Quantity <= 0) return;
-        float totalAmount = GetCurrentVolume() + substance.Quantity;
-
-        //if (totalAmount > maxVolume) substance.Quantity -= (totalAmount - maxVolume);
-
-        Substance existing = contents.Find(s => s.SubstanceName == substance.SubstanceName);
-        if (existing != null)
-        {
-            existing.Quantity += substance.Quantity;
-        }
-        else
-        {
-            contents.Add(substance);
-        }
-
-        liquid.SetFillSize(totalAmount / maxVolume);
-    }
+    //public void AddSubstance(Substance substance)
+    //{
+    //    substancesMix.AddSubstance(substance);
+    //    liquidRenderer.SetFillSize(GetCurrentVolume() / capacity);
+    //}
 
     public void MixSubstances()
     {
-        isMixed = true;
+        substancesMix.MixSubstances();
     }
 
     public void RefreshTotalWeight()
     {
         TryGetComponent<Rigidbody>(out var rb);
-        if (contents.Count != 0)
-            liquidWeight = 0;
-        {
-            foreach (var substance in contents)
-            {
-                liquidWeight += substance.Quantity / 1000;
-            }
-        }
+        float liquidWeight = substancesMix.GetLiquidWeight();  
         rb.mass = becherMass + liquidWeight;
     }
 
-    public void Fill(List<Substance> substances)
+    public void Fill(SubstancesMix mix)
     {
         if(isFilterOn)
         {
-            filter.FilterLiquid(substances);
+            filter.FilterLiquid(mix.Substances);
         }
-        foreach (var substance in substances)
-        {
-            AddSubstance(substance);
 
-            TryGetComponent<Rigidbody>(out var rb);
-            rb.mass += substance.Quantity/1000;
-        }
-        isMixed = false;
+        substancesMix.AddSubstancesMix(mix);
+
+        RefreshTotalWeight();
+
+        liquidRenderer.SetFillSize(GetCurrentVolume() / capacity);
+
+        substancesMix.Mixed = false;
+
+        experimentController.TryAdvanceToNextStep(substancesMix);
+
+        //CheckMixAndSetMaterial(finalMix);
+
+        //if (HasMix(finalMix))
+        //{
+        //    stepSubstanceMix.Notify(this);
+        //}
     }
 
     public void Pour(Fillable targetContainer, float amountToPour)
@@ -130,54 +140,33 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         if (amountToPour > totalAmount) amountToPour = totalAmount;
         if (amountToPour > targetRemainingVolume) amountToPour = targetRemainingVolume;
 
-        // Calcola la percentuale da trasferire
-        List<Substance> pouredSubstances = new List<Substance>();
-        foreach (var sub in contents)
-        {
-            float pouredAmount = (sub.Quantity / totalAmount) * amountToPour;
-            if (pouredAmount > 0)
-            {
-                pouredSubstances.Add(new Substance(sub.SubstanceName, pouredAmount));
-                sub.Quantity -= pouredAmount;
+        List<Substance> pouredSubstances = substancesMix.ExtractSubstances(amountToPour);
+        SubstancesMix pouredMix = new SubstancesMix(pouredSubstances, substancesMix.Mixed, substancesMix.ExperimentStepReached);
 
-                RefreshTotalWeight();
-            }
-        }
+        liquidRenderer.SetFillSize(GetCurrentVolume() / capacity);
+        RefreshTotalWeight();
 
-        // Rimuove le sostanze con quantità zero
-        contents.RemoveAll(sub => sub.Quantity <= 0);
+        targetContainer.Fill(pouredMix);
 
-        liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+        experimentController.isLastStepStillReached(substancesMix);
 
-        // Versa nel becher di destinazione
-        targetContainer.Fill(pouredSubstances);
+        //CheckMixAndSetMaterial(finalMix);
     }
 
-    public List<Substance> PickUpVolume(float amountToExtract)
+    public SubstancesMix PickUpVolume(float amountToExtract)
     {
         float totalAmount = GetCurrentVolume();
-        if (totalAmount == 0 || amountToExtract <= 0) return new List<Substance>();
+        SubstancesMix extractedMix = new SubstancesMix(new List<Substance>(), substancesMix.Mixed, substancesMix.ExperimentStepReached);
+        if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 
-        // Calcola la percentuale da estrarre
-        List<Substance> extractedSubstances = new List<Substance>();
-        foreach (var sub in contents)
-        {
-            float extractedAmount = (sub.Quantity / totalAmount) * amountToExtract;
-            if (extractedAmount > 0)
-            {
-                extractedSubstances.Add(new Substance(sub.SubstanceName, extractedAmount));
-                sub.Quantity -= extractedAmount;
+        List<Substance> extractedSubstances = substancesMix.ExtractSubstances(amountToExtract);
+        extractedMix.Substances = extractedSubstances;
 
-                RefreshTotalWeight();
-            }
-        }
+        liquidRenderer.SetFillSize(GetCurrentVolume() / capacity);
+        RefreshTotalWeight();
 
-        // Rimuove le sostanze con quantità zero
-        contents.RemoveAll(sub => sub.Quantity <= 0);
-        liquid.SetFillSize(GetCurrentVolume() / maxVolume);
-
-        return extractedSubstances;
+        return extractedMix;
     }
 
     public void SetFilterOn(Filter filter)
@@ -205,4 +194,56 @@ public class Becher : MonoBehaviour, Fillable, Pourable
             Debug.Log("Non c'è nessun filtro"); //tecnicamente non deve mai comparirre sto messaggio
         }
     }
+
+    public bool HasMixSimilarTo(SubstancesMix mix)
+    {
+        return substancesMix.IsSimilarTo(mix);
+    }
+
+    //private void CheckMixAndSetMaterial(List<Substance> mix)
+    //{
+    //    if (GetCurrentVolume() < 0.001 || ((CanStillBecomeMix(mix) || substancesMix.Count() < 2) && errorMix == false))
+    //    {
+    //        SetNormalMaterial();
+    //    }
+    //    else
+    //    {
+    //        SetErrorMaterial();
+    //        errorMix = true;
+    //    }
+    //}
+
+    //private void SetErrorMaterial()
+    //{
+    //    Material[] materials = becherRenderer.materials;
+    //    if(materials.Length < 2)
+    //    {
+    //        System.Array.Resize(ref materials, materials.Length + 1);
+    //        materials[materials.Length - 1] = errorMaterial;
+
+    //        becherRenderer.materials = materials;
+    //    }
+    //}
+
+    //private void SetNormalMaterial()
+    //{
+    //    Material[] materials = becherRenderer.materials;
+
+    //    if (materials.Length > 0) 
+    //    {
+    //        becherRenderer.materials = new Material[] { materials[0] };
+    //    }
+    //}
+
+    public bool CanStillBecome(SubstancesMix mix)
+    {
+        return substancesMix.CanBecome(mix);
+    }
+
+//private void UpdateStep()
+//    {
+//        stepSubstanceMix = experimentController.GetCurrentStep();
+//        finalMix = stepSubstanceMix.finalMix;
+//        CheckMixAndSetMaterial(finalMix);
+//    }
 }
