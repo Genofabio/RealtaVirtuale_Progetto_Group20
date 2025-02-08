@@ -25,8 +25,9 @@ public class PlayerController : MonoBehaviour
 
     private Grabbable grabbedObject;
 
-    [Header("Crosshair")]
+    [Header("Crosshair and Context UI")]
     [SerializeField] private CrosshairController crosshair;
+    [SerializeField] private ContextUIController contextUIController;
 
     [Header("Audio")]
     [SerializeField] private PlayerAudio playerAudio;
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour
     {
         RotateCamera();
         UpdateCrosshair();
+        UpdateContextUI();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -276,6 +278,7 @@ public class PlayerController : MonoBehaviour
             if (hit.transform.TryGetComponent<Grabbable>(out var grabbable))
             {
                 crosshair.SetCrosshairActive();
+
             } 
             if (hit.transform.TryGetComponent<Pourable>(out var pourable))
             {
@@ -288,6 +291,19 @@ public class PlayerController : MonoBehaviour
         } else
         {
             crosshair.SetCrosshairInactive();
+        }
+    }
+
+    public void UpdateContextUI()
+    {
+        Transform cameraHolderTransform = cameraHolder.transform;
+        if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
+        {
+            contextUIController.CheckContextState(grabbedObject, hit);
+        }
+        else
+        {
+            contextUIController.HideContextUI();
         }
     }
 }
