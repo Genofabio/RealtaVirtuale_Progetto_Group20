@@ -4,7 +4,7 @@ using UnityEngine;
 public class ExperimentManager : MonoBehaviour
 {
     [SerializeField] private List<SubstanceMixture> steps;
-    [SerializeField] private int[] numMixturePerStep;
+    private int[] numMixturePerStep;
 
     public List<SubstanceMixture> Steps => steps;
 
@@ -26,12 +26,13 @@ public class ExperimentManager : MonoBehaviour
         return true;
     }
 
-    public void TryAdvanceToNextStep(SubstanceMixture mix)
+    public void CheckAndModifyStep(SubstanceMixture mix)
     {
         int currentStepReached = mix.ExperimentStepReached;
 
         if (currentStepReached >= 0 && !isLastStepStillReached(mix))
         {
+            Debug.Log("Vuoto");
             HandleStepFailure(mix);
             return;
         }
@@ -42,50 +43,47 @@ public class ExperimentManager : MonoBehaviour
         {
             if (mix.IsSimilarTo(targetMix))
             {
+                Debug.Log("Avanzamento");
                 AdvanceToNextStep(mix);
             }
         }
         else
         {
-            HandleStepFailure(mix);
+            if(currentStepReached >= 0)
+            {
+                Debug.Log("Sbagliato");
+                HandleStepFailure(mix);
+            }
         }
     }
 
     public void AdvanceToNextStep(SubstanceMixture mix)
     {
-        int mixStepReached = mix.ExperimentStepReached;
-        if (mixStepReached >= 0)
+        SetMixtureStepAndUpdateCount(mix, mix.ExperimentStepReached + 1);
+    }
+
+    public void SetMixtureStepAndUpdateCount(SubstanceMixture mix, int nextStep)
+    {
+        int currentStep = mix.ExperimentStepReached;
+        if (currentStep >= 0)
         {
-            numMixturePerStep[mixStepReached] -= 1;
+            numMixturePerStep[currentStep] -= 1;
         }
-        mixStepReached = mixStepReached + 1;
 
-        Debug.Log("Raggiunto step: " +  mixStepReached);
+        Debug.Log("Raggiunto step: " + nextStep);
 
-        numMixturePerStep[mixStepReached] += 1;
-        mix.ExperimentStepReached = mixStepReached;
+        numMixturePerStep[nextStep] += 1;
+        mix.ExperimentStepReached = nextStep;
     }
 
     public void HandleStepFailure(SubstanceMixture mix)
     {
         Debug.Log("Chiamata HandleStepFailure");
-        if(mix.ExperimentStepReached >= 0)
+        int currentStep = mix.ExperimentStepReached;
+        if (mix.ExperimentStepReached >= 0)
         {
-            for (int i = mix.ExperimentStepReached; i >= 0; i--)
-            {
-                if(mix.CanBecome(steps[i]))
-                {
-                    mix.ExperimentStepReached = mix.ExperimentStepReached - 1;
-                    if (mix.ExperimentStepReached > 0)
-                    {
-                        numMixturePerStep[mix.ExperimentStepReached] += 1;
-                    }
-                    return;
-                } else
-                {
-                }
-            }
-            mix.ExperimentStepReached = -1;
+            numMixturePerStep[currentStep] -= 1;
+            mix.ExperimentStepReached = - 1;
         }
     }
 }

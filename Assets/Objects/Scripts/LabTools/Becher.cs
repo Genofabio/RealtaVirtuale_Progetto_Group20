@@ -19,14 +19,14 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     private float emptyBecherMass;
 
     // Gestione avanzamento step esperimento
-    private ExperimentManager experimentController;
+    private ExperimentManager experimentManager;
 
     // Visualizzazione grafica del liquido
     private LiquidRenderer liquidRenderer;
 
     private void Start()
     {
-        experimentController = FindFirstObjectByType<ExperimentManager>();
+        experimentManager = FindFirstObjectByType<ExperimentManager>();
 
         containedMixture = new SubstanceMixture(initialSubstances, false, -1);
 
@@ -68,15 +68,18 @@ public class Becher : MonoBehaviour, Fillable, Pourable
             filter.FilterLiquid(mix.Substances);
         }
 
+        if (containedMixture.ExperimentStepReached < mix.ExperimentStepReached)
+        {
+            experimentManager.SetMixtureStepAndUpdateCount(containedMixture, mix.ExperimentStepReached);
+        }
+
         containedMixture.AddSubstanceMixture(mix);
-
-        RefreshTotalWeight();
-
-        liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
-
         containedMixture.Mixed = false;
 
-        experimentController.TryAdvanceToNextStep(containedMixture);
+        liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+        RefreshTotalWeight();
+
+        experimentManager.CheckAndModifyStep(containedMixture);
     }
 
     public void StirContents()
@@ -106,7 +109,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
 
         targetContainer.Fill(pouredMix);
 
-        experimentController.isLastStepStillReached(containedMixture);
+        experimentManager.CheckAndModifyStep(containedMixture);
     }
 
     public SubstanceMixture PickUpVolume(float amountToExtract)

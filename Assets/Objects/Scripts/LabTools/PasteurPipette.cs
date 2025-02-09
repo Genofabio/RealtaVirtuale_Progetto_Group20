@@ -32,6 +32,8 @@ public class PasteurPipe : MonoBehaviour, Dropper
         SubstanceMixture extractedMix = source.PickUpVolume(capacity);
         if (extractedMix.Substances.Count == 0 ) return;
 
+        containedMixture.ExperimentStepReached = extractedMix.ExperimentStepReached;
+        containedMixture.Mixed = extractedMix.Mixed;
         containedMixture.AddSubstanceMixture(extractedMix);
 
         full = true;

@@ -48,11 +48,6 @@ public class SubstanceMixture
 
     public void AddSubstanceMixture(SubstanceMixture mix) 
     {
-        if(experimentStepReached < mix.ExperimentStepReached)
-        {
-            experimentStepReached = mix.ExperimentStepReached;
-        }
-
         foreach (var substance in mix.Substances)
         {
             AddSubstance(substance);
@@ -108,7 +103,7 @@ public class SubstanceMixture
         foreach (Substance sostanzaMix in mix.substances)
         {
             Substance sostanzaInBecher = substances.Find(s => s.SubstanceName == sostanzaMix.SubstanceName);
-            if (sostanzaInBecher == null || sostanzaInBecher.Quantity < sostanzaMix.Quantity - sostanzaMix.Quantity / 100 || sostanzaInBecher.Quantity > sostanzaMix.Quantity + sostanzaMix.Quantity / 4)
+            if (sostanzaInBecher == null || sostanzaInBecher.Quantity < sostanzaMix.Quantity - sostanzaMix.Quantity / 20 || sostanzaInBecher.Quantity > sostanzaMix.Quantity + sostanzaMix.Quantity / 20)
             {
                 return false;
             }
@@ -149,7 +144,7 @@ public class SubstanceMixture
             double percentageMix = (substance.Quantity / totalQuantityMix) * 100;
             double percentageBecher = (becherSubstance.Quantity / totalQuantityBecher) * 100;
 
-            if (Math.Abs(percentageMix - percentageBecher) > 0.001) return false;  
+            if (Math.Abs(percentageMix - percentageBecher) > 4) return false;  
         }
 
         return true;
