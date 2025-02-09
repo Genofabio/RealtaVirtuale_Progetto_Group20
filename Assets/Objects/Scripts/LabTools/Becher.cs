@@ -8,7 +8,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     [SerializeField] private float maxCapacity;
 
     // Sostanze contenute
-    private SubstanceMixture containedMixture;
+    [SerializeField] private SubstanceMixture containedMixture;
 
     // Gestione filtro
     private bool isFilterOn = false;
@@ -76,15 +76,16 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         containedMixture.AddSubstanceMixture(mix);
         containedMixture.Mixed = false;
 
+        experimentManager.CheckAndModifyStep(containedMixture);
+
         liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
         RefreshTotalWeight();
-
-        experimentManager.CheckAndModifyStep(containedMixture);
     }
 
     public void StirContents()
     {
         containedMixture.StirSubstances();
+        experimentManager.CheckAndModifyStep(containedMixture);
     }
 
     public float GetRemainingVolume()

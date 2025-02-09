@@ -8,20 +8,21 @@ public class SubstanceMixture
 {
     [SerializeField] private List<Substance> substances = new List<Substance>();
 
-    private bool mixed = false;
-    private int experimentStepReached = -1;
+    [SerializeField] private bool mixed = false;
+
+    [SerializeField] private int experimentStepReached = -1;
 
     public SubstanceMixture(List<Substance> substances, bool mixed, int experimentStepReached)
     {
-        Substances = substances;
+        Substances = substances.Select(substance => substance.Clone()).ToList();
         Mixed = mixed;
         ExperimentStepReached = experimentStepReached;
     }
 
     public List<Substance> Substances
     {
-        get { return substances; }
-        set { substances = value; }
+        get { return substances.Select(substance => substance.Clone()).ToList(); }
+        set { substances = value.Select(substance => substance.Clone()).ToList(); }
     }
 
     public bool Mixed
@@ -34,6 +35,11 @@ public class SubstanceMixture
     {
         get { return experimentStepReached; }
         set { experimentStepReached = value; }
+    }
+
+    public SubstanceMixture Clone()
+    {
+        return new SubstanceMixture(new List<Substance>(this.Substances), this.Mixed, this.ExperimentStepReached);
     }
 
     public float GetCurrentVolume()
@@ -149,6 +155,7 @@ public class SubstanceMixture
 
         return true;
     }
+
     public bool CanBecome(SubstanceMixture mix)
     {
         foreach (Substance mixSubstance in mix.substances)

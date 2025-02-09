@@ -19,11 +19,10 @@ public class Substance
         set { quantity = Mathf.Max(0, value); }
     }
 
-    //public Color SubstanceColor
-    //{
-    //    get { return color; }
-    //    set { color = value; }
-    //}
+    public Substance Clone()
+    {
+        return new Substance(this.substanceName, this.quantity);
+    }
 
     public Substance(string name, float qty)
     {
