@@ -1,9 +1,6 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 public interface Fillable
 {
-    public void Fill(SubstancesMix mix);
-    public float GetRemainingVolume();
-    public void MixSubstances();
+    void Fill(SubstanceMixture mix);
+    float GetRemainingVolume();
+    void StirContents();
 }

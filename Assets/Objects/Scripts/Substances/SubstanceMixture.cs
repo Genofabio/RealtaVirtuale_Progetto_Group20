@@ -4,15 +4,14 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class SubstancesMix
+public class SubstanceMixture
 {
-    // Logica
-    [SerializeField] private List<Substance> substances;
+    [SerializeField] private List<Substance> substances = new List<Substance>();
+
     private bool mixed = false;
+    private int experimentStepReached = -1;
 
-    [SerializeField] private int experimentStepReached = -1;
-
-    public SubstancesMix(List<Substance> substances, bool mixed, int experimentStepReached)
+    public SubstanceMixture(List<Substance> substances, bool mixed, int experimentStepReached)
     {
         Substances = substances;
         Mixed = mixed;
@@ -28,13 +27,13 @@ public class SubstancesMix
     public bool Mixed
     {
         get { return mixed; }
-        set { mixed = value; } // Consente di modificare il valore di mixed
+        set { mixed = value; }
     }
 
     public int ExperimentStepReached
     {
         get { return experimentStepReached; }
-        set { experimentStepReached = value; } // Consente di modificare experimentStepReached
+        set { experimentStepReached = value; }
     }
 
     public float GetCurrentVolume()
@@ -47,7 +46,7 @@ public class SubstancesMix
         return sum;
     }
 
-    public void AddSubstancesMix(SubstancesMix mix) 
+    public void AddSubstanceMixture(SubstanceMixture mix) 
     {
         if(experimentStepReached < mix.ExperimentStepReached)
         {
@@ -76,7 +75,7 @@ public class SubstancesMix
         }
     }
 
-    public void MixSubstances()
+    public void StirSubstances()
     {
         mixed = true;
     }
@@ -93,7 +92,6 @@ public class SubstancesMix
             {
                 pouredSubstances.Add(new Substance(sub.SubstanceName, pouredAmount));
                 sub.Quantity -= pouredAmount;
-                //RefreshTotalWeight();
             }
         }
 
@@ -102,7 +100,7 @@ public class SubstancesMix
         return pouredSubstances;
     }
 
-    public bool IsSimilarTo(SubstancesMix mix)
+    public bool IsSimilarTo(SubstanceMixture mix)
     {
         if (mix.mixed == true && mixed != mix.mixed) return false;
 
@@ -128,7 +126,7 @@ public class SubstancesMix
         return true;
     }
 
-    public bool HasSameSubstancePercentage(SubstancesMix mix)
+    public bool HasSameSubstancePercentage(SubstanceMixture mix)
     {
         if (mix.substances.Count == 0 || substances.Count == 0) return false;
 
@@ -156,7 +154,7 @@ public class SubstancesMix
 
         return true;
     }
-    public bool CanBecome(SubstancesMix mix)
+    public bool CanBecome(SubstanceMixture mix)
     {
         foreach (Substance mixSubstance in mix.substances)
         {

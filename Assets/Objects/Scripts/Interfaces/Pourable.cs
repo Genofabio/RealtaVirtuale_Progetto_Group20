@@ -1,10 +1,6 @@
-using System.Collections.Generic;
-
 public interface Pourable
 {
-    public void Pour(Fillable targetContainer, float amountToPour);
-
-    public SubstancesMix PickUpVolume(float amountToExtract);
-    
-    public float GetCurrentVolume();
+    void Pour(Fillable targetContainer, float amount);
+    SubstanceMixture PickUpVolume(float amount);
+    float GetCurrentVolume();
 }

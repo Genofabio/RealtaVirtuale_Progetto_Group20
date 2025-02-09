@@ -313,12 +313,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff904dc4abed65c4cafc3e9400dcd472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  substancesMix:
-    substances:
-    - substanceName: NaOH
-      quantity: 5
-    experimentStepReached: -1
-  capacity: 20
+  initialSubstances:
+  - substanceName: NaOH
+    quantity: 5
+  maxCapacity: 20
 --- !u!114 &82875969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +379,107 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &672741801
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1892556332}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ba147698b156b5746a5914b288f29340, type: 2}
+    - target: {fileID: 919132149155446097, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_Name
+      value: untitled
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 765871426}
+  m_SourcePrefab: {fileID: 100100000, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+--- !u!1 &765871424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+  m_PrefabInstance: {fileID: 672741801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &765871425 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+  m_PrefabInstance: {fileID: 672741801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &765871426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765871424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e131ea3f2c9d5574599592f763ac741a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxWobble: 0.001
+  WobbleSpeed: 1
+  Recovery: 1
 --- !u!1001 &822067033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -781,12 +880,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff904dc4abed65c4cafc3e9400dcd472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  substancesMix:
-    substances:
-    - substanceName: HCl
-      quantity: 10
-    experimentStepReached: -1
-  capacity: 20
+  initialSubstances:
+  - substanceName: HCl
+    quantity: 10
+  maxCapacity: 20
 --- !u!114 &1122906164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,6 +946,94 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &1401623000
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.384
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.384
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.384
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.58
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.47
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8096e77e6d11acd44acb7f8142f792f5, type: 2}
+    - target: {fileID: 919132149155446097, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      propertyPath: m_Name
+      value: untitled (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 765871425}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1892556329}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1892556328}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1892556327}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1892556326}
+  m_SourcePrefab: {fileID: 100100000, guid: ed365255ca327ce4192fa480582427a0, type: 3}
 --- !u!1 &1544016140 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ed365255ca327ce4192fa480582427a0, type: 3}
@@ -992,10 +1177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff904dc4abed65c4cafc3e9400dcd472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  substancesMix:
-    substances: []
-    experimentStepReached: -1
-  capacity: 20
+  initialSubstances: []
+  maxCapacity: 20
 --- !u!114 &1787127549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,6 +1245,94 @@ Rigidbody:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
   m_PrefabInstance: {fileID: 1015105193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1892556325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+  m_PrefabInstance: {fileID: 1401623000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1892556326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892556325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff904dc4abed65c4cafc3e9400dcd472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialSubstances:
+  - substanceName: HCl
+    quantity: 5
+  maxCapacity: 20
+--- !u!114 &1892556327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892556325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ab66d4604ae8b43a9f66379b942674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialVelocityMultiplier: 4
+  finalVelocityMultiplier: 10
+--- !u!65 &1892556328
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892556325}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!54 &1892556329
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892556325}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!4 &1892556332 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed365255ca327ce4192fa480582427a0, type: 3}
+  m_PrefabInstance: {fileID: 1401623000}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1931448082
 PrefabInstance:
@@ -1173,12 +1444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff904dc4abed65c4cafc3e9400dcd472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  substancesMix:
-    substances:
-    - substanceName: H2O
-      quantity: 5
-    experimentStepReached: -1
-  capacity: 20
+  initialSubstances:
+  - substanceName: H2O
+    quantity: 5
+  maxCapacity: 20
 --- !u!114 &1931448086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,7 +1560,6 @@ MonoBehaviour:
       quantity: 5
     - substanceName: HCl
       quantity: 10
-    experimentStepReached: 0
   - substances:
     - substanceName: H2O
       quantity: 5
@@ -1299,7 +1567,6 @@ MonoBehaviour:
       quantity: 10
     - substanceName: NaOH
       quantity: 5
-    experimentStepReached: 0
   - substances:
     - substanceName: H2O
       quantity: 5
@@ -1309,8 +1576,7 @@ MonoBehaviour:
       quantity: 5
     - substanceName: U
       quantity: 5
-    experimentStepReached: 0
-  numMixPerStep: 
+  numMixturePerStep: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1318,5 +1584,6 @@ SceneRoots:
   - {fileID: 1931448082}
   - {fileID: 1015105193}
   - {fileID: 1122906160}
+  - {fileID: 1401623000}
   - {fileID: 82875965}
   - {fileID: 1989156291}

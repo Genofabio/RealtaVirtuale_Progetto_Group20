@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PasteurPipe : MonoBehaviour, Dropper
 {
-    [SerializeField] private SubstancesMix substancesMix;
-
     [SerializeField] private float capacity;
+
+    private SubstanceMixture containedMixture;
     private bool full;
 
     private LiquidRenderer liquid;
@@ -21,16 +21,18 @@ public class PasteurPipe : MonoBehaviour, Dropper
         {
             liquid.SetFillSize(0);
         }
+
+        containedMixture = new SubstanceMixture(new List<Substance>(), false, -1);
     }
 
     public void Suck(Pourable source)
     {
         if (source == null || full) return;
 
-        SubstancesMix extractedMix = source.PickUpVolume(capacity);
+        SubstanceMixture extractedMix = source.PickUpVolume(capacity);
         if (extractedMix.Substances.Count == 0 ) return;
 
-        substancesMix.AddSubstancesMix(extractedMix);
+        containedMixture.AddSubstanceMixture(extractedMix);
 
         full = true;
         liquid.SetFillSize(1);
@@ -43,26 +45,12 @@ public class PasteurPipe : MonoBehaviour, Dropper
         float targetRemainingVolume = targetContainer.GetRemainingVolume();
         if (targetRemainingVolume < capacity) return;
 
-        targetContainer.Fill(substancesMix);
+        targetContainer.Fill(containedMixture);
 
         full = false;
-        substancesMix = new SubstancesMix(new List<Substance>(), false, -1);
+        containedMixture = new SubstanceMixture(new List<Substance>(), false, -1);
         liquid.SetFillSize(0);
     }
-
-    //private void AddSubstance(Substance substance)
-    //{
-    //    if (substance.Quantity <= 0) return;
-    //    Substance existing = sub.Find(s => s.SubstanceName == substance.SubstanceName);
-    //    if (existing != null)
-    //    {
-    //        existing.Quantity += substance.Quantity;
-    //    }
-    //    else
-    //    {
-    //        contents.Add(substance);
-    //    }
-    //}
 
     public bool IsFull()
     {

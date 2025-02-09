@@ -5,25 +5,11 @@ public class SubstanceVial : MonoBehaviour, Pourable
 {
     [SerializeField] private Substance substance;
     [SerializeField] private float maxVolume;
+
     private LiquidRenderer liquid;
 
-    private void OnValidate()
+    private void Start()    
     {
-        if (maxVolume <= 0)
-        {
-            Debug.LogWarning("maxVolume deve essere maggiore di 0. Fialetta piena di 10ml.");
-            maxVolume = 10f;
-        }
-    }
-
-    void Start()
-    {
-        if (maxVolume <= 0)
-        {
-            Debug.LogWarning("maxVolume deve essere maggiore di 0. Fialetta piena di 10ml.");
-            maxVolume = 10f;
-        }
-
         liquid = GetComponentInChildren<LiquidRenderer>();
         if (liquid == null)
         {
@@ -35,15 +21,40 @@ public class SubstanceVial : MonoBehaviour, Pourable
         }
     }
 
+    private void OnValidate()
+    {
+        if (maxVolume <= 0)
+        {
+            Debug.LogWarning("maxVolume deve essere maggiore di 0. Fialetta piena di 10ml.");
+            maxVolume = 10f;
+        }
+    }
+
+    public void Pour(Fillable targetContainer, float amountToPour)
+    {
+        float totalAmount = GetCurrentVolume();
+        if (totalAmount == 0 || amountToPour <= 0) return;
+        if (amountToPour > totalAmount) amountToPour = totalAmount;
+
+        List<Substance> pouredSubstance = new List<Substance>();
+        pouredSubstance.Add(new Substance(substance.SubstanceName, amountToPour));
+        substance.Quantity -= amountToPour;
+        SubstanceMixture pouredMix = new SubstanceMixture(pouredSubstance, false, -1);
+
+        liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+
+        targetContainer.Fill(pouredMix);
+    }
+
     public float GetCurrentVolume()
     {
         return substance.Quantity;
     }
 
-    public SubstancesMix PickUpVolume(float amountToExtract)
+    public SubstanceMixture PickUpVolume(float amountToExtract)
     {
         float totalAmount = GetCurrentVolume();
-        SubstancesMix extractedMix = new SubstancesMix(new List<Substance>(), false, -1);
+        SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), false, -1);
         if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 
@@ -57,23 +68,5 @@ public class SubstanceVial : MonoBehaviour, Pourable
 
         return extractedMix;
     }
-
-    public void Pour(Fillable targetContainer, float amountToPour)
-    {
-        float totalAmount = GetCurrentVolume();
-        if (totalAmount == 0 || amountToPour <= 0) return;
-        if (amountToPour > totalAmount) amountToPour = totalAmount;
-
-        List<Substance> pouredSubstance = new List<Substance>();
-        pouredSubstance.Add(new Substance(substance.SubstanceName, amountToPour));
-        substance.Quantity -= amountToPour;
-        SubstancesMix pouredMix = new SubstancesMix(pouredSubstance, false, -1);
-
-        liquid.SetFillSize(GetCurrentVolume() / maxVolume);
-
-        // Versa nel becher di destinazione
-        targetContainer.Fill(pouredMix);
-    }
-
 
 }
