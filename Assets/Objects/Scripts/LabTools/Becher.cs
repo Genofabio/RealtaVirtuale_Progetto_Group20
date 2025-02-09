@@ -74,7 +74,6 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         }
 
         containedMixture.AddSubstanceMixture(mix);
-        containedMixture.Mixed = false;
 
         experimentManager.CheckAndModifyStep(containedMixture);
 

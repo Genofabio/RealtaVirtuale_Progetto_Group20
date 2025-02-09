@@ -54,6 +54,15 @@ public class SubstanceMixture
 
     public void AddSubstanceMixture(SubstanceMixture mix) 
     {
+        if(mix.Mixed && ((Mixed && HasSameSubstancePercentageForAll(mix)) || GetCurrentVolume() < 0.1))
+        {
+            Mixed = true;
+        } 
+        else
+        {
+            Mixed = false;
+        }
+
         foreach (var substance in mix.Substances)
         {
             AddSubstance(substance);
@@ -96,7 +105,9 @@ public class SubstanceMixture
             }
         }
 
-        substances.RemoveAll(sub => sub.Quantity <= 0);
+        substances.RemoveAll(sub => sub.Quantity <= 0.001);
+
+        if (!(substances.Count > 0)) Mixed = false;
 
         return pouredSubstances;
     }
@@ -151,6 +162,55 @@ public class SubstanceMixture
             double percentageBecher = (becherSubstance.Quantity / totalQuantityBecher) * 100;
 
             if (Math.Abs(percentageMix - percentageBecher) > 4) return false;  
+        }
+
+        return true;
+    }
+
+    public bool HasSameSubstancePercentageForAll(SubstanceMixture mix)
+    {
+        if (mix.substances.Count == 0 || substances.Count == 0) return false;
+
+        float totalQuantityMix = mix.substances.Sum(s => s.Quantity);
+        float totalQuantityBecher = substances.Sum(s => s.Quantity);
+
+        if (totalQuantityMix < 0.001 || totalQuantityBecher < 0.001) return false;
+
+        foreach (Substance substanceInMix in mix.substances)
+        {
+            Substance correspondingSubstanceInBecher = substances.FirstOrDefault(s => s.SubstanceName == substanceInMix.SubstanceName);
+
+            if (correspondingSubstanceInBecher != null)
+            {
+                double percentageMix = (substanceInMix.Quantity / totalQuantityMix) * 100;
+                double percentageBecher = (correspondingSubstanceInBecher.Quantity / totalQuantityBecher) * 100;
+
+                if (Math.Abs(percentageMix - percentageBecher) > 4)
+                    return false;
+            }
+            else
+            {
+                // Se la sostanza non è presente in substances, la percentuale deve essere circa zero
+                if (!substances.Any(s => s.SubstanceName == substanceInMix.SubstanceName))
+                {
+                    double percentageMix = (substanceInMix.Quantity / totalQuantityBecher) * 100;
+
+                    if (Math.Abs(percentageMix) > 1)
+                        return false;
+                }
+            }
+        }
+
+        foreach (Substance substanceInBecher in substances)
+        {
+            // Se la sostanza non è presente in mix, la percentuale deve essere circa zero
+            if (!mix.substances.Any(s => s.SubstanceName == substanceInBecher.SubstanceName))
+            {
+                double percentageBecher = (substanceInBecher.Quantity / totalQuantityBecher) * 100;
+
+                if (Math.Abs(percentageBecher) > 1)
+                    return false;
+            }
         }
 
         return true;
