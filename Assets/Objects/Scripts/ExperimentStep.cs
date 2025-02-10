@@ -46,7 +46,7 @@ public class ExperimentStep
         {
             res = requiredMixture.Clone();
             res.Mixed = resultingMixture.Mixed;
-            res.MixtureColor = resultingMixture.MixtureColor;
+            res.MixtureLiquidColor = resultingMixture.MixtureLiquidColor;
         }
         return res;
     }
@@ -64,9 +64,9 @@ public class ExperimentStep
             availableMixture.Substances = res.Substances;
         }
         availableMixture.Mixed = res.Mixed;
-        if (res.MixtureColor != Color.clear)
+        if (res.MixtureLiquidColor != Color.clear)
         {
-            availableMixture.MixtureColor = res.MixtureColor;
+            availableMixture.MixtureLiquidColor = res.MixtureLiquidColor;
         }
     }
 }

@@ -7,18 +7,20 @@ using UnityEngine;
 public class SubstanceMixture
 {
     [SerializeField] private List<Substance> substances = new List<Substance>();
-    [SerializeField] private Color mixtureColor;
+    [SerializeField] private Color mixtureLiquidColor;
+    [SerializeField] private Color mixtureSolidColor;
 
     [SerializeField] private bool mixed = false;
 
     [SerializeField] private int experimentStepReached = -1;
 
-    public SubstanceMixture(List<Substance> substances, bool mixed, int experimentStepReached, Color mixtureColor)
+    public SubstanceMixture(List<Substance> substances, bool mixed, int experimentStepReached, Color mixtureLiquidColor, Color mixtureSolidColor)
     {
         Substances = substances.Select(substance => substance.Clone()).ToList();
         Mixed = mixed;
         ExperimentStepReached = experimentStepReached;
-        MixtureColor = mixtureColor;
+        MixtureLiquidColor = mixtureLiquidColor;
+        MixtureSolidColor = mixtureSolidColor;
     }
 
     public List<Substance> Substances
@@ -39,15 +41,21 @@ public class SubstanceMixture
         set { experimentStepReached = value; }
     }
 
-    public Color MixtureColor 
+    public Color MixtureLiquidColor 
     { 
-        get { return mixtureColor; }
-        set { mixtureColor = value; }
+        get { return mixtureLiquidColor; }
+        set { mixtureLiquidColor = value; }
+    }
+
+    public Color MixtureSolidColor
+    {
+        get { return mixtureSolidColor; }
+        set { mixtureSolidColor = value; }
     }
 
     public SubstanceMixture Clone()
     {
-        return new SubstanceMixture(new List<Substance>(this.Substances), this.Mixed, this.ExperimentStepReached, this.MixtureColor);
+        return new SubstanceMixture(new List<Substance>(this.Substances), this.Mixed, this.ExperimentStepReached, this.MixtureLiquidColor, this.MixtureSolidColor);
     }
 
     public float GetCurrentVolume()
@@ -98,14 +106,16 @@ public class SubstanceMixture
         }
 
         float totalVolume = GetCurrentVolume() + mix.GetCurrentVolume();
-        Color newMixtureColor = CalculateMixtureColor(mix, totalVolume);
+        Color newMixtureLiquidColor = CalculateMixtureLiquidColor(mix, totalVolume);
+        Color newMixtureSolidColor = CalculateMixtureSolidColor(mix, totalVolume);
 
         foreach (var substance in mix.Substances)
         {
             AddSubstance(substance);
         }
 
-        MixtureColor = newMixtureColor;
+        MixtureLiquidColor = newMixtureLiquidColor;
+        MixtureSolidColor = newMixtureSolidColor;
     }
 
     private void AddSubstance(Substance newSubstance)
@@ -124,14 +134,48 @@ public class SubstanceMixture
         }
     }
 
-    private Color CalculateMixtureColor(SubstanceMixture mix, float totalVolume)
+    private Color CalculateMixtureLiquidColor(SubstanceMixture mix, float totalVolume)
     {
-        if (totalVolume <= 0) return Color.clear; 
+        if (totalVolume <= 0) return Color.clear;
 
-        Color currentColor = MixtureColor * GetCurrentVolume();
-        Color addedColor = mix.MixtureColor * mix.GetCurrentVolume();
+        float currentAlpha = MixtureLiquidColor.a;
+        float addedAlpha = mix.MixtureLiquidColor.a;
 
-        return (currentColor + addedColor) / totalVolume;
+        Color currentColor = currentAlpha > 0 ? MixtureLiquidColor * GetCurrentVolume() * currentAlpha : Color.clear;
+        Color addedColor = addedAlpha > 0 ? mix.MixtureLiquidColor * mix.GetCurrentVolume() * addedAlpha : Color.clear;
+
+        float alphaWeight = (currentAlpha > 0 ? currentAlpha * GetCurrentVolume() : 0) +
+                            (addedAlpha > 0 ? addedAlpha * mix.GetCurrentVolume() : 0);
+
+        if (alphaWeight <= 0) return Color.clear; // Se tutti i colori hanno alpha = 0, restituiamo trasparente
+
+        Color resultColor = (currentColor + addedColor) / alphaWeight;
+
+        resultColor.a = alphaWeight / totalVolume; // Alpha finale
+
+        return resultColor;
+    }
+
+    private Color CalculateMixtureSolidColor(SubstanceMixture mix, float totalVolume)
+    {
+        if (totalVolume <= 0) return Color.clear;
+
+        float currentAlpha = MixtureSolidColor.a;
+        float addedAlpha = mix.MixtureSolidColor.a;
+
+        Color currentColor = currentAlpha > 0 ? MixtureSolidColor * GetCurrentVolume() * currentAlpha : Color.clear;
+        Color addedColor = addedAlpha > 0 ? mix.MixtureSolidColor * mix.GetCurrentVolume() * addedAlpha : Color.clear;
+
+        float alphaWeight = (currentAlpha > 0 ? currentAlpha * GetCurrentVolume() : 0) +
+                            (addedAlpha > 0 ? addedAlpha * mix.GetCurrentVolume() : 0);
+
+        if (alphaWeight <= 0) return Color.clear;
+
+        Color resultColor = (currentColor + addedColor) / alphaWeight;
+
+        resultColor.a = alphaWeight / totalVolume;
+
+        return resultColor;
     }
 
     public void StirSubstances()
@@ -169,7 +213,7 @@ public class SubstanceMixture
         foreach (Substance sostanzaMix in mix.substances)
         {
             Substance sostanzaInBecher = substances.Find(s => s.SubstanceName == sostanzaMix.SubstanceName);
-            if (sostanzaInBecher == null || sostanzaInBecher.Quantity < sostanzaMix.Quantity - sostanzaMix.Quantity / 20 || sostanzaInBecher.Quantity > sostanzaMix.Quantity + sostanzaMix.Quantity / 20)
+            if (sostanzaInBecher == null || sostanzaInBecher.Quantity < sostanzaMix.Quantity - sostanzaMix.Quantity / 20 || sostanzaInBecher.Quantity > sostanzaMix.Quantity + sostanzaMix.Quantity / 20 || sostanzaInBecher.IsSolid != sostanzaMix.IsSolid)
             {
                 return false;
             }
@@ -282,13 +326,13 @@ public class SubstanceMixture
         }
 
         // Controlla se ci sono sostanze nel becher che non esistono nel mix
-        foreach (Substance beakerSubstance in substances)
-        {
-            if (!mix.substances.Any(s => s.SubstanceName == beakerSubstance.SubstanceName))
-            {
-                return false; 
-            }
-        }
+        //foreach (Substance beakerSubstance in substances)
+        //{
+        //    if (!mix.substances.Any(s => s.SubstanceName == beakerSubstance.SubstanceName))
+        //    {
+        //        return false; 
+        //    }
+        //}
 
         return true;
     }

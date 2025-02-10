@@ -5,7 +5,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
 {
     // Attributi serializzati
     [SerializeField] private List<Substance> initialSubstances = new List<Substance>(); //Nella build definitiva pu� essere tolto perch� i becher saranno inizialmente tutti vuoti
-    [SerializeField] private Color initialColor; //Nella build definitiva pu� essere tolto perch� i becher saranno inizialmente tutti vuoti
+    [SerializeField] private Color initialLiquidColor; //Nella build definitiva pu� essere tolto perch� i becher saranno inizialmente tutti vuoti
+    [SerializeField] private Color initialSolidColor; //Nella build definitiva pu� essere tolto perch� i becher saranno inizialmente tutti vuoti
     [SerializeField] private float maxCapacity;
 
     // Sostanze contenute
@@ -32,7 +33,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     {
         experimentManager = FindFirstObjectByType<ExperimentManager>();
 
-        containedMixture = new SubstanceMixture(initialSubstances, false, -1, initialColor); // Nella build definitiva la lista sar� inizialmente vuota
+        containedMixture = new SubstanceMixture(initialSubstances, false, -1, initialLiquidColor, initialSolidColor); // Nella build definitiva la lista sar� inizialmente vuota
 
         liquidRenderer = GetComponentInChildren<LiquidRenderer>();
         if (liquidRenderer == null)
@@ -42,7 +43,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         else
         {
             liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
-            liquidRenderer.SetColor(containedMixture.MixtureColor);
+            liquidRenderer.SetColor(initialLiquidColor);
         }
 
         solidRenderer = GetComponentInChildren<SolidRenderer>();
@@ -53,6 +54,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         else
         {
             solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
+            solidRenderer.SetColor(initialSolidColor);
         }
 
         becherRigidbody = GetComponent<Rigidbody>();
@@ -95,7 +97,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
 
         liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
         solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
-        liquidRenderer.SetColor(containedMixture.MixtureColor);
+        liquidRenderer.SetColor(containedMixture.MixtureLiquidColor);
+        solidRenderer.SetColor(containedMixture.MixtureSolidColor);
         RefreshTotalWeight();
     }
 
@@ -103,7 +106,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     {
         containedMixture.StirSubstances();
         experimentManager.CheckAndModifyStep(containedMixture);
-        liquidRenderer.SetColor(containedMixture.MixtureColor);
+        liquidRenderer.SetColor(containedMixture.MixtureLiquidColor);
     }
 
     public float GetRemainingVolume()
@@ -120,8 +123,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         if (amountToPour > totalAmount) amountToPour = totalAmount;
         if (amountToPour > targetRemainingVolume) amountToPour = targetRemainingVolume;
 
-        List<Substance> pouredSubstances = containedMixture.ExtractSubstances(amountToPour);
-        SubstanceMixture pouredMix = new SubstanceMixture(pouredSubstances, containedMixture.Mixed, containedMixture.ExperimentStepReached, containedMixture.MixtureColor);
+        SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.ExperimentStepReached, containedMixture.MixtureLiquidColor, containedMixture.MixtureSolidColor);
+        pouredMix.Substances = containedMixture.ExtractSubstances(amountToPour);
 
         liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
         solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
@@ -135,7 +138,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     public SubstanceMixture PickUpVolume(float amountToExtract)
     {
         float totalAmount = GetCurrentVolume();
-        SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.ExperimentStepReached, containedMixture.MixtureColor);
+        SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.ExperimentStepReached, containedMixture.MixtureLiquidColor, containedMixture.MixtureSolidColor);
         if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 

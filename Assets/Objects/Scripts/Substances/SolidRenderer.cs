@@ -44,4 +44,14 @@ public class SolidRenderer : MonoBehaviour
     {
         solidAmount = volume;
     }
+
+    public void SetColor(Color color)
+    {
+        solidRend.material.SetColor("_LiquidColor", color);
+
+        Color lighterColor = Color.Lerp(color, Color.white, 0.2f);
+        solidRend.material.SetColor("_SurfaceColor", lighterColor);
+
+        solidRend.material.SetColor("_FresnelColor", color);
+    }
 }
