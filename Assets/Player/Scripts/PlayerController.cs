@@ -196,9 +196,15 @@ public class PlayerController : MonoBehaviour
                 Transform cameraHolderTransform = cameraHolder.transform;
                 if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
                 {
+                    // Tara della bilancia
                     if (hit.transform.TryGetComponent<PrecisionBalance>(out var balance))
                     {
                         balance.Tare();
+                    }
+                    // Apertura forno
+                    else if (hit.transform.TryGetComponent<Oven>(out var oven))
+                    {
+                        oven.ToggleDoor();
                     }
                 }
             } 

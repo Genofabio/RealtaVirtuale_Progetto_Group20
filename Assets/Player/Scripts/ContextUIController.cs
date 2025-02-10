@@ -33,6 +33,21 @@ public class ContextUIController : MonoBehaviour
             {
                 SetContextActive("Tare");
             }
+            else if (hit.transform.TryGetComponent<Oven>(out var oven))
+            {
+                if (oven.IsOpen && !oven.IsMoving)
+                {
+                    SetContextActive("Close oven");
+                }
+                else if (!oven.IsOpen && !oven.IsMoving)
+                {
+                    SetContextActive("Open oven");
+                }
+                else
+                {
+                    HideContextUI();
+                }
+            }
             else
             {
                 HideContextUI();
