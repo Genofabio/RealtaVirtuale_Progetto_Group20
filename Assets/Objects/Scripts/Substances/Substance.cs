@@ -6,6 +6,14 @@ public class Substance
     [SerializeField] private string substanceName;
     [SerializeField] private float quantity;
     //[SerializeField] private Color color;
+    [SerializeField] private bool isSolid;
+
+    public Substance(string name, float qty, bool solid)
+    {
+        SubstanceName = name;
+        Quantity = qty;
+        isSolid = solid;
+    }
 
     public string SubstanceName
     {
@@ -24,10 +32,9 @@ public class Substance
         return new Substance(this.substanceName, this.quantity);
     }
 
-    public Substance(string name, float qty)
+    public bool IsSolid
     {
-        SubstanceName = name;
-        //SubstanceColor = col;
-        Quantity = qty;
+        get { return isSolid; }
+        set { isSolid = value; }
     }
 }
