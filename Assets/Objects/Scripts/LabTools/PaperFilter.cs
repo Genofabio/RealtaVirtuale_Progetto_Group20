@@ -2,10 +2,9 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 
-
 using System.Linq; // Necessario per LINQ
 
-public class PaperFilter : MonoBehaviour, Filter
+public class PaperFilter : MonoBehaviour, Filter, Pourable
 {
     private Becher becher;
     [SerializeField] private SubstanceMixture filteredSubstances;
@@ -84,5 +83,34 @@ public class PaperFilter : MonoBehaviour, Filter
         Debug.Log("Rimuovo il filtro...");
         becher.SetFilterOff();
         becher = null;
+    }
+
+    public void Pour(Fillable targetContainer, float amountToPour)
+    {
+        float totalAmount = GetCurrentVolume();
+        float targetRemainingVolume = targetContainer.GetRemainingVolume();
+        if (totalAmount <= 0 || amountToPour <= 0 || targetRemainingVolume <= 0) return;
+        if (amountToPour > totalAmount) amountToPour = totalAmount;
+        if (amountToPour > targetRemainingVolume) amountToPour = targetRemainingVolume;
+
+        SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
+        pouredMix.Substances = filteredSubstances.ExtractSubstances(amountToPour);
+
+        solidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+        //RefreshTotalWeight();
+
+        targetContainer.Fill(pouredMix);
+
+        //experimentManager.CheckAndModifyStep(containedMixture);
+    }
+
+    public SubstanceMixture PickUpVolume(float amount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public float GetCurrentVolume()
+    {
+        return filteredSubstances.GetCurrentVolume();
     }
 }

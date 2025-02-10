@@ -117,6 +117,17 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     // Implementazione interfaccia Pourable
     public void Pour(Fillable targetContainer, float amountToPour)
     {
+        if (targetContainer.CanContainLiquid() == false)
+        {
+            foreach (var sub in containedMixture.Substances)
+            {
+                if (!sub.IsSolid)
+                {
+                    Debug.LogWarning("Il contenitore di destinazione non può contenere liquidi");
+                    return;
+                }
+            }
+        }
         float totalAmount = GetCurrentVolume();
         float targetRemainingVolume = targetContainer.GetRemainingVolume();
         if (totalAmount <= 0 || amountToPour <= 0 || targetRemainingVolume <= 0) return;
@@ -193,4 +204,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         }
     }
 
+    public bool CanContainLiquid()
+    {
+        return true;
+    }
 }

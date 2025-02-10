@@ -595,7 +595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2683540509686248949, guid: 2770c8edfa391fa4fac30a15d3a03c46, type: 3}
       propertyPath: initialSubstances.Array.data[0].quantity
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2683540509686248949, guid: 2770c8edfa391fa4fac30a15d3a03c46, type: 3}
       propertyPath: initialSubstances.Array.data[0].substanceName
