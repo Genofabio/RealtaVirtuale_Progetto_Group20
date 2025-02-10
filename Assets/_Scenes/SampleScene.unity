@@ -382,6 +382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab66d4604ae8b43a9f66379b942674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialVelocityMultiplier: 0
+  finalVelocityMultiplier: 0
 --- !u!54 &671208652
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -804,6 +806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab66d4604ae8b43a9f66379b942674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialVelocityMultiplier: 0
+  finalVelocityMultiplier: 0
 --- !u!1 &1894975190
 GameObject:
   m_ObjectHideFlags: 0

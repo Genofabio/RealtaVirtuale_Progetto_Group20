@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Liquid
+  m_Name: Solid
   m_Shader: {fileID: -6465566751694194690, guid: 1f8cb4f491d136c42a118e1b313278c2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -51,7 +51,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fill: 0.59
+    - _Fill: 0.1
     - _FresnelPower: 0
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -59,8 +59,8 @@ Material:
     - _WobbleX: 0
     - _WobbleZ: 0
     m_Colors:
-    - _FresnelColor: {r: 0.65617245, g: 0.004336, b: 0.7660377, a: 0}
-    - _LiquidColor: {r: 0.41050357, g: 0.25147018, b: 0.7283019, a: 0}
-    - _SurfaceColor: {r: 0.5109547, g: 0.34771797, b: 0.8415094, a: 0}
+    - _FresnelColor: {r: 0.0039215684, g: 0.09714318, b: 0.7647059, a: 0}
+    - _LiquidColor: {r: 0.2509804, g: 0.2701911, b: 0.7294118, a: 0}
+    - _SurfaceColor: {r: 0.34901962, g: 0.3804269, b: 0.84313726, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

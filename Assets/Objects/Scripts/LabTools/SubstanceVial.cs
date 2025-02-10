@@ -37,7 +37,7 @@ public class SubstanceVial : MonoBehaviour, Pourable
         if (amountToPour > totalAmount) amountToPour = totalAmount;
 
         List<Substance> pouredSubstance = new List<Substance>();
-        pouredSubstance.Add(new Substance(substance.SubstanceName, amountToPour));
+        pouredSubstance.Add(new Substance(substance.SubstanceName, amountToPour, substance.IsSolid));
         substance.Quantity -= amountToPour;
         SubstanceMixture pouredMix = new SubstanceMixture(pouredSubstance, false, -1);
 
@@ -59,7 +59,7 @@ public class SubstanceVial : MonoBehaviour, Pourable
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 
         List<Substance> extractedSubstance = new List<Substance>();
-        extractedSubstance.Add(new Substance(substance.SubstanceName, amountToExtract));
+        extractedSubstance.Add(new Substance(substance.SubstanceName, amountToExtract, substance.IsSolid));
         substance.Quantity -= amountToExtract;
 
         extractedMix.Substances = extractedSubstance;

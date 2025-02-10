@@ -46,6 +46,32 @@ public class SubstanceMixture
         return sum;
     }
 
+    public float GetLiquidVolume()
+    {
+        float sum = 0f;
+        foreach (var substance in substances)
+        {
+            if (!substance.IsSolid)
+            {
+                sum += substance.Quantity;
+            }
+        }
+        return sum;
+    }
+
+    public float GetSolidVolume()
+    {
+        float sum = 0f;
+        foreach (var substance in substances)
+        {
+            if (substance.IsSolid)
+            {
+                sum += substance.Quantity;
+            }
+        }
+        return sum;
+    }
+
     public void AddSubstanceMixture(SubstanceMixture mix) 
     {
         foreach (var substance in mix.Substances)
@@ -85,7 +111,7 @@ public class SubstanceMixture
             float pouredAmount = (sub.Quantity / totalAmount) * amountToPour;
             if (pouredAmount > 0)
             {
-                pouredSubstances.Add(new Substance(sub.SubstanceName, pouredAmount));
+                pouredSubstances.Add(new Substance(sub.SubstanceName, pouredAmount, sub.IsSolid));
                 sub.Quantity -= pouredAmount;
             }
         }
@@ -184,10 +210,31 @@ public class SubstanceMixture
         {
             foreach (var substance in substances)
             {
-                liquidWeight += substance.Quantity / 1000;
+                if (substance.IsSolid == false)
+                {
+                    liquidWeight += substance.Quantity / 1000;
+                }
             }
         }
         return liquidWeight;
     }
+
+    public float GetSolidWeight()
+    {
+        float solidWeight = 0;
+        if (substances.Count != 0)
+        {
+            foreach (var substance in substances)
+            {
+                if (substance.IsSolid == true)
+                {
+                    solidWeight += substance.Quantity / 1000;
+                }
+            }
+        }
+        return solidWeight;
+    }
+
+
 
 }

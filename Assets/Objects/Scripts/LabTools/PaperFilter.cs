@@ -8,43 +8,54 @@ using System.Linq; // Necessario per LINQ
 public class PaperFilter : MonoBehaviour, Filter
 {
     private Becher becher;
-    [SerializeField] private List<Substance> filtrableSubstances;
-    [SerializeField] private float toFilterVolume;
+    [SerializeField] private SubstanceMixture filteredSubstances;
+    [SerializeField] private float maxCapacity;
     [SerializeField] private float filteredVolume = 0;
+    private SolidRenderer solidRenderer;
 
     void Awake()
     {
-        filtrableSubstances = new List<Substance>();
-        //filtrableSubstances.Add(new Substance("H2O", 0));
-        //filtrableSubstances.Add(new Substance("HCl", 0));
-        //toFilterVolume = 10f;
+        filteredSubstances = new SubstanceMixture(new List<Substance>(), false, -1);
     }
 
-    public void FilterLiquid(List<Substance> toFilterSubstances)
+    void Start()
     {
-        // Estrai i nomi delle sostanze da entrambe le liste
-        var toFilterNames = toFilterSubstances.Select(s => s.SubstanceName).OrderBy(n => n);
-        var filtrableNames = filtrableSubstances.Select(s => s.SubstanceName).OrderBy(n => n);
-
-        // Confronta le liste dei nomi (in ordine per ignorare la disposizione)
-        if (toFilterNames.SequenceEqual(filtrableNames))
+        if (maxCapacity <= 0)
         {
-            float actualFiltrableVolume = toFilterSubstances.Sum(s => s.Quantity);
-            filteredVolume += actualFiltrableVolume;
-            if (filteredVolume >= toFilterVolume)
-            {
-                //filteredVolume = toFilterVolume;
-                //Debug.Log("Filtraggio completato, filteredVolume: " + filteredVolume);
-            }
-            else
-            { 
-                //Debug.Log("Filtrata quantità: " + actualFiltrableVolume + ", mancano: " + (toFilterVolume - filteredVolume));
-            }
+            Debug.LogWarning("maxCapacity deve essere maggiore di 0. Filtro pieno di 10ml.");
+            maxCapacity = 10f;
         }
-        //else
-        //{
-        //    Debug.Log("Le sostanze non corrispondono esattamente a quelle filtrabili");
-        //}
+
+        solidRenderer = GetComponentInChildren<SolidRenderer>();
+        if (solidRenderer == null)
+        {
+            Debug.LogWarning("Solid NOT found");
+        }
+        else
+        {
+            solidRenderer.SetFillSize(0); // dando per scontato che non tu possa inizializzare un filtro con della roba dentro
+        }
+    }
+
+    public SubstanceMixture FilterLiquid(SubstanceMixture mix)
+    {
+        if (filteredVolume >= maxCapacity)
+        {
+            Debug.LogWarning("Il filtro è pieno");
+            return mix;
+        }
+
+        List<Substance> solids = mix.Substances.Where(s => s.IsSolid).ToList();
+        foreach (var solid in solids)
+        {
+            filteredVolume += solid.Quantity;
+        }
+        filteredSubstances.AddSubstanceMixture(new SubstanceMixture(solids, mix.Mixed, mix.ExperimentStepReached));
+        solidRenderer.SetFillSize(filteredVolume / maxCapacity);
+
+        mix.Substances.RemoveAll(s => s.IsSolid);
+
+        return mix;
     }
 
     public void ApplyFilter(Becher becher)
@@ -59,11 +70,5 @@ public class PaperFilter : MonoBehaviour, Filter
         Debug.Log("Rimuovo il filtro...");
         becher.SetFilterOff();
         becher = null;
-        //rimuovere il filtro graficamente
     }
-
-    //public bool IsFilterOn()
-    //{
-    //    return becher != null;
-    //}
 }

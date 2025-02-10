@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public interface Filter 
 {
-    void FilterLiquid(List<Substance> toFilterSubstances);
+    SubstanceMixture FilterLiquid(SubstanceMixture mix);
     void ApplyFilter(Becher becher);
     void RemoveFilter();
 }

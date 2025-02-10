@@ -24,6 +24,9 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     // Visualizzazione grafica del liquido
     private LiquidRenderer liquidRenderer;
 
+    // Visualizzazione grafica del solido 
+    private SolidRenderer solidRenderer;
+
     private void Start()
     {
         experimentManager = FindFirstObjectByType<ExperimentManager>();
@@ -38,6 +41,16 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         else
         {
             liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+        }
+
+        solidRenderer = GetComponentInChildren<SolidRenderer>();
+        if (solidRenderer == null)
+        {
+            Debug.LogWarning("Solid NOT found");
+        }
+        else
+        {
+            solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
         }
 
         becherRigidbody = GetComponent<Rigidbody>();
@@ -57,7 +70,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     public void RefreshTotalWeight()
     {
         float liquidWeight = containedMixture.GetLiquidWeight();
-        becherRigidbody.mass = emptyBecherMass + liquidWeight;
+        float solidWeight = containedMixture.GetSolidWeight();
+        becherRigidbody.mass = emptyBecherMass + liquidWeight + solidWeight;
     }
 
     // Implementazione interfaccia Fillable
@@ -65,7 +79,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     {
         if(isFilterOn)
         {
-            filter.FilterLiquid(mix.Substances);
+            mix = filter.FilterLiquid(mix);
         }
 
         if (containedMixture.ExperimentStepReached < mix.ExperimentStepReached)
@@ -77,6 +91,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         containedMixture.Mixed = false;
 
         liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+        solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
         RefreshTotalWeight();
 
         experimentManager.CheckAndModifyStep(containedMixture);
@@ -105,6 +120,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         SubstanceMixture pouredMix = new SubstanceMixture(pouredSubstances, containedMixture.Mixed, containedMixture.ExperimentStepReached);
 
         liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+        solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
         RefreshTotalWeight();
 
         targetContainer.Fill(pouredMix);
@@ -123,6 +139,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         extractedMix.Substances = extractedSubstances;
 
         liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+        solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
         RefreshTotalWeight();
 
         return extractedMix;
@@ -131,6 +148,16 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     public float GetCurrentVolume()
     {
         return containedMixture.GetCurrentVolume();
+    }
+
+    public float GetLiquidVolume()
+    {
+        return containedMixture.GetLiquidVolume();
+    }
+
+    public float GetSolidVolume()
+    {
+        return containedMixture.GetSolidVolume();
     }
 
     public void SetFilterOn(Filter filter)
