@@ -29,7 +29,7 @@ public class Substance
 
     public Substance Clone()
     {
-        return new Substance(this.substanceName, this.quantity);
+        return new Substance(this.substanceName, this.quantity, this.IsSolid);
     }
 
     public bool IsSolid

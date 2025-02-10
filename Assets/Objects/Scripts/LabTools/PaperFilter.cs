@@ -15,7 +15,7 @@ public class PaperFilter : MonoBehaviour, Filter
 
     void Awake()
     {
-        filteredSubstances = new SubstanceMixture(new List<Substance>(), false, -1);
+        filteredSubstances = new SubstanceMixture(new List<Substance>(), false, -1, Color.clear);
     }
 
     void Start()
@@ -50,10 +50,11 @@ public class PaperFilter : MonoBehaviour, Filter
         {
             filteredVolume += solid.Quantity;
         }
-        filteredSubstances.AddSubstanceMixture(new SubstanceMixture(solids, mix.Mixed, mix.ExperimentStepReached));
+        filteredSubstances.AddSubstanceMixture(new SubstanceMixture(solids, mix.Mixed, mix.ExperimentStepReached, mix.MixtureColor));
         solidRenderer.SetFillSize(filteredVolume / maxCapacity);
 
-        mix.Substances.RemoveAll(s => s.IsSolid);
+        // Crea una nuova lista senza i solidi
+        mix.Substances = mix.Substances.Where(s => !s.IsSolid).ToList();
 
         return mix;
     }
