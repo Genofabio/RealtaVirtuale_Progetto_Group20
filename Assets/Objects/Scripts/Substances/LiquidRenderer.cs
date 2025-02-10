@@ -90,4 +90,14 @@ public class LiquidRenderer : MonoBehaviour
     {
         liquidAmount = volume;
     }
+
+    public void SetColor(Color color)
+    {
+        liquidRend.material.SetColor("_LiquidColor", color);
+
+        Color lighterColor = Color.Lerp(color, Color.white, 0.2f);
+        liquidRend.material.SetColor("_SurfaceColor", lighterColor);
+
+        liquidRend.material.SetColor("_FresnelColor", color);
+    }
 }

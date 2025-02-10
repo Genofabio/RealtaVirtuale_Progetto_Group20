@@ -4,6 +4,8 @@ using UnityEngine;
 public class SubstanceVial : MonoBehaviour, Pourable
 {
     [SerializeField] private Substance substance;
+    [SerializeField] private Color substanceColor;
+
     [SerializeField] private float maxVolume;
 
     private LiquidRenderer liquid;
@@ -39,7 +41,7 @@ public class SubstanceVial : MonoBehaviour, Pourable
         List<Substance> pouredSubstance = new List<Substance>();
         pouredSubstance.Add(new Substance(substance.SubstanceName, amountToPour));
         substance.Quantity -= amountToPour;
-        SubstanceMixture pouredMix = new SubstanceMixture(pouredSubstance, false, -1);
+        SubstanceMixture pouredMix = new SubstanceMixture(pouredSubstance, false, -1, substanceColor);
 
         liquid.SetFillSize(GetCurrentVolume() / maxVolume);
 
@@ -54,7 +56,7 @@ public class SubstanceVial : MonoBehaviour, Pourable
     public SubstanceMixture PickUpVolume(float amountToExtract)
     {
         float totalAmount = GetCurrentVolume();
-        SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), false, -1);
+        SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), false, -1, substanceColor);
         if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 

@@ -22,7 +22,7 @@ public class PasteurPipe : MonoBehaviour, Dropper
             liquid.SetFillSize(0);
         }
 
-        containedMixture = new SubstanceMixture(new List<Substance>(), false, -1);
+        containedMixture = new SubstanceMixture(new List<Substance>(), false, -1, Color.white);
     }
 
     public void Suck(Pourable source)
@@ -50,7 +50,7 @@ public class PasteurPipe : MonoBehaviour, Dropper
         targetContainer.Fill(containedMixture);
 
         full = false;
-        containedMixture = new SubstanceMixture(new List<Substance>(), false, -1);
+        containedMixture = new SubstanceMixture(new List<Substance>(), false, -1, Color.white);
         liquid.SetFillSize(0);
     }
 

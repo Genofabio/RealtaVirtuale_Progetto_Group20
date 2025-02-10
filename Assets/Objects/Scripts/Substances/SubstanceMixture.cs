@@ -7,16 +7,18 @@ using UnityEngine;
 public class SubstanceMixture
 {
     [SerializeField] private List<Substance> substances = new List<Substance>();
+    [SerializeField] private Color mixtureColor;
 
     [SerializeField] private bool mixed = false;
 
     [SerializeField] private int experimentStepReached = -1;
 
-    public SubstanceMixture(List<Substance> substances, bool mixed, int experimentStepReached)
+    public SubstanceMixture(List<Substance> substances, bool mixed, int experimentStepReached, Color mixtureColor)
     {
         Substances = substances.Select(substance => substance.Clone()).ToList();
         Mixed = mixed;
         ExperimentStepReached = experimentStepReached;
+        MixtureColor = mixtureColor;
     }
 
     public List<Substance> Substances
@@ -37,9 +39,15 @@ public class SubstanceMixture
         set { experimentStepReached = value; }
     }
 
+    public Color MixtureColor 
+    { 
+        get { return mixtureColor; }
+        set { mixtureColor = value; }
+    }
+
     public SubstanceMixture Clone()
     {
-        return new SubstanceMixture(new List<Substance>(this.Substances), this.Mixed, this.ExperimentStepReached);
+        return new SubstanceMixture(new List<Substance>(this.Substances), this.Mixed, this.ExperimentStepReached, this.MixtureColor);
     }
 
     public float GetCurrentVolume()
@@ -54,7 +62,7 @@ public class SubstanceMixture
 
     public void AddSubstanceMixture(SubstanceMixture mix) 
     {
-        if(mix.Mixed && ((Mixed && HasSameSubstancePercentageForAll(mix)) || GetCurrentVolume() < 0.1))
+        if (mix.Mixed && ((Mixed && HasSameSubstancePercentageForAll(mix)) || GetCurrentVolume() < 0.1))
         {
             Mixed = true;
         } 
@@ -63,10 +71,15 @@ public class SubstanceMixture
             Mixed = false;
         }
 
+        float totalVolume = GetCurrentVolume() + mix.GetCurrentVolume();
+        Color newMixtureColor = CalculateMixtureColor(mix, totalVolume);
+
         foreach (var substance in mix.Substances)
         {
             AddSubstance(substance);
         }
+
+        MixtureColor = newMixtureColor;
     }
 
     private void AddSubstance(Substance newSubstance)
@@ -83,6 +96,16 @@ public class SubstanceMixture
         {
             substances.Add(newSubstance);
         }
+    }
+
+    private Color CalculateMixtureColor(SubstanceMixture mix, float totalVolume)
+    {
+        if (totalVolume <= 0) return Color.clear; 
+
+        Color currentColor = MixtureColor * GetCurrentVolume();
+        Color addedColor = mix.MixtureColor * mix.GetCurrentVolume();
+
+        return (currentColor + addedColor) / totalVolume;
     }
 
     public void StirSubstances()

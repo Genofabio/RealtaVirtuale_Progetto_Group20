@@ -132,8 +132,40 @@ PrefabInstance:
       value: NaOH
       objectReference: {fileID: 0}
     - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.a
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.b
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.g
+      value: 0.54509807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.r
+      value: 0.34509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
       propertyPath: initialSubstances.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.a
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.b
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.g
+      value: 0.54509807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.r
+      value: 0.34509805
       objectReference: {fileID: 0}
     - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
       propertyPath: initialSubstances.Array.data[0].quantity
@@ -201,8 +233,40 @@ PrefabInstance:
       value: HCl
       objectReference: {fileID: 0}
     - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.a
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.b
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.g
+      value: 0.54509807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.r
+      value: 0.34509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
       propertyPath: initialSubstances.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.a
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.b
+      value: 0.9547169
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.g
+      value: 0.54653615
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.r
+      value: 0.34405836
       objectReference: {fileID: 0}
     - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
       propertyPath: initialSubstances.Array.data[0].quantity
@@ -270,8 +334,40 @@ PrefabInstance:
       value: Acqua (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.a
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.b
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.g
+      value: 0.54509807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.r
+      value: 0.34509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
       propertyPath: initialSubstances.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.a
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.b
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.g
+      value: 0.54509807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.r
+      value: 0.34509805
       objectReference: {fileID: 0}
     - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
       propertyPath: initialSubstances.Array.data[0].quantity
@@ -379,10 +475,12 @@ MonoBehaviour:
         quantity: 5
       - substanceName: HCl
         quantity: 10
+      mixtureColor: {r: 0, g: 0, b: 0, a: 0}
       mixed: 0
       experimentStepReached: -1
     resultingMixture:
       substances: []
+      mixtureColor: {r: 0, g: 0, b: 0, a: 0}
       mixed: 0
       experimentStepReached: 0
   - stepName: Step 1
@@ -395,10 +493,12 @@ MonoBehaviour:
         quantity: 10
       - substanceName: NaOH
         quantity: 5
+      mixtureColor: {r: 0, g: 0, b: 0, a: 0}
       mixed: 0
       experimentStepReached: 0
     resultingMixture:
       substances: []
+      mixtureColor: {r: 0, g: 0, b: 0, a: 0}
       mixed: 0
       experimentStepReached: 0
   - stepName: Step 2
@@ -411,10 +511,32 @@ MonoBehaviour:
         quantity: 10
       - substanceName: NaOH
         quantity: 5
+      mixtureColor: {r: 0, g: 0, b: 0, a: 0}
       mixed: 1
       experimentStepReached: 0
     resultingMixture:
       substances: []
+      mixtureColor: {r: 0.909804, g: 0.06666667, b: 0.06666667, a: 0}
+      mixed: 0
+      experimentStepReached: 0
+  - stepName: Step 3
+    description: 
+    requiredMixture:
+      substances:
+      - substanceName: H2O
+        quantity: 5
+      - substanceName: HCl
+        quantity: 10
+      - substanceName: NaOH
+        quantity: 5
+      - substanceName: U
+        quantity: 5
+      mixtureColor: {r: 0, g: 0, b: 0, a: 0}
+      mixed: 1
+      experimentStepReached: 0
+    resultingMixture:
+      substances: []
+      mixtureColor: {r: 0.909804, g: 0.06666667, b: 0.06666667, a: 0}
       mixed: 0
       experimentStepReached: 0
   numMixturePerStep: 
@@ -519,8 +641,40 @@ PrefabInstance:
       value: Acqua
       objectReference: {fileID: 0}
     - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.a
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.b
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.g
+      value: 0.54509807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.r
+      value: 0.34509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
       propertyPath: initialSubstances.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.a
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.b
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.g
+      value: 0.54509807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.r
+      value: 0.34509805
       objectReference: {fileID: 0}
     - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
       propertyPath: initialSubstances.Array.data[0].quantity

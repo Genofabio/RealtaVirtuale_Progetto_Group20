@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography;
 using UnityEngine;
 
 [System.Serializable]
@@ -8,10 +10,10 @@ public class ExperimentStep
     [SerializeField] private string stepName;
     [SerializeField] private string description;
 
-    [Header("Requisiti")]
+    [Header("Requirement")]
     [SerializeField] private SubstanceMixture requiredMixture;
 
-    [Header("Risultati")]
+    [Header("Result")]
     [SerializeField] private SubstanceMixture resultingMixture;
 
     public ExperimentStep(string stepName, string description, SubstanceMixture requiredMixture, SubstanceMixture resultingMixture)
@@ -19,7 +21,7 @@ public class ExperimentStep
         this.stepName = stepName;
         this.description = description;
         this.requiredMixture = requiredMixture;
-        this.resultingMixture = resultingMixture;
+        this.resultingMixture = resultingMixture; 
     }
 
     public string StepName
@@ -33,13 +35,20 @@ public class ExperimentStep
         get { return description; }
         set { description = value; }
     }
+
     public SubstanceMixture GetResultingSubstanceMixture()
     {
+        SubstanceMixture res;
         if (resultingMixture.Substances.Count > 0)
         {
-            return resultingMixture.Clone();
+            res = resultingMixture.Clone();
+        } else
+        {
+            res = requiredMixture.Clone();
+            res.Mixed = resultingMixture.Mixed;
+            res.MixtureColor = resultingMixture.MixtureColor;
         }
-        return requiredMixture.Clone();
+        return res;
     }
 
     public SubstanceMixture GetRequiredSubstanceMixture()
@@ -49,10 +58,15 @@ public class ExperimentStep
 
     public void ApplyStepEffect(SubstanceMixture availableMixture)
     {
+        SubstanceMixture res = GetResultingSubstanceMixture();
         if (resultingMixture.Substances.Count > 0)
         {
-            availableMixture.Substances = GetResultingSubstanceMixture().Substances;
-            availableMixture.Mixed = GetResultingSubstanceMixture().Mixed;
+            availableMixture.Substances = res.Substances;
+        }
+        availableMixture.Mixed = res.Mixed;
+        if (res.MixtureColor != Color.clear)
+        {
+            availableMixture.MixtureColor = res.MixtureColor;
         }
     }
 }

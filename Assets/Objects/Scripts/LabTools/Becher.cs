@@ -4,7 +4,8 @@ using UnityEngine;
 public class Becher : MonoBehaviour, Fillable, Pourable
 {
     // Attributi serializzati
-    [SerializeField] private List<Substance> initialSubstances = new List<Substance>();
+    [SerializeField] private List<Substance> initialSubstances = new List<Substance>(); //Nella build definitiva può essere tolto perchè i becher saranno inizialmente tutti vuoti
+    [SerializeField] private Color initialColor; //Nella build definitiva può essere tolto perchè i becher saranno inizialmente tutti vuoti
     [SerializeField] private float maxCapacity;
 
     // Sostanze contenute
@@ -28,7 +29,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     {
         experimentManager = FindFirstObjectByType<ExperimentManager>();
 
-        containedMixture = new SubstanceMixture(initialSubstances, false, -1);
+        containedMixture = new SubstanceMixture(initialSubstances, false, -1, initialColor); // Nella build definitiva la lista sarà inizialmente vuota
 
         liquidRenderer = GetComponentInChildren<LiquidRenderer>();
         if (liquidRenderer == null)
@@ -38,6 +39,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         else
         {
             liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+            liquidRenderer.SetColor(containedMixture.MixtureColor);
         }
 
         becherRigidbody = GetComponent<Rigidbody>();
@@ -78,6 +80,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         experimentManager.CheckAndModifyStep(containedMixture);
 
         liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+        liquidRenderer.SetColor(containedMixture.MixtureColor);
         RefreshTotalWeight();
     }
 
@@ -85,6 +88,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     {
         containedMixture.StirSubstances();
         experimentManager.CheckAndModifyStep(containedMixture);
+        liquidRenderer.SetColor(containedMixture.MixtureColor);
     }
 
     public float GetRemainingVolume()
@@ -102,7 +106,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         if (amountToPour > targetRemainingVolume) amountToPour = targetRemainingVolume;
 
         List<Substance> pouredSubstances = containedMixture.ExtractSubstances(amountToPour);
-        SubstanceMixture pouredMix = new SubstanceMixture(pouredSubstances, containedMixture.Mixed, containedMixture.ExperimentStepReached);
+        SubstanceMixture pouredMix = new SubstanceMixture(pouredSubstances, containedMixture.Mixed, containedMixture.ExperimentStepReached, containedMixture.MixtureColor);
 
         liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
         RefreshTotalWeight();
@@ -115,7 +119,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     public SubstanceMixture PickUpVolume(float amountToExtract)
     {
         float totalAmount = GetCurrentVolume();
-        SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.ExperimentStepReached);
+        SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.ExperimentStepReached, containedMixture.MixtureColor);
         if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 

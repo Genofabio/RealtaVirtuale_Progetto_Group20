@@ -52,9 +52,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _Fill: 0.59
-    - _FresnelPower: 0
+    - _FresnelPower: 3
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ScaleToUse: 1
     - _WobbleX: 0
     - _WobbleZ: 0
     m_Colors:

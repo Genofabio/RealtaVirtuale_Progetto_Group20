@@ -669,6 +669,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: BecherFinto (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.a
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.b
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.g
+      value: 0.54509807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: initialColor.r
+      value: 0.34509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.a
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.b
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.g
+      value: 0.54509807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683540509686248949, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
+      propertyPath: containedMixture.mixtureColor.r
+      value: 0.34509805
+      objectReference: {fileID: 0}
     - target: {fileID: 6060332881453159914, guid: 78c896106db23994e98bf1e4962ebdf1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.252371
