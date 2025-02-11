@@ -46,10 +46,19 @@ public class Grabbable : MonoBehaviour
 
         hitMarker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         hitMarker.transform.localScale = Vector3.one * 0.1f;
-        hitMarker.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        hitMarker.GetComponent<Renderer>().material.color = Color.white;
         Destroy(hitMarker.GetComponent<Collider>());
+
+        // Creazione di un materiale Unlit per evitare luci e ombre
+        Material unlitMaterial = new Material(Shader.Find("Unlit/Color"));
+        unlitMaterial.color = new Color(1f, 1f, 1f, 0.5f); 
+
+        // Assegna il materiale all'hit marker
+        Renderer hitRenderer = hitMarker.GetComponent<Renderer>();
+        hitRenderer.material = unlitMaterial;
+        hitRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+
         hitMarker.SetActive(false);
+
     }
 
     private void FixedUpdate()
