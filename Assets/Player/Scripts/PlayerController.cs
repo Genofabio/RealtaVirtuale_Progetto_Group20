@@ -206,6 +206,11 @@ public class PlayerController : MonoBehaviour
                     {
                         oven.ToggleDoor();
                     }
+                    // Apertura frigorifero
+                    else if (hit.transform.TryGetComponent<Fridge>(out var fridge))
+                    {
+                        fridge.ToggleDoor();
+                    }
                 }
             } 
         } else if(context.canceled)
