@@ -48,6 +48,21 @@ public class ContextUIController : MonoBehaviour
                     HideContextUI();
                 }
             }
+            else if (hit.transform.TryGetComponent<Fridge>(out var fridge))
+            {
+                if (fridge.IsOpen && !fridge.IsMoving)
+                {
+                    SetContextActive("Close fridge");
+                }
+                else if (!fridge.IsOpen && !fridge.IsMoving)
+                {
+                    SetContextActive("Open fridge");
+                }
+                else
+                {
+                    HideContextUI();
+                }
+            }
             else
             {
                 HideContextUI();
