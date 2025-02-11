@@ -83,6 +83,8 @@ public class Grabbable : MonoBehaviour
 
     private void Update()
     {
+        if (lineRenderer == null || hitMarker == null) return;
+
         if (objectGrabPointTransform != null)
         {
             Vector3 rayStart = transform.position + Vector3.up * 0.01f;
@@ -136,5 +138,13 @@ public class Grabbable : MonoBehaviour
         objectRigidbody.linearDamping = defaultLinearDamping;
         objectRigidbody.angularDamping = defaultAngularDamping;
         objectRigidbody.interpolation = defaultInterpolation;
+    }
+
+    public void DeleteLineRenderer()
+    {
+        lineRenderer.SetPosition(0, Vector3.zero);
+        lineRenderer.SetPosition(1, Vector3.zero);
+        Destroy(hitMarker);
+        hitMarker = null;
     }
 }

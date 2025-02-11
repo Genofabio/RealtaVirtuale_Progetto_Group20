@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Becher : MonoBehaviour, Fillable, Pourable
 {
@@ -220,5 +221,14 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     public SubstanceMixture GetContainedSubstanceMixture()
     {
         return containedMixture;
+    }
+
+    private void OnDestroy()
+    {
+        experimentManager.SetMixtureStepAndUpdateCount(containedMixture, -1);
+        //liquidRenderer.SetFillSize(0);
+        //liquidRenderer.SetColor(Color.clear);
+        //solidRenderer.SetFillSize(0);
+        //solidRenderer.SetColor(Color.clear);
     }
 }

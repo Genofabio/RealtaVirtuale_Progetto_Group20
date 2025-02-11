@@ -28,7 +28,7 @@ public class ExperimentManager : MonoBehaviour
         highestStepReached = -1;
     }
 
-    public bool isLastStepStillReached(SubstanceMixture mix)
+    public bool IsLastStepStillReached(SubstanceMixture mix)
     {
         if(mix.ExperimentStepReached >= 0)
         {
@@ -45,7 +45,7 @@ public class ExperimentManager : MonoBehaviour
     {
         int currentStepReached = mix.ExperimentStepReached;
 
-        if (currentStepReached >= 0 && !isLastStepStillReached(mix))
+        if (currentStepReached >= 0 && !IsLastStepStillReached(mix))
         {
             HandleStepFailure(mix);
             return;
@@ -103,6 +103,7 @@ public class ExperimentManager : MonoBehaviour
         if (mix.ExperimentStepReached + 1 > highestStepReached)
         {
             HighestStepReached = mix.ExperimentStepReached + 1;
+            numMixturePerStep[mix.ExperimentStepReached + 1] += 1;
         }
 
         nextStep.ApplyStepEffect(mix);
@@ -115,11 +116,14 @@ public class ExperimentManager : MonoBehaviour
         if (currentStep >= 0)
         {
             numMixturePerStep[currentStep] -= 1;
+
+            Debug.Log("Raggiunto step: " + nextStep);
+
+            HighestStepReached = GetHighestStepReached();
+
+            numMixturePerStep[nextStep] += 1;
         }
-
-        Debug.Log("Raggiunto step: " + nextStep);
-
-        numMixturePerStep[nextStep] += 1;
+        
         mix.ExperimentStepReached = nextStep;
     }
 
@@ -133,14 +137,14 @@ public class ExperimentManager : MonoBehaviour
 
             if (numMixturePerStep[currentStep] == 0)
             {
-                HighestStepReached = GetHighestSTepReached();
+                HighestStepReached = GetHighestStepReached();
             }
 
             mix.ExperimentStepReached = - 1;
         }
     }
 
-    public int GetHighestSTepReached()
+    public int GetHighestStepReached()
     {
         for (int i = numMixturePerStep.Length - 1; i >= 0; i--)
         {

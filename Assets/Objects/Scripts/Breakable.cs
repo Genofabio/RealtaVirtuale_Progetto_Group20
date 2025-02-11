@@ -55,6 +55,11 @@ public class Breakable : MonoBehaviour
 
     private IEnumerator DestroyAfterDelay()
     {
+        if (TryGetComponent<Grabbable>(out Grabbable grab))
+        {
+            grab.DeleteLineRenderer();
+        }
+
         // Aspetta per il tempo definito (10 secondi)
         yield return new WaitForSeconds(destructionDelay);
 
