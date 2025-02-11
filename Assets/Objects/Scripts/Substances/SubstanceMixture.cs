@@ -10,6 +10,8 @@ public class SubstanceMixture
     [SerializeField] private bool mixed = false;
     [SerializeField] private bool dried = false;
     [SerializeField] private float dryingTime = 0.0f;
+    [SerializeField] private bool cooled = false;
+    [SerializeField] private float coolingTime = 0.0f;
 
     [Header("Step")]
     [SerializeField] private int experimentStepReached = -1;
@@ -21,7 +23,7 @@ public class SubstanceMixture
     [Header("Content")]
     [SerializeField] private List<Substance> substances = new List<Substance>();
 
-    public SubstanceMixture(List<Substance> substances, bool mixed, bool dried, float dryingTime, int experimentStepReached, Color mixtureLiquidColor, Color mixtureSolidColor)
+    public SubstanceMixture(List<Substance> substances, bool mixed, bool dried, float dryingTime, bool cooled, float coolingTime, int experimentStepReached, Color mixtureLiquidColor, Color mixtureSolidColor)
     {
         Substances = substances.Select(substance => substance.Clone()).ToList();
         Mixed = mixed;
@@ -30,6 +32,8 @@ public class SubstanceMixture
         MixtureSolidColor = mixtureSolidColor;
         Dried = dried;
         DryingTime = dryingTime;
+        CoolingTime = coolingTime;
+        Cooled = cooled;
     }
 
     public List<Substance> Substances
@@ -56,6 +60,18 @@ public class SubstanceMixture
         set { dryingTime = value; }
     }
 
+    public bool Cooled
+    {
+        get { return cooled; }
+        set { cooled = value; }
+    }
+
+    public float CoolingTime
+    {
+        get { return coolingTime; }
+        set { coolingTime = value; }
+    }
+
     public int ExperimentStepReached
     {
         get { return experimentStepReached; }
@@ -76,7 +92,7 @@ public class SubstanceMixture
 
     public SubstanceMixture Clone()
     {
-        return new SubstanceMixture(new List<Substance>(this.Substances), this.Mixed, this.dried, this.dryingTime, this.ExperimentStepReached, this.MixtureLiquidColor, this.MixtureSolidColor);
+        return new SubstanceMixture(new List<Substance>(this.Substances), this.Mixed, this.dried, this.dryingTime, this.cooled, this.coolingTime, this.ExperimentStepReached, this.MixtureLiquidColor, this.MixtureSolidColor);
     }
 
     public SubstanceMixture GetReference()
@@ -138,6 +154,15 @@ public class SubstanceMixture
         else
         {
             Dried = false;
+        }
+
+        if (mix.Cooled && (Cooled || GetCurrentVolume() < 0.1))
+        {
+            Cooled = true;
+        }
+        else
+        {
+            Cooled = false;
         }
 
         float totalVolume = GetCurrentVolume() + mix.GetCurrentVolume();
@@ -239,6 +264,7 @@ public class SubstanceMixture
         {
             Mixed = false;
             Dried = false;
+            Cooled = false;
         }
 
         return pouredSubstances;
@@ -248,6 +274,7 @@ public class SubstanceMixture
     {
         if (mix.mixed == true && mixed != mix.mixed) return false;
         if (dryingTime < mix.dryingTime - 0.001 || dryingTime > mix.dryingTime + mix.dryingTime / 2 + 0.001) return false;
+        if (coolingTime < mix.coolingTime - 0.001) return false;
 
         // Controllo che ogni sostanza in mix sia presente in contents con esattamente la stessa quantità
         foreach (Substance sostanzaMix in mix.substances)
@@ -412,6 +439,11 @@ public class SubstanceMixture
     public void Dry(float deltaTime)
     {
         dryingTime += deltaTime;
+    }
+
+    public void CoolDown(float deltaTime)
+    {
+        coolingTime += deltaTime;
     }
 
 }

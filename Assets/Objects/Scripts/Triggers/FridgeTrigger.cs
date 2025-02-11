@@ -12,10 +12,22 @@ public class FridgeTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         fridge.IsEmpty = false;
+
+        Fillable fillable = other.GetComponent<Fillable>();
+        if (fillable != null && fillable.GetContainedSubstanceMixture() != null)
+        {
+            fridge.InsertIntoFridge(other.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         fridge.IsEmpty = true;
+
+        Fillable fillable = other.GetComponent<Fillable>();
+        if (fillable != null && fillable.GetContainedSubstanceMixture() != null)
+        {
+            fridge.RemoveFromFridge(other.gameObject);
+        }
     }
 }

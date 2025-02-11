@@ -16,7 +16,7 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
 
     void Awake()
     {
-        filteredSubstances = new SubstanceMixture(new List<Substance>(), false, false, 0, -1, Color.clear, Color.clear);
+        filteredSubstances = new SubstanceMixture(new List<Substance>(), false, false, 0, false, 0, - 1, Color.clear, Color.clear);
     }
 
     void Start()
@@ -54,7 +54,7 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
             filteredVolume += solid.Quantity;
         }
 
-        filteredSubstances.AddSubstanceMixture(new SubstanceMixture(solids, mix.Mixed, mix.Dried, mix.DryingTime, mix.ExperimentStepReached, mix.MixtureLiquidColor, mix.MixtureSolidColor));
+        filteredSubstances.AddSubstanceMixture(new SubstanceMixture(solids, mix.Mixed, mix.Dried, mix.DryingTime, mix.Cooled, mix.CoolingTime, mix.ExperimentStepReached, mix.MixtureLiquidColor, mix.MixtureSolidColor));
         solidRenderer.SetFillSize(filteredVolume / maxCapacity);
         solidRenderer.SetColor(mix.MixtureSolidColor);
 
@@ -93,7 +93,7 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
         if (amountToPour > totalAmount) amountToPour = totalAmount;
         if (amountToPour > targetRemainingVolume) amountToPour = targetRemainingVolume;
 
-        SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
+        SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
         pouredMix.Substances = filteredSubstances.ExtractSubstances(amountToPour);
 
         solidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
