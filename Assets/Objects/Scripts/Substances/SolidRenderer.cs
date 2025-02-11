@@ -5,7 +5,7 @@ public class SolidRenderer : MonoBehaviour
     private Renderer solidRend;
     private float solidAmount = 0f;
 
-    void Start()
+    void Awake()
     {
         solidRend = GetComponent<Renderer>();
     }

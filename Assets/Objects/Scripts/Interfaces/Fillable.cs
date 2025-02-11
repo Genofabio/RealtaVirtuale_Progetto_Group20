@@ -4,4 +4,5 @@ public interface Fillable
     float GetRemainingVolume();
     void StirContents();
     bool CanContainLiquid();
+    SubstanceMixture GetContainedSubstanceMixture();
 }

@@ -44,11 +44,11 @@ public class SubstanceVial : MonoBehaviour, Pourable
         SubstanceMixture pouredMix;
         if (substance.IsSolid)
         {
-            pouredMix = new SubstanceMixture(pouredSubstance, false, -1, Color.clear, substanceColor);
+            pouredMix = new SubstanceMixture(pouredSubstance, false, false, 0, -1, Color.clear, substanceColor);
         }
         else
         {
-            pouredMix = new SubstanceMixture(pouredSubstance, false, -1, substanceColor, Color.clear);
+            pouredMix = new SubstanceMixture(pouredSubstance, false, false, 0, -1, substanceColor, Color.clear);
         }
         
         liquid.SetFillSize(GetCurrentVolume() / maxVolume);
@@ -67,11 +67,11 @@ public class SubstanceVial : MonoBehaviour, Pourable
         SubstanceMixture extractedMix;
         if (substance.IsSolid)
         {
-            extractedMix = new SubstanceMixture(new List<Substance>(), false, -1, Color.clear, substanceColor);
+            extractedMix = new SubstanceMixture(new List<Substance>(), false, false, 0, -1, Color.clear, substanceColor);
         }
         else
         {
-            extractedMix = new SubstanceMixture(new List<Substance>(), false, -1, substanceColor, Color.clear);
+            extractedMix = new SubstanceMixture(new List<Substance>(), false, false, 0, -1, substanceColor, Color.clear);
         }
         if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;

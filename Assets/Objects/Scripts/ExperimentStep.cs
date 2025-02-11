@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Security.Cryptography;
 using UnityEngine;
 
 [System.Serializable]
@@ -46,6 +43,7 @@ public class ExperimentStep
         {
             res = requiredMixture.Clone();
             res.Mixed = resultingMixture.Mixed;
+            res.Dried = resultingMixture.Dried; 
             res.MixtureLiquidColor = resultingMixture.MixtureLiquidColor;
         }
         return res;
@@ -64,6 +62,7 @@ public class ExperimentStep
             availableMixture.Substances = res.Substances;
         }
         availableMixture.Mixed = res.Mixed;
+        availableMixture.Dried = res.Dried;
         if (res.MixtureLiquidColor != Color.clear)
         {
             availableMixture.MixtureLiquidColor = res.MixtureLiquidColor;

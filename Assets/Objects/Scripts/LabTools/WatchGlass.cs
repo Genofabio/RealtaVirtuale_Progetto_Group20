@@ -10,7 +10,7 @@ public class WatchGlass : MonoBehaviour, Fillable
     void Start()
     {
         solidRenderer = GetComponentInChildren<SolidRenderer>();
-        containedMixture = new SubstanceMixture(new System.Collections.Generic.List<Substance>(), false, -1, Color.clear, Color.green);
+        containedMixture = new SubstanceMixture(new System.Collections.Generic.List<Substance>(), false, false, 0, -1, Color.clear, Color.green);
     }
 
     public void Fill(SubstanceMixture mix)
@@ -52,5 +52,10 @@ public class WatchGlass : MonoBehaviour, Fillable
     public bool CanContainLiquid()
     {
         return false;
+    }
+
+    public SubstanceMixture GetContainedSubstanceMixture()
+    {
+        return containedMixture;
     }
 }

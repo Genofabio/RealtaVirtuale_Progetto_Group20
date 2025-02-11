@@ -33,7 +33,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     {
         experimentManager = FindFirstObjectByType<ExperimentManager>();
 
-        containedMixture = new SubstanceMixture(initialSubstances, false, -1, initialLiquidColor, initialSolidColor); // Nella build definitiva la lista sar� inizialmente vuota
+        containedMixture = new SubstanceMixture(initialSubstances, false, false, 0, -1, initialLiquidColor, initialSolidColor); // Nella build definitiva la lista sar� inizialmente vuota
 
         liquidRenderer = GetComponentInChildren<LiquidRenderer>();
         if (liquidRenderer == null)
@@ -42,8 +42,11 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         }
         else
         {
-            liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
-            liquidRenderer.SetColor(initialLiquidColor);
+            if (GetLiquidVolume() > 0.01)
+            {
+                liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+                liquidRenderer.SetColor(initialLiquidColor);
+            }
         }
 
         solidRenderer = GetComponentInChildren<SolidRenderer>();
@@ -95,8 +98,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
 
         experimentManager.CheckAndModifyStep(containedMixture);
 
-        liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
-        solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
+        UpdateSubstanceRenderFill();
         liquidRenderer.SetColor(containedMixture.MixtureLiquidColor);
         solidRenderer.SetColor(containedMixture.MixtureSolidColor);
         RefreshTotalWeight();
@@ -134,11 +136,9 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         if (amountToPour > totalAmount) amountToPour = totalAmount;
         if (amountToPour > targetRemainingVolume) amountToPour = targetRemainingVolume;
 
-        SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.ExperimentStepReached, containedMixture.MixtureLiquidColor, containedMixture.MixtureSolidColor);
+        SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.Dried, containedMixture.DryingTime, containedMixture.ExperimentStepReached, containedMixture.MixtureLiquidColor, containedMixture.MixtureSolidColor);
         pouredMix.Substances = containedMixture.ExtractSubstances(amountToPour);
-
-        liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
-        solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
+        UpdateSubstanceRenderFill();
         RefreshTotalWeight();
 
         targetContainer.Fill(pouredMix);
@@ -146,18 +146,26 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         experimentManager.CheckAndModifyStep(containedMixture);
     }
 
+    private void UpdateSubstanceRenderFill()
+    {
+        if (GetLiquidVolume() > 0.01)
+        {
+            liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+        }
+        solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
+    }
+
     public SubstanceMixture PickUpVolume(float amountToExtract)
     {
         float totalAmount = GetCurrentVolume();
-        SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.ExperimentStepReached, containedMixture.MixtureLiquidColor, containedMixture.MixtureSolidColor);
+        SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.Dried, containedMixture.DryingTime, containedMixture.ExperimentStepReached, containedMixture.MixtureLiquidColor, containedMixture.MixtureSolidColor);
         if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 
         List<Substance> extractedSubstances = containedMixture.ExtractSubstances(amountToExtract);
         extractedMix.Substances = extractedSubstances;
 
-        liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
-        solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
+        UpdateSubstanceRenderFill();
         RefreshTotalWeight();
 
         return extractedMix;
@@ -207,5 +215,10 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     public bool CanContainLiquid()
     {
         return true;
+    }
+
+    public SubstanceMixture GetContainedSubstanceMixture()
+    {
+        return containedMixture;
     }
 }

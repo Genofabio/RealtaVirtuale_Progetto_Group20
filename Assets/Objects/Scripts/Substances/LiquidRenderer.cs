@@ -20,7 +20,7 @@ public class LiquidRenderer : MonoBehaviour
 
     private float liquidAmount = 0f;
 
-    void Start()
+    void Awake()
     {
         liquidRend = GetComponent<Renderer>();
         lastPos = transform.position;
@@ -93,10 +93,11 @@ public class LiquidRenderer : MonoBehaviour
 
     public void SetColor(Color color)
     {
-        liquidRend.material.SetColor("_LiquidColor", color);
 
         Color lighterColor = Color.Lerp(color, Color.white, 0.2f);
         liquidRend.material.SetColor("_SurfaceColor", lighterColor);
+
+        liquidRend.material.SetColor("_LiquidColor", color);
 
         liquidRend.material.SetColor("_FresnelColor", color);
     }

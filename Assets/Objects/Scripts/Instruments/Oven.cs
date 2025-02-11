@@ -1,12 +1,18 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Oven : MonoBehaviour
 {
     [SerializeField] private Transform door;
+    [SerializeField] private List<GameObject> contentObjects;
     //private Collider doorCollider; 
+
+    private ExperimentManager experimentManager;
+
     private Quaternion closedRotation;
     private Quaternion openRotation;
+
     public bool IsOpen { get; set;  } = false;
     public bool IsEmpty { get; set; } = true;
     public bool IsMoving { get; set; } = false;
@@ -21,6 +27,10 @@ public class Oven : MonoBehaviour
             Debug.LogError("La porta non è stata trovata nel forno!");
             return;
         }
+
+        contentObjects = new List<GameObject>();
+
+        experimentManager = FindFirstObjectByType<ExperimentManager>();
 
         //doorCollider = door.GetComponent<Collider>(); // Trova il Rigidbody della porta
         //if (doorCollider == null)
@@ -112,11 +122,50 @@ public class Oven : MonoBehaviour
 
     private IEnumerator CookCoroutine()
     {
-        Debug.Log("Inizio cottura");
-        yield return new WaitForSeconds(3f);
-        Debug.Log("Cotto!");
+        while (!IsEmpty)
+        {
+            foreach (GameObject obj in contentObjects)
+            {
+                if (obj != null)
+                {
+                    Fillable fillable = obj.GetComponent<Fillable>();
+                    SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
+                    if (fillableSubstanceMix != null && !fillableSubstanceMix.Dried)
+                    {
+                        fillableSubstanceMix.Dry(Time.deltaTime);
+                        experimentManager.CheckAndModifyStep(fillableSubstanceMix.GetReference());
+                    }
+                }
+            }
+
+            yield return null; // Aspetta un frame prima di continuare
+        }
 
         cookRoutine = null;
+    }
+
+    public void InsertIntoOven(GameObject obj)
+    {
+        if (obj == null) return;
+
+        if (!contentObjects.Contains(obj))
+        {
+            contentObjects.Add(obj);
+        }
+    }
+
+    public void RemoveFromOven(GameObject obj)
+    {
+        if (obj == null) return;
+
+        if (contentObjects.Contains(obj))
+        {
+            Fillable fillable = obj.GetComponent<Fillable>();
+            SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
+            fillableSubstanceMix.DryingTime = 0;
+
+            contentObjects.Remove(obj);
+        }
     }
 
 }

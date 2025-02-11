@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
 public class OvenTrigger : MonoBehaviour
 {
@@ -13,10 +13,22 @@ public class OvenTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         oven.IsEmpty = false;
+
+        Fillable fillable = other.GetComponent<Fillable>();
+        if (fillable != null && fillable.GetContainedSubstanceMixture() != null)
+        {
+            oven.InsertIntoOven(other.gameObject);
+        }
     }
     
     private void OnTriggerExit(Collider other)
     {
         oven.IsEmpty = true;
+
+        Fillable fillable = other.GetComponent<Fillable>();
+        if (fillable != null && fillable.GetContainedSubstanceMixture() != null)
+        {
+            oven.RemoveFromOven(other.gameObject);
+        }
     }
 }

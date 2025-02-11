@@ -6,21 +6,30 @@ using UnityEngine;
 [System.Serializable]
 public class SubstanceMixture
 {
-    [SerializeField] private List<Substance> substances = new List<Substance>();
+    [Header("SubstanceMix Properties")]
+    [SerializeField] private bool mixed = false;
+    [SerializeField] private bool dried = false;
+    [SerializeField] private float dryingTime = 0.0f;
+
+    [Header("Step")]
+    [SerializeField] private int experimentStepReached = -1;
+
+    [Header("Colors")]
     [SerializeField] private Color mixtureLiquidColor;
     [SerializeField] private Color mixtureSolidColor;
 
-    [SerializeField] private bool mixed = false;
+    [Header("Content")]
+    [SerializeField] private List<Substance> substances = new List<Substance>();
 
-    [SerializeField] private int experimentStepReached = -1;
-
-    public SubstanceMixture(List<Substance> substances, bool mixed, int experimentStepReached, Color mixtureLiquidColor, Color mixtureSolidColor)
+    public SubstanceMixture(List<Substance> substances, bool mixed, bool dried, float dryingTime, int experimentStepReached, Color mixtureLiquidColor, Color mixtureSolidColor)
     {
         Substances = substances.Select(substance => substance.Clone()).ToList();
         Mixed = mixed;
         ExperimentStepReached = experimentStepReached;
         MixtureLiquidColor = mixtureLiquidColor;
         MixtureSolidColor = mixtureSolidColor;
+        Dried = dried;
+        DryingTime = dryingTime;
     }
 
     public List<Substance> Substances
@@ -33,6 +42,18 @@ public class SubstanceMixture
     {
         get { return mixed; }
         set { mixed = value; }
+    }
+
+    public bool Dried
+    {
+        get { return dried; }
+        set { dried = value; }
+    }
+
+    public float DryingTime
+    {
+        get { return dryingTime; }
+        set { dryingTime = value; }
     }
 
     public int ExperimentStepReached
@@ -55,7 +76,12 @@ public class SubstanceMixture
 
     public SubstanceMixture Clone()
     {
-        return new SubstanceMixture(new List<Substance>(this.Substances), this.Mixed, this.ExperimentStepReached, this.MixtureLiquidColor, this.MixtureSolidColor);
+        return new SubstanceMixture(new List<Substance>(this.Substances), this.Mixed, this.dried, this.dryingTime, this.ExperimentStepReached, this.MixtureLiquidColor, this.MixtureSolidColor);
+    }
+
+    public SubstanceMixture GetReference()
+    {
+        return this;
     }
 
     public float GetCurrentVolume()
@@ -103,6 +129,15 @@ public class SubstanceMixture
         else
         {
             Mixed = false;
+        }
+
+        if (mix.Dried && (Dried || GetCurrentVolume() < 0.1))
+        {
+            Dried = true;
+        }
+        else
+        {
+            Dried = false;
         }
 
         float totalVolume = GetCurrentVolume() + mix.GetCurrentVolume();
@@ -200,7 +235,11 @@ public class SubstanceMixture
 
         substances.RemoveAll(sub => sub.Quantity <= 0.001);
 
-        if (!(substances.Count > 0)) Mixed = false;
+        if (!(substances.Count > 0))
+        {
+            Mixed = false;
+            Dried = false;
+        }
 
         return pouredSubstances;
     }
@@ -208,6 +247,7 @@ public class SubstanceMixture
     public bool IsSimilarTo(SubstanceMixture mix)
     {
         if (mix.mixed == true && mixed != mix.mixed) return false;
+        if (dryingTime < mix.dryingTime - 0.001 || dryingTime > mix.dryingTime + mix.dryingTime / 2 + 0.001) return false;
 
         // Controllo che ogni sostanza in mix sia presente in contents con esattamente la stessa quantità
         foreach (Substance sostanzaMix in mix.substances)
@@ -369,6 +409,9 @@ public class SubstanceMixture
         return solidWeight;
     }
 
-
+    public void Dry(float deltaTime)
+    {
+        dryingTime += deltaTime;
+    }
 
 }
