@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 1989156291}
   - component: {fileID: 1989156292}
   m_Layer: 0
-  m_Name: ControllerMix
+  m_Name: ExperimentManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,6 +170,8 @@ MonoBehaviour:
       mixed: 0
       dried: 0
       dryingTime: 0
+      cooled: 0
+      coolingTime: 0
       experimentStepReached: -1
       mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
       mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
@@ -184,6 +186,8 @@ MonoBehaviour:
       mixed: 0
       dried: 0
       dryingTime: 0
+      cooled: 0
+      coolingTime: 0
       experimentStepReached: 0
       mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
       mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
@@ -194,6 +198,8 @@ MonoBehaviour:
       mixed: 0
       dried: 0
       dryingTime: 10
+      cooled: 0
+      coolingTime: 0
       experimentStepReached: 0
       mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
       mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
@@ -208,11 +214,15 @@ MonoBehaviour:
       mixed: 0
       dried: 1
       dryingTime: 0
+      cooled: 0
+      coolingTime: 0
       experimentStepReached: 0
       mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
       mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
       substances: []
   numMixturePerStep: 
+  highestStepReached: 0
+  assistant: {fileID: 0}
 --- !u!1 &772532695981434590
 GameObject:
   m_ObjectHideFlags: 0

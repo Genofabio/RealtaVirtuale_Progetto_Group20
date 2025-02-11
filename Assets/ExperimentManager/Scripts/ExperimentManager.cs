@@ -6,12 +6,26 @@ public class ExperimentManager : MonoBehaviour
 {
     [SerializeField] private List<ExperimentStep> steps;
     [SerializeField] private int[] numMixturePerStep;
+    [SerializeField] private int highestStepReached;
+
+    [SerializeField] private Assistant assistant;
 
     public List<ExperimentStep> Steps => steps;
+
+    public int HighestStepReached
+    {
+        get => highestStepReached;
+        set
+        {
+            highestStepReached = value;
+            assistant.SetHighestStepReached(value);
+        }
+    }
 
     private void Start()
     {
         numMixturePerStep = new int[steps.Count];
+        highestStepReached = -1;
     }
 
     public bool isLastStepStillReached(SubstanceMixture mix)
@@ -41,21 +55,43 @@ public class ExperimentManager : MonoBehaviour
 
         ExperimentStep nextStep = steps[currentStepReached + 1];
         SubstanceMixture targetMixture = nextStep.GetRequiredSubstanceMixture();
+        SubstanceMixture resultMixture = nextStep.GetResultingSubstanceMixture();
 
-        if (mix.CanBecome(targetMixture))
+        if(targetMixture.CanBecome(resultMixture))
         {
-            if (mix.IsSimilarTo(targetMixture))
+            if (mix.CanBecome(targetMixture))
             {
-                Debug.Log("Avanzamento");
-                AdvanceToNextStep(mix);
+                if (mix.IsSimilarTo(targetMixture))
+                {
+                    Debug.Log("Avanzamento");
+                    AdvanceToNextStep(mix);
+                }
             }
-        }
-        else
-        {
-            if(currentStepReached >= 0)
+            else
             {
-                Debug.Log("Sbagliato");
-                HandleStepFailure(mix);
+                if (currentStepReached >= 0)
+                {
+                    Debug.Log("Sbagliato");
+                    HandleStepFailure(mix);
+                }
+            }
+        } else
+        {
+            if (mix.IsQuantityWithinTolerance(targetMixture))
+            {
+                if (mix.IsSimilarTo(targetMixture))
+                {
+                    Debug.Log("Avanzamento");
+                    AdvanceToNextStep(mix);
+                }
+            }
+            else
+            {
+                if (currentStepReached >= 0)
+                {
+                    Debug.Log("Sbagliato");
+                    HandleStepFailure(mix);
+                }
             }
         }
     }
@@ -63,6 +99,12 @@ public class ExperimentManager : MonoBehaviour
     private void AdvanceToNextStep(SubstanceMixture mix)
     {
         ExperimentStep nextStep = steps[mix.ExperimentStepReached + 1];
+
+        if (mix.ExperimentStepReached + 1 > highestStepReached)
+        {
+            HighestStepReached = mix.ExperimentStepReached + 1;
+        }
+
         nextStep.ApplyStepEffect(mix);
         SetMixtureStepAndUpdateCount(mix, mix.ExperimentStepReached + 1);  
     }
@@ -88,7 +130,25 @@ public class ExperimentManager : MonoBehaviour
         if (mix.ExperimentStepReached >= 0)
         {
             numMixturePerStep[currentStep] -= 1;
+
+            if (numMixturePerStep[currentStep] == 0)
+            {
+                HighestStepReached = GetHighestSTepReached();
+            }
+
             mix.ExperimentStepReached = - 1;
         }
+    }
+
+    public int GetHighestSTepReached()
+    {
+        for (int i = numMixturePerStep.Length - 1; i >= 0; i--)
+        {
+            if (numMixturePerStep[i] > 0)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }

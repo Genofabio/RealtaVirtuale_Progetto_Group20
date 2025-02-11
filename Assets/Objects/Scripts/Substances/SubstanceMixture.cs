@@ -378,6 +378,22 @@ public class SubstanceMixture
 
     public bool CanBecome(SubstanceMixture mix)
     {
+        if(!IsQuantityWithinTolerance(mix)) return false;
+
+        // Controlla se ci sono sostanze nel becher che non esistono nel mix
+        foreach (Substance beakerSubstance in substances)
+        {
+            if (!mix.substances.Any(s => s.SubstanceName == beakerSubstance.SubstanceName))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool IsQuantityWithinTolerance(SubstanceMixture mix)
+    {
         foreach (Substance mixSubstance in mix.substances)
         {
             Substance beakerSubstance = substances.Find(s => s.SubstanceName == mixSubstance.SubstanceName);
@@ -391,16 +407,6 @@ public class SubstanceMixture
                 }
             }
         }
-
-        // Controlla se ci sono sostanze nel becher che non esistono nel mix
-        //foreach (Substance beakerSubstance in substances)
-        //{
-        //    if (!mix.substances.Any(s => s.SubstanceName == beakerSubstance.SubstanceName))
-        //    {
-        //        return false; 
-        //    }
-        //}
-
         return true;
     }
 
