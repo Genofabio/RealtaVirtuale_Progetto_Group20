@@ -5,6 +5,10 @@ public class Grabbable : MonoBehaviour
     private Rigidbody objectRigidbody;
     private Transform objectGrabPointTransform;
 
+    private Transform actualPivotPoint;
+    private Transform rotationPourPivot;
+    private bool isRotating;
+
     private float defaultLinearDamping;
     private float holdingLinearDamping = 5;
 
@@ -28,6 +32,8 @@ public class Grabbable : MonoBehaviour
     {
         objectRigidbody = GetComponent<Rigidbody>();
 
+        actualPivotPoint = transform; // Di default il pivot è l'oggetto stesso
+    
         defaultInterpolation = objectRigidbody.interpolation;
         defaultLinearDamping = objectRigidbody.linearDamping;
 
@@ -65,19 +71,37 @@ public class Grabbable : MonoBehaviour
     {
         if (objectGrabPointTransform != null)
         {
-            Vector3 distance = objectGrabPointTransform.position - transform.position;
-
-            if (justGrabbed && distance.magnitude < 0.4f)
+            //questa va cambiata per fare in modo che actualPivotPoint sia calcolato sull'altezza di objectGrabPointTransform
+            //in pratica va abbassato.
+            //GameObject tempPivot = new GameObject("TempPivot");
+            //tempPivot.transform.position = new Vector3(tempPivot.transform.position.x, objectGrabPointTransform.position.y, tempPivot.transform.position.z);
+            if (!isRotating)
             {
-                velocityMultiplier = finalVelocityMultiplier;
-                justGrabbed = false;
+                Vector3 distance = objectGrabPointTransform.position - transform.position;
+
+                if (justGrabbed && distance.magnitude < 0.4f)
+                {
+                    velocityMultiplier = finalVelocityMultiplier;
+                    justGrabbed = false;
+                }
+
+                objectRigidbody.linearVelocity = velocityMultiplier * distance;
             }
 
-            objectRigidbody.linearVelocity = velocityMultiplier * (objectGrabPointTransform.position - transform.position);
-
-            Vector3 correctionAxis = Vector3.Cross(transform.up, Vector3.up);
-            float correctionMagnitude = correctionAxis.magnitude;
-            objectRigidbody.AddTorque(correctionAxis.normalized * correctionMagnitude * 10f);
+            if (!isRotating)
+            {
+                Vector3 correctionAxis = Vector3.Cross(transform.up, Vector3.up);
+                float correctionMagnitude = correctionAxis.magnitude;
+                objectRigidbody.AddTorque(correctionAxis.normalized * correctionMagnitude * 30f);
+            }
+            else if (isRotating)
+            {
+                if (actualPivotPoint != null)
+                {
+                    Vector3 distance = objectGrabPointTransform.position - actualPivotPoint.position;
+                    transform.RotateAround(rotationPourPivot.position, transform.forward, -100f * Time.deltaTime);
+                }
+            }
         }
     }
 
@@ -138,6 +162,28 @@ public class Grabbable : MonoBehaviour
         objectRigidbody.linearDamping = defaultLinearDamping;
         objectRigidbody.angularDamping = defaultAngularDamping;
         objectRigidbody.interpolation = defaultInterpolation;
+    }
+
+    public void StartRotating(Transform pivotPoint)
+    {
+        Debug.Log("Start rotating");
+        isRotating = true;
+
+        rotationPourPivot = pivotPoint;
+
+        // Creiamo un nuovo GameObject temporaneo per usarlo come pivot corretto
+        GameObject tempPivot = new GameObject("TempPivot");
+        tempPivot.transform.position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
+        tempPivot.transform.rotation = transform.rotation; // Mantieni la stessa rotazione dell'oggetto
+
+        // Assegniamo questo nuovo pivot temporaneo
+        actualPivotPoint = tempPivot.transform;
+    }
+
+    public void StopRotating()
+    {
+        isRotating = false;
+        actualPivotPoint = transform; // Usa il pivot di default
     }
 
     public void DeleteLineRenderer()
