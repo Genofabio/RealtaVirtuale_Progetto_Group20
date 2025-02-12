@@ -21,6 +21,16 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     private Rigidbody becherRigidbody;
     private float emptyBecherMass;
 
+    // Gestione rotazione versamento
+    [SerializeField] Transform pivot; // Il secondo pivot, es. imboccatura della bottiglia
+    //public float rotationSpeed = 45f; // Gradi al secondo
+
+    //Gestione temporizzazione versamento
+    private bool firstPouring = true;
+    private bool isPouring = false;
+    private float pourTimer = 0f;
+    private float pourDuration = 0.05f;
+
     // Gestione avanzamento step esperimento
     private ExperimentManager experimentManager;
 
@@ -72,6 +82,21 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         {
             Debug.LogWarning("maxVolume deve essere maggiore di 0. Impostazione modificata a 20ml.");
             maxCapacity = 20f;
+        }
+    }
+    void Update()
+    {
+        if (isPouring)
+        {
+            pourTimer -= Time.deltaTime;
+            if (pourTimer <= 0f)
+            {
+                isPouring = false;
+                firstPouring = true;
+                TryGetComponent<Grabbable>(out var grab);
+                grab.StopRotating();
+                Debug.Log("Fine versamento!");
+            }
         }
     }
 
@@ -145,6 +170,16 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         targetContainer.Fill(pouredMix);
 
         experimentManager.CheckAndModifyStep(containedMixture);
+
+        // 🔥 Imposta isPouring e avvia il timer
+        if(firstPouring == true)
+        {
+            firstPouring = false;
+            TryGetComponent<Grabbable>(out var grab);
+            grab.StartRotating(pivot);
+        }
+        isPouring = true;
+        pourTimer = pourDuration;
     }
 
     private void UpdateSubstanceRenderFill()

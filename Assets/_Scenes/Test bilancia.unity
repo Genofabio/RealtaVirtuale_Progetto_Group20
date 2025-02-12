@@ -592,6 +592,110 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2770c8edfa391fa4fac30a15d3a03c46, type: 3}
+--- !u!1 &1470133022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470133024}
+  - component: {fileID: 1470133023}
+  m_Layer: 0
+  m_Name: ExperimentManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1470133023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470133022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c7af2a35573a24d83db0ef7e2f6d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  steps:
+  - stepName: Step 0
+    description: 
+    requiredMixture:
+      mixed: 0
+      dried: 0
+      dryingTime: 0
+      cooled: 0
+      coolingTime: 0
+      experimentStepReached: -1
+      mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
+      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
+      substances:
+      - substanceName: H2O
+        quantity: 10
+        isSolid: 0
+      - substanceName: NaCl
+        quantity: 2
+        isSolid: 1
+    resultingMixture:
+      mixed: 0
+      dried: 0
+      dryingTime: 0
+      cooled: 0
+      coolingTime: 0
+      experimentStepReached: 0
+      mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
+      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
+      substances: []
+  - stepName: Step 1
+    description: 
+    requiredMixture:
+      mixed: 0
+      dried: 0
+      dryingTime: 10
+      cooled: 0
+      coolingTime: 0
+      experimentStepReached: 0
+      mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
+      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
+      substances:
+      - substanceName: H2O
+        quantity: 10
+        isSolid: 0
+      - substanceName: NaCl
+        quantity: 2
+        isSolid: 1
+    resultingMixture:
+      mixed: 0
+      dried: 1
+      dryingTime: 0
+      cooled: 0
+      coolingTime: 0
+      experimentStepReached: 0
+      mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
+      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
+      substances: []
+  numMixturePerStep: 
+  highestStepReached: 0
+  assistant: {fileID: 0}
+--- !u!4 &1470133024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470133022}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.385501, y: -7.383211, z: -7.5050516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1729938926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -931,3 +1035,4 @@ SceneRoots:
   - {fileID: 4839095866090810675}
   - {fileID: 3671597973061192236}
   - {fileID: 1218271047444596421}
+  - {fileID: 1470133024}
