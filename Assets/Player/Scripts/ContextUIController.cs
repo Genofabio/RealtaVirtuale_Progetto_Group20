@@ -29,7 +29,7 @@ public class ContextUIController : MonoBehaviour
             {
                 SetContextActive("Pick Up");
             }
-            else if (hit.transform.TryGetComponent<PrecisionBalance>(out var balance))
+            else if (hit.transform.TryGetComponent<BalanceButton>(out var balance))
             {
                 SetContextActive("Tare");
             }

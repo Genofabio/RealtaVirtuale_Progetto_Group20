@@ -197,14 +197,14 @@ public class PlayerController : MonoBehaviour
                 if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
                 {
                     // Tara della bilancia
-                    if (hit.transform.TryGetComponent<PrecisionBalance>(out var balance))
+                    if (hit.transform.TryGetComponent<BalanceButton>(out var button))
                     {
-                        balance.Tare();
+                        button.Tare();
                     }
                     // Apertura forno
-                    else if (hit.transform.TryGetComponent<Oven>(out var oven))
+                    else if (hit.transform.TryGetComponent<Openable>(out var openable))
                     {
-                        oven.ToggleDoor();
+                        openable.ToggleDoor();
                     }
                     // Apertura frigorifero
                     else if (hit.transform.TryGetComponent<Fridge>(out var fridge))
