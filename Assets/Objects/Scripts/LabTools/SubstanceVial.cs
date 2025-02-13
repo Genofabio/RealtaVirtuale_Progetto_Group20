@@ -8,6 +8,16 @@ public class SubstanceVial : MonoBehaviour, Pourable
 
     [SerializeField] private float maxVolume;
 
+    // Gestione rotazione versamento
+    [SerializeField] Transform pivot; // Il secondo pivot, es. imboccatura della bottiglia
+    //public float rotationSpeed = 45f; // Gradi al secondo
+
+    //Gestione temporizzazione versamento
+    private bool firstPouring = true;
+    private bool isPouring = false;
+    private float pourTimer = 0f;
+    private float pourDuration = 0.05f;
+
     private LiquidRenderer liquid;
     private SolidRenderer solid;
 
@@ -58,6 +68,21 @@ public class SubstanceVial : MonoBehaviour, Pourable
         }
     }
 
+    void Update()
+    {
+        if (isPouring)
+        {
+            pourTimer -= Time.deltaTime;
+            if (pourTimer <= 0f)
+            {
+                isPouring = false;
+                firstPouring = true;
+                TryGetComponent<Grabbable>(out var grab);
+                grab.StopRotating();
+            }
+        }
+    }
+
     public void Pour(Fillable targetContainer, float amountToPour)
     {
         float totalAmount = GetCurrentVolume();
@@ -87,6 +112,25 @@ public class SubstanceVial : MonoBehaviour, Pourable
  
 
         targetContainer.Fill(pouredMix);
+
+        // Imposta isPouring e avvia il timer
+        if (firstPouring == true)
+        {
+            firstPouring = false;
+            TryGetComponent<Grabbable>(out var grab);
+            grab.StartRotating(pivot, CalculateInitalRotation());
+        }
+        isPouring = true;
+        pourTimer = pourDuration;
+    }
+
+    public float CalculateInitalRotation()
+    {
+        //calcola la percentuale di volume pieno sul volume totale
+        float volumePercentage = GetCurrentVolume() / maxVolume;
+
+        //normalizza la percentuale tra -90 e -30
+        return Mathf.Lerp(-90, -30, volumePercentage);
     }
 
     public float GetCurrentVolume()
