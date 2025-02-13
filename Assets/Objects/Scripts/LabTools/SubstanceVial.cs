@@ -89,7 +89,7 @@ public class SubstanceVial : MonoBehaviour, Pourable
         if (totalAmount == 0 || amountToPour <= 0) return;
         if (amountToPour > totalAmount) amountToPour = totalAmount;
 
-        List<Substance> pouredSubstance = new List<Substance> { substance };
+        List<Substance> pouredSubstance = new List<Substance> { new Substance(substance.SubstanceName, amountToPour, substance.IsSolid) };
         substance.Quantity -= amountToPour;
         SubstanceMixture pouredMix;
         if (substance.IsSolid)
@@ -153,7 +153,7 @@ public class SubstanceVial : MonoBehaviour, Pourable
         if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 
-        List<Substance> extractedSubstance = new List<Substance> { substance };
+        List<Substance> extractedSubstance = new List<Substance> { new Substance(substance.SubstanceName, amountToExtract, substance.IsSolid) };
         substance.Quantity -= amountToExtract;
 
         extractedMix.Substances = extractedSubstance;
