@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Oven : MonoBehaviour
+public class Oven : MonoBehaviour, Openable
 {
     [SerializeField] private Transform door;
     [SerializeField] private List<GameObject> contentObjects;
@@ -13,6 +13,8 @@ public class Oven : MonoBehaviour
     private Quaternion closedRotation;
     private Quaternion openRotation;
 
+    [SerializeField] private float openSpeed = 1f;
+
     public bool IsOpen { get; set;  } = false;
     public bool IsEmpty { get; set; } = true;
     public bool IsMoving { get; set; } = false;
@@ -21,7 +23,6 @@ public class Oven : MonoBehaviour
 
     private void Start()
     {
-        door = transform.Find("Porta");
         if (door == null)
         {
             Debug.LogError("La porta non è stata trovata nel forno!");
@@ -43,7 +44,7 @@ public class Oven : MonoBehaviour
         closedRotation = door.localRotation;
 
         // Definisce la rotazione aperta: -90° sull'asse Y
-        openRotation = Quaternion.Euler(closedRotation.eulerAngles.x, closedRotation.eulerAngles.y + 90, closedRotation.eulerAngles.z);
+        openRotation = Quaternion.Euler(closedRotation.eulerAngles.x, closedRotation.eulerAngles.y, closedRotation.eulerAngles.z + 90);
     }
 
     public void ToggleDoor()
@@ -73,7 +74,7 @@ public class Oven : MonoBehaviour
             Debug.Log("Cottura interrotta!"); // Debug per confermare l'interruzione
         }
 
-        float duration = 1f;
+        float duration = 1f / openSpeed;
         float elapsed = 0f;
 
         while (elapsed < duration)
@@ -94,7 +95,7 @@ public class Oven : MonoBehaviour
         IsMoving = true;
         //doorCollider.enabled = false;
 
-        float duration = 1f;
+        float duration = 1f / openSpeed;
         float elapsed = 0f;
 
         while (elapsed < duration)
