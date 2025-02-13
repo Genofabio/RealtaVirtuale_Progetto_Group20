@@ -46,6 +46,17 @@ public class Breakable : MonoBehaviour
             collider.enabled = false;
         }
 
+        foreach (Transform child in intact.transform)
+        {
+            if (child.GetComponent<SolidRenderer>() || child.GetComponent<LiquidRenderer>())
+            {
+                if (child.TryGetComponent<MeshRenderer>(out MeshRenderer childMeshRenderer))
+                {
+                    childMeshRenderer.enabled = false;
+                }
+            }
+        }
+
         // Attiva il modello rotto
         broken.SetActive(true);
 
