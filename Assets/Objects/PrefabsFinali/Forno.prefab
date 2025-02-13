@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 8696438514183441147}
   - component: {fileID: 8939314787806067754}
   - component: {fileID: 6457417274710305494}
+  - component: {fileID: 9034527522875603389}
   m_Layer: 0
   m_Name: Forno
   m_TagString: Untagged
@@ -307,8 +308,35 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.57892513, y: 0.18443061, z: 0.5612322}
-  m_Center: {x: 0.103039265, y: 0.120139904, z: -0.008775413}
+  m_Size: {x: 0.57892513, y: 0.18761295, z: 0.5612322}
+  m_Center: {x: 0.103039265, y: 0.12173107, z: -0.008775413}
+--- !u!54 &9034527522875603389
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140402882204370843}
+  serializedVersion: 4
+  m_Mass: 900
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5010840323053721828
 GameObject:
   m_ObjectHideFlags: 0
