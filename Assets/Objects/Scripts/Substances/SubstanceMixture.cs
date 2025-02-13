@@ -198,44 +198,41 @@ public class SubstanceMixture
     {
         if (totalVolume <= 0) return Color.clear;
 
-        float currentAlpha = MixtureLiquidColor.a;
-        float addedAlpha = mix.MixtureLiquidColor.a;
+        float currentVolume = GetCurrentVolume();
+        float mixVolume = mix.GetCurrentVolume();
 
-        Color currentColor = currentAlpha > 0 ? MixtureLiquidColor * GetCurrentVolume() * currentAlpha : Color.clear;
-        Color addedColor = addedAlpha > 0 ? mix.MixtureLiquidColor * mix.GetCurrentVolume() * addedAlpha : Color.clear;
+        // Evita divisione per zero
+        if (currentVolume + mixVolume <= 0) return Color.clear;
 
-        float alphaWeight = (currentAlpha > 0 ? currentAlpha * GetCurrentVolume() : 0) +
-                            (addedAlpha > 0 ? addedAlpha * mix.GetCurrentVolume() : 0);
+        // Converti i colori in spazio lineare per una miscelazione più realistica
+        Color currentColor = MixtureLiquidColor.linear * currentVolume;
+        Color addedColor = mix.MixtureLiquidColor.linear * mixVolume;
 
-        if (alphaWeight <= 0) return Color.clear; // Se tutti i colori hanno alpha = 0, restituiamo trasparente
+        // Somma e normalizza in base ai volumi
+        Color resultColor = (currentColor + addedColor) / (currentVolume + mixVolume);
 
-        Color resultColor = (currentColor + addedColor) / alphaWeight;
-
-        resultColor.a = alphaWeight / totalVolume; // Alpha finale
-
-        return resultColor;
+        // Riporta in spazio gamma per la visualizzazione corretta
+        return resultColor.gamma;
     }
 
     private Color CalculateMixtureSolidColor(SubstanceMixture mix, float totalVolume)
     {
         if (totalVolume <= 0) return Color.clear;
 
-        float currentAlpha = MixtureSolidColor.a;
-        float addedAlpha = mix.MixtureSolidColor.a;
+        float currentVolume = GetCurrentVolume();
+        float mixVolume = mix.GetCurrentVolume();
 
-        Color currentColor = currentAlpha > 0 ? MixtureSolidColor * GetCurrentVolume() * currentAlpha : Color.clear;
-        Color addedColor = addedAlpha > 0 ? mix.MixtureSolidColor * mix.GetCurrentVolume() * addedAlpha : Color.clear;
+        if (currentVolume + mixVolume <= 0) return Color.clear;
 
-        float alphaWeight = (currentAlpha > 0 ? currentAlpha * GetCurrentVolume() : 0) +
-                            (addedAlpha > 0 ? addedAlpha * mix.GetCurrentVolume() : 0);
+        // Converti in spazio lineare per una miscela più realistica
+        Color currentColor = MixtureSolidColor.linear * currentVolume;
+        Color addedColor = mix.MixtureSolidColor.linear * mixVolume;
 
-        if (alphaWeight <= 0) return Color.clear;
+        // Somma e normalizza in base ai volumi
+        Color resultColor = (currentColor + addedColor) / (currentVolume + mixVolume);
 
-        Color resultColor = (currentColor + addedColor) / alphaWeight;
-
-        resultColor.a = alphaWeight / totalVolume;
-
-        return resultColor;
+        // Riporta in spazio gamma per la visualizzazione
+        return resultColor.gamma;
     }
 
     public void StirSubstances()
