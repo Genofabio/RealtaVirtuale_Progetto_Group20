@@ -9,6 +9,12 @@ public class Grabbable : MonoBehaviour
     private Transform rotationPourPivot;
     private bool isRotating;
 
+    private float minRotationAngle = -90f; // Angolo minimo di inclinazione
+    private float maxRotationAngle = 0f;  // Angolo massimo di inclinazione
+
+    private float currentRotationAngle = 0f; // Angolo attuale dell'oggetto
+    private float initialRotationAngle = 0f; // Angolo iniziale dell'oggetto
+
     private float defaultLinearDamping;
     private float holdingLinearDamping = 5;
 
@@ -92,14 +98,30 @@ public class Grabbable : MonoBehaviour
             {
                 Vector3 correctionAxis = Vector3.Cross(transform.up, Vector3.up);
                 float correctionMagnitude = correctionAxis.magnitude;
-                objectRigidbody.AddTorque(correctionAxis.normalized * correctionMagnitude * 30f);
+                objectRigidbody.AddTorque(correctionAxis.normalized * correctionMagnitude * 20f);
             }
             else if (isRotating)
             {
                 if (actualPivotPoint != null)
                 {
-                    Vector3 distance = objectGrabPointTransform.position - actualPivotPoint.position;
-                    transform.RotateAround(rotationPourPivot.position, transform.forward, -100f * Time.deltaTime);
+                    // Questo valore f determina la velocità di rotazione ed è stato calcolato sperimentalmente
+                    float baseRotationSpeed = -27f * Time.deltaTime;
+                    float rotationSpeed = baseRotationSpeed;
+
+                    // Se l'angolo è compreso tra initialRotationAngle e maxRotationAngle, velocità 4x
+                    if (currentRotationAngle >= minRotationAngle && currentRotationAngle >= initialRotationAngle && currentRotationAngle <= maxRotationAngle)
+                    {
+                        rotationSpeed *= 10f;
+                    }
+
+                    float newRotationAngle = currentRotationAngle + rotationSpeed;
+
+                    // Verifica se la nuova rotazione rientra nei limiti
+                    if (newRotationAngle >= minRotationAngle && newRotationAngle <= maxRotationAngle)
+                    {
+                        transform.RotateAround(rotationPourPivot.position, transform.forward, rotationSpeed);
+                        currentRotationAngle = newRotationAngle; // Aggiorna l'angolo attuale
+                    }
                 }
             }
         }
@@ -164,12 +186,12 @@ public class Grabbable : MonoBehaviour
         objectRigidbody.interpolation = defaultInterpolation;
     }
 
-    public void StartRotating(Transform pivotPoint)
+    public void StartRotating(Transform pivotPoint, float initialRotation)
     {
-        Debug.Log("Start rotating");
         isRotating = true;
 
         rotationPourPivot = pivotPoint;
+        initialRotationAngle = initialRotation;
 
         // Creiamo un nuovo GameObject temporaneo per usarlo come pivot corretto
         GameObject tempPivot = new GameObject("TempPivot");
@@ -184,6 +206,7 @@ public class Grabbable : MonoBehaviour
     {
         isRotating = false;
         actualPivotPoint = transform; // Usa il pivot di default
+        currentRotationAngle = 0f; // Resetta l'angolo
     }
 
     public void DeleteLineRenderer()
