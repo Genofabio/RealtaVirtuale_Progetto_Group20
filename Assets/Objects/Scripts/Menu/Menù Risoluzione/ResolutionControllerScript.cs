@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ResolutionController : MonoBehaviour
+public class ResolutionControllerScript : MonoBehaviour
 {
     private Resolution[] resolutions;
     private int currentResolutionIndex;
