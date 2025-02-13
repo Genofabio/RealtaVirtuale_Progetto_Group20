@@ -20,7 +20,7 @@ public class ResolutionControllerScript : MonoBehaviour
             }
         }
 
-        Debug.Log("Risoluzione attuale: " + resolutions[currentResolutionIndex].width + "x" + resolutions[currentResolutionIndex].height);
+        // Debug.Log("Risoluzione attuale: " + resolutions[currentResolutionIndex].width + "x" + resolutions[currentResolutionIndex].height);
     }
 
     public void RisoluzioneSu()
@@ -45,6 +45,6 @@ public class ResolutionControllerScript : MonoBehaviour
     {
         Resolution newResolution = resolutions[currentResolutionIndex];
         Screen.SetResolution(newResolution.width, newResolution.height, Screen.fullScreen);
-        Debug.Log("Nuova risoluzione: " + newResolution.width + "x" + newResolution.height);
+        // Debug.Log("Nuova risoluzione: " + newResolution.width + "x" + newResolution.height);
     }
 }
