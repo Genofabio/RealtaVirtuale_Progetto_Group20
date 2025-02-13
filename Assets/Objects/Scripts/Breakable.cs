@@ -5,6 +5,7 @@ public class Breakable : MonoBehaviour
 {
 
     [SerializeField] private GameObject intact;
+    [SerializeField] private GameObject convexHull;
     [SerializeField] private GameObject broken;
 
     [SerializeField] private float breakForceThreshold = 5f;
@@ -44,6 +45,14 @@ public class Breakable : MonoBehaviour
         if (intact.TryGetComponent<Collider>(out Collider collider))
         {
             collider.enabled = false;
+        }
+
+        if (convexHull != null)
+        {
+            foreach (Collider hullCollider in convexHull.GetComponentsInChildren<Collider>())
+            {
+                hullCollider.enabled = false;
+            }
         }
 
         foreach (Transform child in intact.transform)
