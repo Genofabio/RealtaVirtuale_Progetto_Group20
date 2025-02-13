@@ -131,7 +131,7 @@ public class Fridge : MonoBehaviour
                     SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
                     if (fillableSubstanceMix != null && !fillableSubstanceMix.Dried)
                     {
-                        fillableSubstanceMix.Dry(Time.deltaTime);
+                        fillableSubstanceMix.CoolDown(Time.deltaTime);
                         experimentManager.CheckAndModifyStep(fillableSubstanceMix.GetReference());
                     }
                 }
@@ -161,7 +161,7 @@ public class Fridge : MonoBehaviour
         {
             Fillable fillable = obj.GetComponent<Fillable>();
             SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
-            fillableSubstanceMix.DryingTime = 0;
+            fillableSubstanceMix.CoolingTime = 0;
 
             contentObjects.Remove(obj);
         }
