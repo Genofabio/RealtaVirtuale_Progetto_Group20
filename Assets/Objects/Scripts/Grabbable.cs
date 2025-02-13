@@ -119,7 +119,7 @@ public class Grabbable : MonoBehaviour
                     // Verifica se la nuova rotazione rientra nei limiti
                     if (newRotationAngle >= minRotationAngle && newRotationAngle <= maxRotationAngle)
                     {
-                        transform.RotateAround(rotationPourPivot.position, transform.forward, rotationSpeed);
+                        transform.RotateAround(rotationPourPivot.position, transform.right, rotationSpeed);
                         currentRotationAngle = newRotationAngle; // Aggiorna l'angolo attuale
                     }
                 }
