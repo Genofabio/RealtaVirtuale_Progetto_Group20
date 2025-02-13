@@ -38,6 +38,7 @@ public class PasteurPipe : MonoBehaviour, Dropper
 
         full = true;
         liquid.SetFillSize(1);
+        liquid.SetColor(extractedMix.MixtureLiquidColor);
     }
 
     public void Drop(Fillable targetContainer)
@@ -52,6 +53,7 @@ public class PasteurPipe : MonoBehaviour, Dropper
         full = false;
         containedMixture = new SubstanceMixture(new List<Substance>(), false, false, 0, false, 0, -1, Color.clear, Color.clear);
         liquid.SetFillSize(0);
+        liquid.SetColor(Color.clear);
     }
 
     public bool IsFull()
