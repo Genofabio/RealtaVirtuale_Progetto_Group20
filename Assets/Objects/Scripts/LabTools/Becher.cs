@@ -95,7 +95,6 @@ public class Becher : MonoBehaviour, Fillable, Pourable
                 firstPouring = true;
                 TryGetComponent<Grabbable>(out var grab);
                 grab.StopRotating();
-                Debug.Log("Fine versamento!");
             }
         }
     }
@@ -176,10 +175,19 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         {
             firstPouring = false;
             TryGetComponent<Grabbable>(out var grab);
-            grab.StartRotating(pivot);
+            grab.StartRotating(pivot, CalculateInitalRotation());
         }
         isPouring = true;
         pourTimer = pourDuration;
+    }
+
+    public float CalculateInitalRotation()
+    {
+        //calcola la percentuale di volume pieno sul volume totale
+        float volumePercentage = GetCurrentVolume() / maxCapacity;
+
+        //normalizza la percentuale tra -90 e -30
+        return Mathf.Lerp(-90, -30, volumePercentage);
     }
 
     private void UpdateSubstanceRenderFill()
