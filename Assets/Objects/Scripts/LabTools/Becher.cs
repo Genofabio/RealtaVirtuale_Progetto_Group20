@@ -121,11 +121,14 @@ public class Becher : MonoBehaviour, Fillable, Pourable
 
         containedMixture.AddSubstanceMixture(mix);
 
-        experimentManager.CheckAndModifyStep(containedMixture);
-
-        UpdateSubstanceRenderFill();
-        liquidRenderer.SetColor(containedMixture.MixtureLiquidColor);
-        solidRenderer.SetColor(containedMixture.MixtureSolidColor);
+        if(containedMixture != null)
+        {
+            experimentManager.CheckAndModifyStep(containedMixture);
+            UpdateSubstanceRenderFill();
+            liquidRenderer.SetColor(containedMixture.MixtureLiquidColor);
+            solidRenderer.SetColor(containedMixture.MixtureSolidColor);
+        }
+        
         RefreshTotalWeight();
     }
 

@@ -9,6 +9,7 @@ public class SubstanceVial : MonoBehaviour, Pourable
     [SerializeField] private float maxVolume;
 
     private LiquidRenderer liquid;
+    private SolidRenderer solid;
 
     private void Start()    
     {
@@ -19,7 +20,32 @@ public class SubstanceVial : MonoBehaviour, Pourable
         }
         else
         {
-            liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+            if(!substance.IsSolid)
+            {
+                liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+            } else
+            {
+                liquid.SetFillSize(0);
+            }
+            liquid.SetColor(substanceColor);
+        }
+
+        solid = GetComponentInChildren<SolidRenderer>();
+        if (solid == null)
+        {
+            Debug.Log("Liquid NOT found");
+        }
+        else
+        {
+            if (substance.IsSolid)
+            {
+                solid.SetFillSize(GetCurrentVolume() / maxVolume);
+            }
+            else
+            {
+                solid.SetFillSize(0);
+            }
+            solid.SetColor(substanceColor);
         }
     }
 
@@ -38,8 +64,7 @@ public class SubstanceVial : MonoBehaviour, Pourable
         if (totalAmount == 0 || amountToPour <= 0) return;
         if (amountToPour > totalAmount) amountToPour = totalAmount;
 
-        List<Substance> pouredSubstance = new List<Substance>();
-        pouredSubstance.Add(new Substance(substance.SubstanceName, amountToPour, substance.IsSolid));
+        List<Substance> pouredSubstance = new List<Substance> { substance };
         substance.Quantity -= amountToPour;
         SubstanceMixture pouredMix;
         if (substance.IsSolid)
@@ -50,8 +75,16 @@ public class SubstanceVial : MonoBehaviour, Pourable
         {
             pouredMix = new SubstanceMixture(pouredSubstance, false, false, 0, false, 0, -1, substanceColor, Color.clear);
         }
-        
-        liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+
+        if (!substance.IsSolid)
+        {
+            liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+        } 
+        else
+        {
+            solid.SetFillSize(GetCurrentVolume() / maxVolume);
+        }
+ 
 
         targetContainer.Fill(pouredMix);
     }
@@ -76,13 +109,19 @@ public class SubstanceVial : MonoBehaviour, Pourable
         if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 
-        List<Substance> extractedSubstance = new List<Substance>();
-        extractedSubstance.Add(new Substance(substance.SubstanceName, amountToExtract, substance.IsSolid));
+        List<Substance> extractedSubstance = new List<Substance> { substance };
         substance.Quantity -= amountToExtract;
 
         extractedMix.Substances = extractedSubstance;
 
-        liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+        if (!substance.IsSolid)
+        {
+            liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+        }
+        else
+        {
+            solid.SetFillSize(GetCurrentVolume() / maxVolume);
+        }
 
         return extractedMix;
     }
