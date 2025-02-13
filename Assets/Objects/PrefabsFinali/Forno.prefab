@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2259816575337010447}
   - component: {fileID: 7417173289500045002}
   - component: {fileID: 1939843488984497055}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,12 +303,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.57892513, y: 0.779213, z: 0.5612322}
-  m_Center: {x: 0.103039265, y: 0.4175311, z: -0.008775413}
+  m_Size: {x: 0.57892513, y: 0.18443061, z: 0.5612322}
+  m_Center: {x: 0.103039265, y: 0.120139904, z: -0.008775413}
 --- !u!1 &5010840323053721828
 GameObject:
   m_ObjectHideFlags: 0
