@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -139,6 +141,8 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
+            SimulateUIClick();
+
             if (grabbedObject != null)
             {
                 //Oggetto di tipo Pourable, gestione del versaggio del liquido dentro un oggetto Fillable
@@ -216,6 +220,23 @@ public class PlayerController : MonoBehaviour
         } else if(context.canceled)
         {
             isPouring = false;
+        }
+    }
+
+    void SimulateUIClick()
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+        pointerData.position = new Vector2(Screen.width / 2, Screen.height / 2); // Punto centrale dello schermo
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        if (results.Count > 0)
+        {
+            GameObject clickedObject = results[0].gameObject;
+            Debug.Log("UI Clicked: " + clickedObject.name);
+
+            ExecuteEvents.Execute(clickedObject, pointerData, ExecuteEvents.pointerClickHandler);
         }
     }
 
