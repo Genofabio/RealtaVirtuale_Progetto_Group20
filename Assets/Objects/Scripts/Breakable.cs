@@ -10,11 +10,11 @@ public class Breakable : MonoBehaviour
     [SerializeField] private float breakForceThreshold = 5f;
     [SerializeField] private float destructionDelay = 5f;
 
+    [SerializeField] private AudioClip breakSound; // Campo per il suono di rottura configurabile nell'Inspector
+    private AudioSource audioSource;  // AudioSource per riprodurre il suono
+
     private Collider objCollider;
     private Rigidbody brokenRigidbody;
-
-    private AudioSource audioSource;  // Aggiungi una variabile per l'AudioSource
-    private AudioClip breakSound;    // Aggiungi una variabile per il suono di rottura
 
     private void Awake()
     {
@@ -24,15 +24,12 @@ public class Breakable : MonoBehaviour
         objCollider = GetComponent<Collider>();
         brokenRigidbody = broken.GetComponent<Rigidbody>();
 
-        // Aggiungi il componente AudioSource se non esiste
-        audioSource = gameObject.GetComponent<AudioSource>();
+        // Aggiungi un AudioSource se non è già presente
+        audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-
-        // Carica il suono di rottura dalla cartella Resources
-        breakSound = Resources.Load<AudioClip>("Sounds/BreakSound"); // Assicurati che il nome del file audio sia corretto
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -97,7 +94,7 @@ public class Breakable : MonoBehaviour
             grab.DeleteLineRenderer();
         }
 
-        // Aspetta per il tempo definito (10 secondi)
+        // Aspetta per il tempo definito (5 secondi)
         yield return new WaitForSeconds(destructionDelay);
 
         // Distrugge l'oggetto dopo il ritardo
