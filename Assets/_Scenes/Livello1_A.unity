@@ -1236,11 +1236,10 @@ RectTransform:
   m_LocalScale: {x: 0.000365695, y: 0.00036569513, z: 0.000365695}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 771007726}
   - {fileID: 1424331709}
+  - {fileID: 771007726}
   - {fileID: 502329335}
   - {fileID: 990571122}
-  - {fileID: 1787127139}
   m_Father: {fileID: 394942359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7860,6 +7859,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1965291031}
     m_Modifications:
+    - target: {fileID: 6920840041094149521, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6993110445511003738, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.050000004
@@ -7911,6 +7914,10 @@ PrefabInstance:
     - target: {fileID: 8729050606833596731, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
       propertyPath: m_Name
       value: Bacchetta
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987587749732352109, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
+      propertyPath: m_Resource
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8353,6 +8360,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1965291031}
     m_Modifications:
+    - target: {fileID: 6920840041094149521, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6993110445511003738, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.050000004
@@ -8404,6 +8415,10 @@ PrefabInstance:
     - target: {fileID: 8729050606833596731, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
       propertyPath: m_Name
       value: Bacchetta (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987587749732352109, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
+      propertyPath: m_Resource
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8672,6 +8687,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 433572088}
+  - {fileID: 1787127139}
   m_Father: {fileID: 215046302}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10322,6 +10338,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1965291031}
     m_Modifications:
+    - target: {fileID: 6920840041094149521, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6993110445511003738, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.050000004
@@ -10373,6 +10393,10 @@ PrefabInstance:
     - target: {fileID: 8729050606833596731, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
       propertyPath: m_Name
       value: Bacchetta (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987587749732352109, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
+      propertyPath: m_Resource
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11305,12 +11329,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787127136}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 215046302}
+  m_Father: {fileID: 1424331709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11928,6 +11952,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1965291031}
     m_Modifications:
+    - target: {fileID: 6920840041094149521, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6993110445511003738, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.050000004
@@ -11979,6 +12007,10 @@ PrefabInstance:
     - target: {fileID: 8729050606833596731, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
       propertyPath: m_Name
       value: Bacchetta (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987587749732352109, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
+      propertyPath: m_Resource
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13813,6 +13845,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1965291031}
     m_Modifications:
+    - target: {fileID: 6920840041094149521, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6993110445511003738, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.050000004
@@ -13864,6 +13900,10 @@ PrefabInstance:
     - target: {fileID: 8729050606833596731, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
       propertyPath: m_Name
       value: Bacchetta (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987587749732352109, guid: c40010dbef12a6a4cad59f50a2106450, type: 3}
+      propertyPath: m_Resource
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
