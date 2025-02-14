@@ -12418,7 +12418,7 @@ MonoBehaviour:
         quantity: 5
         isSolid: 0
       - substanceName: NaOH
-        quantity: 2
+        quantity: 5
         isSolid: 0
     resultingMixture:
       mixed: 0
