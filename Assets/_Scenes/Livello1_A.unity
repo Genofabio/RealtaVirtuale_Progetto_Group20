@@ -2414,6 +2414,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 901ad14e1ed9c87478507570d6f5779f, type: 3}
   - {fileID: 21300000, guid: 9d01bfc0788fcd94ba0e7901b689eee3, type: 3}
   displayImage: {fileID: 1787127137}
+  success: {fileID: 202375330}
+  failure: {fileID: 1891125788}
   audioSource: {fileID: 785150614}
   audioList:
   - {fileID: 8300000, guid: e29eb61fa0660354c869344ddf4e2dbc, type: 3}
