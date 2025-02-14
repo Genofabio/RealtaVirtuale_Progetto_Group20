@@ -18,6 +18,9 @@ public class Assistant : MonoBehaviour
     [SerializeField] private AudioClip failureClip;
     private float delayBetweenAudios = 0.5f;
 
+    [Header("Other")]
+    [SerializeField] private GameObject endScreen;
+
     private int highestStepReached;
 
     private void Awake()
@@ -38,6 +41,8 @@ public class Assistant : MonoBehaviour
         {
             audioSource.clip = audioList[0];
         }
+
+        endScreen.SetActive(false);
     }
 
     public void SetHighestStepReached(int newValue)
@@ -68,6 +73,7 @@ public class Assistant : MonoBehaviour
             displayImage.sprite = images[highestStepReached + 1]; 
         } else
         {
+            endScreen.SetActive(true);
             Debug.Log("Congratulazioni" + highestStepReached);
         }
     }
