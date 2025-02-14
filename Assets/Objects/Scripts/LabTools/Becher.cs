@@ -103,7 +103,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     {
         float liquidWeight = containedMixture.GetLiquidWeight();
         float solidWeight = containedMixture.GetSolidWeight();
-        becherRigidbody.mass = emptyBecherMass + liquidWeight + solidWeight;
+        becherRigidbody.mass = emptyBecherMass + liquidWeight + solidWeight * 100;
     }
 
     // Implementazione interfaccia Fillable
@@ -125,11 +125,16 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         {
             experimentManager.CheckAndModifyStep(containedMixture);
             UpdateSubstanceRenderFill();
-            liquidRenderer.SetColor(containedMixture.MixtureLiquidColor);
-            solidRenderer.SetColor(containedMixture.MixtureSolidColor);
+            SetRenderColors();
         }
-        
+
         RefreshTotalWeight();
+    }
+
+    public void SetRenderColors()
+    {
+        liquidRenderer.SetColor(containedMixture.MixtureLiquidColor);
+        solidRenderer.SetColor(containedMixture.MixtureSolidColor);
     }
 
     public void StirContents()
@@ -193,7 +198,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         return Mathf.Lerp(-90, -30, volumePercentage);
     }
 
-    private void UpdateSubstanceRenderFill()
+    public void UpdateSubstanceRenderFill()
     {
         if (GetLiquidVolume() > 0.01)
         {
@@ -273,7 +278,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     {
         experimentManager.SetMixtureStepAndUpdateCount(containedMixture, -1);
         //liquidRenderer.SetFillSize(0);
-        //liquidRenderer.SetColor(Color.clear);
+        //liquidRenderer.Set
+        //(Color.clear);
         //solidRenderer.SetFillSize(0);
         //solidRenderer.SetColor(Color.clear);
     }

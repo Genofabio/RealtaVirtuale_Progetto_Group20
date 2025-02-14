@@ -136,12 +136,14 @@ public class Fridge : MonoBehaviour
             {
                 if (obj != null)
                 {
-                    Fillable fillable = obj.GetComponent<Fillable>();
-                    SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
-                    if (fillableSubstanceMix != null && !fillableSubstanceMix.Dried)
+                    Becher becher = obj.GetComponent<Becher>();
+                    SubstanceMixture fillableSubstanceMix = becher.GetContainedSubstanceMixture();
+                    if (fillableSubstanceMix != null && !fillableSubstanceMix.Cooled)
                     {
                         fillableSubstanceMix.CoolDown(Time.deltaTime);
                         experimentManager.CheckAndModifyStep(fillableSubstanceMix.GetReference());
+                        becher.UpdateSubstanceRenderFill();
+                        becher.SetRenderColors();
                     }
                 }
             }

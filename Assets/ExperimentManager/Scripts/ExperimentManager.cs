@@ -8,7 +8,7 @@ public class ExperimentManager : MonoBehaviour
     [SerializeField] private int[] numMixturePerStep;
     [SerializeField] private int highestStepReached;
 
-    [SerializeField] private Assistant assistant;
+    //[SerializeField] private Assistant assistant;
 
     public List<ExperimentStep> Steps => steps;
 
@@ -18,7 +18,7 @@ public class ExperimentManager : MonoBehaviour
         set
         {
             highestStepReached = value;
-            assistant.SetHighestStepReached(value);
+            //assistant.SetHighestStepReached(value);
         }
     }
 

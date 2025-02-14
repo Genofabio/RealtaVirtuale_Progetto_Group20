@@ -158,16 +158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff904dc4abed65c4cafc3e9400dcd472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSubstances:
-  - substanceName: H2O
-    quantity: 75
-    isSolid: 0
-  - substanceName: NaCl
-    quantity: 0
-    isSolid: 1
+  initialSubstances: []
   initialLiquidColor: {r: 0.07929504, g: 0.7310731, b: 0.97735846, a: 0}
   initialSolidColor: {r: 0.93207544, g: 0.6037527, b: 0.3358989, a: 0}
-  maxCapacity: 100
+  maxCapacity: 20
   containedMixture:
     mixed: 0
     dried: 0

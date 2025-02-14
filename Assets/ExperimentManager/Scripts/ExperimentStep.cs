@@ -43,8 +43,10 @@ public class ExperimentStep
         {
             res = requiredMixture.Clone();
             res.Mixed = resultingMixture.Mixed;
-            res.Dried = resultingMixture.Dried; 
+            res.Dried = resultingMixture.Dried;
+            res.Cooled = resultingMixture.Cooled;
             res.MixtureLiquidColor = resultingMixture.MixtureLiquidColor;
+            res.MixtureSolidColor = resultingMixture.MixtureSolidColor;
         }
         return res;
     }
@@ -63,9 +65,14 @@ public class ExperimentStep
         }
         availableMixture.Mixed = res.Mixed;
         availableMixture.Dried = res.Dried;
+        availableMixture.Cooled = res.Cooled;
         if (res.MixtureLiquidColor != Color.clear)
         {
             availableMixture.MixtureLiquidColor = res.MixtureLiquidColor;
+        }
+        if (res.MixtureSolidColor != Color.clear)
+        {
+            availableMixture.MixtureSolidColor = res.MixtureSolidColor;
         }
     }
 }

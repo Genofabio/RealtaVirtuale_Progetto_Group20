@@ -138,8 +138,8 @@ public void ToggleDoor()
             {
                 if (obj != null)
                 {
-                    Fillable fillable = obj.GetComponent<Fillable>();
-                    SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
+                    Becher becher = obj.GetComponent<Becher>();
+                    SubstanceMixture fillableSubstanceMix = becher.GetContainedSubstanceMixture();
                     if (fillableSubstanceMix != null && !fillableSubstanceMix.Dried)
                     {
                         fillableSubstanceMix.Dry(Time.deltaTime);

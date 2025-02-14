@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 8749263727474907191}
   - component: {fileID: 1293622884658261110}
   - component: {fileID: 4979005319296965057}
+  - component: {fileID: 6530236166599144324}
   m_Layer: 0
   m_Name: Piano bilancia
   m_TagString: Untagged
@@ -344,6 +345,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _balance: {fileID: 8780194698189248848}
+--- !u!65 &6530236166599144324
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709050954337232453}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.022000004, y: 0.028600002, z: 0.0016669503}
+  m_Center: {x: 0.003999999, y: -3.6722326e-17, z: 0.009707654}
 --- !u!1 &3865000971209996700
 GameObject:
   m_ObjectHideFlags: 0

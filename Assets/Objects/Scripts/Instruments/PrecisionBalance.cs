@@ -60,9 +60,9 @@ public class PrecisionBalance : MonoBehaviour
     {
         if (weightText != null)
         {
-            Debug.Log("Entrato");
-            Debug.Log(RoundToDecimalPlaces(totalWeight + currentTare, 2));
-            weightText.text = RoundToDecimalPlaces(totalWeight + currentTare, 2).ToString();
+            //Debug.Log("Entrato");
+            //Debug.Log(RoundToDecimalPlaces(totalWeight + currentTare, 4));
+            weightText.text = RoundToDecimalPlaces(totalWeight + currentTare, 4).ToString();
         }
     }
 

@@ -27,7 +27,6 @@ public class Breakable : MonoBehaviour
     {
         // Misura la forza dell'impatto
         float impactForce = collision.relativeVelocity.magnitude;
-        Debug.Log("Impact: " + impactForce);
 
         if (impactForce >= breakForceThreshold)
         {
