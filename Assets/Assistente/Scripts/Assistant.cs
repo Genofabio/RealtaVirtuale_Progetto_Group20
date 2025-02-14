@@ -56,9 +56,12 @@ public class Assistant : MonoBehaviour
 
     private void UpdateImage()
     {
-        if (displayImage != null && highestStepReached < images.Count)
+        if (displayImage != null && highestStepReached < images.Count - 1)
         {
             displayImage.sprite = images[highestStepReached + 1]; 
+        } else
+        {
+            Debug.Log("Congratulazioni" + highestStepReached);
         }
     }
 

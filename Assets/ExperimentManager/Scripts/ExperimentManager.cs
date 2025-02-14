@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ExperimentManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class ExperimentManager : MonoBehaviour
         set
         {
             highestStepReached = value;
-            assistant.SetHighestStepReached(value);
+            //assistant.SetHighestStepReached(value);
         }
     }
 
@@ -103,6 +104,7 @@ public class ExperimentManager : MonoBehaviour
         if (mix.ExperimentStepReached + 1 > highestStepReached)
         {
             HighestStepReached = mix.ExperimentStepReached + 1;
+            assistant.SetHighestStepReached(mix.ExperimentStepReached + 1);
             numMixturePerStep[mix.ExperimentStepReached + 1] += 1;
         }
 
@@ -138,6 +140,7 @@ public class ExperimentManager : MonoBehaviour
             if (numMixturePerStep[currentStep] == 0)
             {
                 HighestStepReached = GetHighestStepReached();
+                assistant.SetHighestStepReached(GetHighestStepReached());
             }
 
             mix.ExperimentStepReached = - 1;
