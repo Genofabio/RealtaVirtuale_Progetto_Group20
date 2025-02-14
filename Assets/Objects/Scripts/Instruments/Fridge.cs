@@ -8,6 +8,7 @@ public class Fridge : MonoBehaviour
     [SerializeField] private Transform door;
     [SerializeField] private List<GameObject> contentObjects;
     //private Collider doorCollider; 
+    [SerializeField] private List<AudioClip> audioList;
 
     private ExperimentManager experimentManager;
 
@@ -24,7 +25,7 @@ public class Fridge : MonoBehaviour
         door = transform.Find("Porta");
         if (door == null)
         {
-            Debug.LogError("La porta non è stata trovata nel forno!");
+            Debug.LogError("La porta non Ã¨ stata trovata nel forno!");
             return;
         }
 
@@ -46,16 +47,24 @@ public class Fridge : MonoBehaviour
     }
 
     public void ToggleDoor()
+{
+    if (IsMoving)
     {
-        if (IsMoving)
-        {
-            return;
-        }
-        if (IsOpen)
-            StartCoroutine(CloseDoorCoroutine());
-        else
-            StartCoroutine(OpenDoorCoroutine());
+        return;
     }
+    if (IsOpen)
+    {
+        StartCoroutine(CloseDoorCoroutine());
+        GetComponent<AudioSource>().clip = audioList[0]; // Suono chiusura
+        GetComponent<AudioSource>().Play();
+    }
+    else
+    {
+        StartCoroutine(OpenDoorCoroutine());
+        GetComponent<AudioSource>().clip = audioList[1]; // Suono apertura
+        GetComponent<AudioSource>().Play();
+    }
+}
 
     private IEnumerator OpenDoorCoroutine()
     {

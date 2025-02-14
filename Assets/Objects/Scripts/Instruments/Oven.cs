@@ -6,7 +6,8 @@ public class Oven : MonoBehaviour, Openable
 {
     [SerializeField] private Transform door;
     [SerializeField] private List<GameObject> contentObjects;
-    //private Collider doorCollider; 
+    //private Collider doorCollider;
+    [SerializeField] private List<AudioClip> audioList;
 
     private ExperimentManager experimentManager;
 
@@ -25,7 +26,7 @@ public class Oven : MonoBehaviour, Openable
     {
         if (door == null)
         {
-            Debug.LogError("La porta non è stata trovata nel forno!");
+            Debug.LogError("La porta non Ã¨ stata trovata nel forno!");
             return;
         }
 
@@ -43,21 +44,29 @@ public class Oven : MonoBehaviour, Openable
         // Memorizza la rotazione iniziale (chiusa)
         closedRotation = door.localRotation;
 
-        // Definisce la rotazione aperta: -90° sull'asse Y
+        // Definisce la rotazione aperta: -90ï¿½ sull'asse Y
         openRotation = Quaternion.Euler(closedRotation.eulerAngles.x, closedRotation.eulerAngles.y, closedRotation.eulerAngles.z + 90);
     }
 
-    public void ToggleDoor()
+public void ToggleDoor()
+{
+    if (IsMoving)
     {
-        if(IsMoving)
-        {
-            return;
-        }
-        if (IsOpen)
-            StartCoroutine(CloseDoorCoroutine());
-        else
-            StartCoroutine(OpenDoorCoroutine());
+        return;
     }
+    if (IsOpen)
+    {
+        StartCoroutine(CloseDoorCoroutine());
+        GetComponent<AudioSource>().clip = audioList[0]; // Suono chiusura
+        GetComponent<AudioSource>().Play();
+    }
+    else
+    {
+        StartCoroutine(OpenDoorCoroutine());
+        GetComponent<AudioSource>().clip = audioList[1]; // Suono apertura
+        GetComponent<AudioSource>().Play();
+    }
+}
 
     private IEnumerator OpenDoorCoroutine()
     {

@@ -488,6 +488,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 8932615875543232744}
   contentObjects: []
+  audioList:
+  - {fileID: 8300000, guid: 7103f15ee2059fb498d99e140454ca47, type: 3}
+  - {fileID: 8300000, guid: abf97435af6054a4ca5ba153cf0eacb7, type: 3}
 --- !u!65 &1059962832130291928
 BoxCollider:
   m_ObjectHideFlags: 0
