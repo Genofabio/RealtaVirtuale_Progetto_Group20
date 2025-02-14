@@ -25,7 +25,7 @@ public class Fridge : MonoBehaviour
         door = transform.Find("Porta");
         if (door == null)
         {
-            Debug.LogError("La porta non � stata trovata nel forno!");
+            Debug.LogError("La porta non è stata trovata nel forno!");
             return;
         }
 
