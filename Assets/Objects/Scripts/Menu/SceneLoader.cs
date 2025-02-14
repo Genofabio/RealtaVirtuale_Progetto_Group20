@@ -29,4 +29,9 @@ public class SceneLoader : MonoBehaviour
         Debug.Log("Caricamento scena: " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
+    public void LoadMainMenu()
+{
+    SceneManager.LoadScene(0);
+}
+
 }
