@@ -7,10 +7,14 @@ public class WatchGlass : MonoBehaviour, Fillable
     [SerializeField] private float maxCapacity;
     public float actualVolume = 0f;
 
+    private ExperimentManager experimentManager;
+
     void Start()
     {
         solidRenderer = GetComponentInChildren<SolidRenderer>();
         containedMixture = new SubstanceMixture(new System.Collections.Generic.List<Substance>(), false, false, 0, false, 0, -1, Color.clear, Color.green);
+
+        experimentManager = FindFirstObjectByType<ExperimentManager>();
     }
 
     public void Fill(SubstanceMixture mix)
@@ -24,6 +28,11 @@ public class WatchGlass : MonoBehaviour, Fillable
             }
         }
 
+        if (containedMixture.ExperimentStepReached < mix.ExperimentStepReached)
+        {
+            experimentManager.SetMixtureStepAndUpdateCount(containedMixture, mix.ExperimentStepReached);
+        }
+
         containedMixture.AddSubstanceMixture(mix);
 
         //experimentManager.CheckAndModifyStep(containedMixture);
@@ -32,6 +41,11 @@ public class WatchGlass : MonoBehaviour, Fillable
         foreach (var sub in containedMixture.Substances)
         {
             actualVolume += sub.Quantity;
+        }
+
+        if (containedMixture != null)
+        {
+            experimentManager.CheckAndModifyStep(containedMixture);
         }
 
         solidRenderer.SetFillSize(actualVolume / maxCapacity);
