@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90bdf6f2c3976c4090751ddd3c4139e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCapacity: 50
+  maxCapacity: 10
   actualVolume: 0
 --- !u!114 &1747128103749939730
 MonoBehaviour:
@@ -317,6 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intact: {fileID: 1243112997693647100}
+  convexHull: {fileID: 0}
   broken: {fileID: 616249915894822937}
   breakForceThreshold: 5
   destructionDelay: 5
