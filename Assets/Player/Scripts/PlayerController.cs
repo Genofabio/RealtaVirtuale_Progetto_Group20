@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -37,6 +38,9 @@ public class PlayerController : MonoBehaviour
 
     private bool isPouring = false;
 
+    // controllo sulla modalità menu iniziale
+    private bool inMainMenu = false;
+
     void Awake()
     {
         pickUpLayerMask = ~LayerMask.GetMask("Ignore Raycast");
@@ -44,6 +48,12 @@ public class PlayerController : MonoBehaviour
         grabbedObject = null;
 
         Cursor.lockState = CursorLockMode.Locked; // nasconde l'icona del cursore
+
+        // controllo sulla modalità menu iniziale
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            inMainMenu = true;
+        }
     }
 
     void Update()
@@ -83,6 +93,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (inMainMenu) return;
         movementInput = context.ReadValue<Vector2>();
     }
 
