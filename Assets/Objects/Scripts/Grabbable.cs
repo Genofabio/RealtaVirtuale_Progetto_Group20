@@ -34,11 +34,17 @@ public class Grabbable : MonoBehaviour
     private GameObject hitMarker;
     private Vector3 targetHitPosition;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip pickUpSound; // Suono di pick up
+    [SerializeField] private AudioClip dropSound;   // Suono di drop
+    private AudioSource audioSource;
+
     private void Awake()
     {
         objectRigidbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>(); // Assicurati che l'oggetto abbia un AudioSource
 
-        actualPivotPoint = transform; // Di default il pivot è l'oggetto stesso
+        actualPivotPoint = transform; // Di default il pivot Ã¨ l'oggetto stesso
     
         defaultInterpolation = objectRigidbody.interpolation;
         defaultLinearDamping = objectRigidbody.linearDamping;
@@ -70,17 +76,12 @@ public class Grabbable : MonoBehaviour
         hitRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
         hitMarker.SetActive(false);
-
     }
 
     private void FixedUpdate()
     {
         if (objectGrabPointTransform != null)
         {
-            //questa va cambiata per fare in modo che actualPivotPoint sia calcolato sull'altezza di objectGrabPointTransform
-            //in pratica va abbassato.
-            //GameObject tempPivot = new GameObject("TempPivot");
-            //tempPivot.transform.position = new Vector3(tempPivot.transform.position.x, objectGrabPointTransform.position.y, tempPivot.transform.position.z);
             if (!isRotating)
             {
                 Vector3 distance = objectGrabPointTransform.position - transform.position;
@@ -104,11 +105,9 @@ public class Grabbable : MonoBehaviour
             {
                 if (actualPivotPoint != null)
                 {
-                    // Questo valore f determina la velocità di rotazione ed è stato calcolato sperimentalmente
                     float baseRotationSpeed = -27f * Time.deltaTime;
                     float rotationSpeed = baseRotationSpeed;
 
-                    // Se l'angolo è compreso tra initialRotationAngle e maxRotationAngle, velocità 4x
                     if (currentRotationAngle >= minRotationAngle && currentRotationAngle >= initialRotationAngle && currentRotationAngle <= maxRotationAngle)
                     {
                         rotationSpeed *= 10f;
@@ -116,7 +115,6 @@ public class Grabbable : MonoBehaviour
 
                     float newRotationAngle = currentRotationAngle + rotationSpeed;
 
-                    // Verifica se la nuova rotazione rientra nei limiti
                     if (newRotationAngle >= minRotationAngle && newRotationAngle <= maxRotationAngle)
                     {
                         transform.RotateAround(rotationPourPivot.position, transform.right, rotationSpeed);
@@ -175,6 +173,8 @@ public class Grabbable : MonoBehaviour
         objectRigidbody.interpolation = holdingInterpolation;
         justGrabbed = true;
         velocityMultiplier = initialVelocityMultiplier;
+
+        PlayPickUpSound(); // Riproduci suono di pick up
     }
 
     public void Drop()
@@ -184,6 +184,26 @@ public class Grabbable : MonoBehaviour
         objectRigidbody.linearDamping = defaultLinearDamping;
         objectRigidbody.angularDamping = defaultAngularDamping;
         objectRigidbody.interpolation = defaultInterpolation;
+
+        PlayDropSound(); // Riproduci suono di drop
+    }
+
+    private void PlayPickUpSound()
+    {
+        if (audioSource && pickUpSound)
+        {
+            audioSource.clip = pickUpSound;
+            audioSource.Play(); // Riproduce il suono di pick up
+        }
+    }
+
+    private void PlayDropSound()
+    {
+        if (audioSource && dropSound)
+        {
+            audioSource.clip = dropSound;
+            audioSource.Play(); // Riproduce il suono di drop
+        }
     }
 
     public void StartRotating(Transform pivotPoint, float initialRotation)
@@ -193,12 +213,10 @@ public class Grabbable : MonoBehaviour
         rotationPourPivot = pivotPoint;
         initialRotationAngle = initialRotation;
 
-        // Creiamo un nuovo GameObject temporaneo per usarlo come pivot corretto
         GameObject tempPivot = new GameObject("TempPivot");
         tempPivot.transform.position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
-        tempPivot.transform.rotation = transform.rotation; // Mantieni la stessa rotazione dell'oggetto
+        tempPivot.transform.rotation = transform.rotation;
 
-        // Assegniamo questo nuovo pivot temporaneo
         actualPivotPoint = tempPivot.transform;
     }
 
