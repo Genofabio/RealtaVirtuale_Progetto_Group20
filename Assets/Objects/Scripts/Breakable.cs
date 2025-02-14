@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
-
     [SerializeField] private GameObject intact;
     [SerializeField] private GameObject convexHull;
     [SerializeField] private GameObject broken;
@@ -14,6 +13,9 @@ public class Breakable : MonoBehaviour
     private Collider objCollider;
     private Rigidbody brokenRigidbody;
 
+    private AudioSource audioSource;  // Aggiungi una variabile per l'AudioSource
+    private AudioClip breakSound;    // Aggiungi una variabile per il suono di rottura
+
     private void Awake()
     {
         intact.SetActive(true);
@@ -21,6 +23,16 @@ public class Breakable : MonoBehaviour
 
         objCollider = GetComponent<Collider>();
         brokenRigidbody = broken.GetComponent<Rigidbody>();
+
+        // Aggiungi il componente AudioSource se non esiste
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Carica il suono di rottura dalla cartella Resources
+        breakSound = Resources.Load<AudioClip>("Sounds/BreakSound"); // Assicurati che il nome del file audio sia corretto
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -67,6 +79,12 @@ public class Breakable : MonoBehaviour
 
         // Attiva il modello rotto
         broken.SetActive(true);
+
+        // Riproduci il suono di rottura
+        if (breakSound != null)
+        {
+            audioSource.PlayOneShot(breakSound);
+        }
 
         // Avvia la dissolvenza e poi distrugge l'oggetto
         StartCoroutine(DestroyAfterDelay());
