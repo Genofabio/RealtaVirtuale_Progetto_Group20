@@ -124,6 +124,11 @@ public class SubstanceVial : MonoBehaviour, Pourable
         pourTimer = pourDuration;
     }
 
+    public string SubstanceContained()
+    {
+        return substance.SubstanceName;
+    }
+
     public float CalculateInitalRotation()
     {
         //calcola la percentuale di volume pieno sul volume totale
