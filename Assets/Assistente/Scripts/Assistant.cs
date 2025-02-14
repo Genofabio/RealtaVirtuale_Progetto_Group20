@@ -20,6 +20,11 @@ public class Assistant : MonoBehaviour
 
     private int highestStepReached;
 
+    private void Awake()
+    {
+        audioSource.clip = audioList[0];
+        audioSource.Play();
+    }
     void Start()
     {
         highestStepReached = -1;
