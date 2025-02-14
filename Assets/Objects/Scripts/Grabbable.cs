@@ -35,8 +35,8 @@ public class Grabbable : MonoBehaviour
     private Vector3 targetHitPosition;
 
     [Header("Audio")]
-    private AudioClip pickUpSound; // Suono di pick up
-    private AudioClip dropSound;   // Suono di drop
+    [SerializeField] private AudioClip pickUpSound; // Suono di pick up
+    [SerializeField] private AudioClip dropSound;   // Suono di drop
     private AudioSource audioSource;
 
     private void Awake()
@@ -76,9 +76,6 @@ public class Grabbable : MonoBehaviour
         hitRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
         hitMarker.SetActive(false);
-
-        pickUpSound = Resources.Load<AudioClip>("Sounds/PickUp"); // Assicurati che il nome del file corrisponda
-        dropSound = Resources.Load<AudioClip>("Sounds/Drop"); // Assicurati che il nome del file corrisponda
     }
 
     private void FixedUpdate()

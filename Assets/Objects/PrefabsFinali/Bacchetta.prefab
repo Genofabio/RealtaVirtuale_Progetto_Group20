@@ -107,8 +107,8 @@ MonoBehaviour:
   initialVelocityMultiplier: 0
   finalVelocityMultiplier: 0
   lineRenderer: {fileID: 0}
-  pickUpSound: {fileID: 8300000, guid: 4b0954c2fcde62b46ab08c2efceef343, type: 3}
-  dropSound: {fileID: 8300000, guid: 74d13541b16a041c385ad12a141c4012, type: 3}
+  pickUpSound: {fileID: 8300000, guid: a45b1bff30c3f401ea456216b4704cb2, type: 3}
+  dropSound: {fileID: 8300000, guid: 448f18d60df074db1b215b5c43eab303, type: 3}
 --- !u!114 &2327584228469648362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,8 +179,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4b0954c2fcde62b46ab08c2efceef343, type: 3}
-  m_Resource: {fileID: 8300000, guid: 4b0954c2fcde62b46ab08c2efceef343, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a45b1bff30c3f401ea456216b4704cb2, type: 3}
+  m_Resource: {fileID: 8300000, guid: a45b1bff30c3f401ea456216b4704cb2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -276,9 +276,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 74d13541b16a041c385ad12a141c4012, type: 3}
-  m_Resource: {fileID: 8300000, guid: 74d13541b16a041c385ad12a141c4012, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 448f18d60df074db1b215b5c43eab303, type: 3}
+  m_Resource: {fileID: 8300000, guid: 448f18d60df074db1b215b5c43eab303, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
