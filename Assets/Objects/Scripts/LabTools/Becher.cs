@@ -103,7 +103,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     {
         float liquidWeight = containedMixture.GetLiquidWeight();
         float solidWeight = containedMixture.GetSolidWeight();
-        becherRigidbody.mass = emptyBecherMass + liquidWeight + solidWeight;
+        becherRigidbody.mass = emptyBecherMass + liquidWeight + solidWeight * 100;
     }
 
     // Implementazione interfaccia Fillable
