@@ -10,6 +10,8 @@ public class Assistant : MonoBehaviour
     [SerializeField] Canvas screen;
     [SerializeField] private List<Sprite> images; 
     [SerializeField] private Image displayImage;
+    [SerializeField] private Image successImage;
+    [SerializeField] private Image failImage;
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -43,15 +45,33 @@ public class Assistant : MonoBehaviour
         {
             highestStepReached = newValue;
             Debug.Log("Complimenti hai raggiunto lo step: " + highestStepReached);
-        } 
+            StartCoroutine(ShowImageForDuration(true));
+        }
         else
         {
             highestStepReached = newValue;
             Debug.Log("Oh noooooooo hai raggiunto lo step: " + highestStepReached);
+            StartCoroutine(ShowImageForDuration(false));
         }
 
         UpdateImage();
         StartCoroutine(PlayStepAudioWithDelay(isSuccess));
+    }
+
+    private IEnumerator ShowImageForDuration(bool isHappy)
+    {
+        if (isHappy)
+        {
+            successImage.enabled = true;  // Mostra l'immagine
+            yield return new WaitForSeconds(2f);  // Aspetta 2 secondi
+            successImage.enabled = false;  // Nascondi l'immagine
+        }
+        else
+        {
+            failImage.enabled = true;  // Mostra l'immagine
+            yield return new WaitForSeconds(2f);  // Aspetta 2 secondi
+            failImage.enabled = false;  // Nascondi l'immagine
+        }
     }
 
     private void UpdateImage()
