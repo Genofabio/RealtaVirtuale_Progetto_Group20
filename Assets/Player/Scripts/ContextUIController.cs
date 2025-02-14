@@ -99,6 +99,10 @@ public class ContextUIController : MonoBehaviour
             {
                 SetContextActive("Suck");
             }
+            else if (hit.transform.TryGetComponent<Becher>(out var becher) && grabbedObject.TryGetComponent<StirringRod>(out var stirringRod))
+            {
+                SetContextActive("Mix");
+            }
             else
             {
                 HideContextUI();
