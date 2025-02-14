@@ -73,6 +73,7 @@ public class Assistant : MonoBehaviour
             displayImage.sprite = images[highestStepReached + 1]; 
         } else
         {
+            StartCoroutine(PlayStepAudioWithDelay(true));
             endScreen.SetActive(true);
             Debug.Log("Congratulazioni" + highestStepReached);
         }

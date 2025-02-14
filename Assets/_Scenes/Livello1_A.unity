@@ -2436,6 +2436,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cbb79cbb62d846a47a6d4362c1ac5c99, type: 3}
   successClip: {fileID: 8300000, guid: dac177c964a708c4386ee56b4b5bfa3f, type: 3}
   failureClip: {fileID: 8300000, guid: 7235ed1b28ebad84da334c4b9a6d2a2c, type: 3}
+  endScreen: {fileID: 755593236}
 --- !u!1001 &400989799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4639,7 +4640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &755593237
 RectTransform:
   m_ObjectHideFlags: 0
