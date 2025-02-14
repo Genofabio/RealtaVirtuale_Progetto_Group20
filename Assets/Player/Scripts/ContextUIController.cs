@@ -27,7 +27,15 @@ public class ContextUIController : MonoBehaviour
         {
             if (hit.transform.TryGetComponent<Grabbable>(out var grabbable))
             {
-                SetContextActive("Pick Up");
+                //SetContextActive("Pick Up");
+                if (grabbable.TryGetComponent<SubstanceVial>(out var vial))
+                {
+                    SetContextActive("Pick Up: " + vial.SubstanceContained());
+                }
+                else
+                {
+                    SetContextActive("Pick Up");
+                }
             }
             else if (hit.transform.TryGetComponent<BalanceButton>(out var balance))
             {
