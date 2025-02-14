@@ -277,7 +277,7 @@ public class SubstanceMixture
         foreach (Substance sostanzaMix in mix.substances)
         {
             Substance sostanzaInBecher = substances.Find(s => s.SubstanceName == sostanzaMix.SubstanceName);
-            if (sostanzaInBecher == null || sostanzaInBecher.Quantity < sostanzaMix.Quantity - sostanzaMix.Quantity / 20 || sostanzaInBecher.Quantity > sostanzaMix.Quantity + sostanzaMix.Quantity / 20 || sostanzaInBecher.IsSolid != sostanzaMix.IsSolid)
+            if (sostanzaInBecher == null || sostanzaInBecher.Quantity < sostanzaMix.Quantity - sostanzaMix.Quantity / 20 || sostanzaInBecher.Quantity > sostanzaMix.Quantity + sostanzaMix.Quantity / 5 || sostanzaInBecher.IsSolid != sostanzaMix.IsSolid)
             {
                 return false;
             }
