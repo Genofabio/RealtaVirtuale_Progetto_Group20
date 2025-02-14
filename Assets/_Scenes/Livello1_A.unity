@@ -12797,9 +12797,6 @@ MonoBehaviour:
       mixtureLiquidColor: {r: 0.5045247, g: 0, b: 0.82641506, a: 0}
       mixtureSolidColor: {r: 0.23344356, g: 0, b: 0.4867924, a: 0}
       substances:
-      - substanceName: 2-nitrocinnamaldeide
-        quantity: 10
-        isSolid: 0
       - substanceName: Indaco
         quantity: 5
         isSolid: 1
