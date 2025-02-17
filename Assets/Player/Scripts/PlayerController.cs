@@ -139,31 +139,40 @@ public class PlayerController : MonoBehaviour
 
     public void MoveGrabbedObject(InputAction.CallbackContext context)
     {
+        Debug.Log("Scrolling");
         float scrollValue = context.ReadValue<float>(); // Ottieni il valore della rotella
 
         if (grabbedObject == null) return; // Se non c'è un oggetto preso, esci
 
-        float minDistance = 1.0f;
-        float maxDistance = 3.0f; 
+        float minDistance = 0.3f;
+        float maxDistance = 3.0f;
 
-        Vector3 direction = objectGrabPointTransform.forward * 0.3f;
+        // Usa la forward della camera per determinare la direzione
+        Vector3 cameraForward = cameraHolder.transform.forward;
+        Vector3 direction = cameraForward * 0.1f;
+
         Vector3 newPosition = objectGrabPointTransform.position;
 
         if (scrollValue > 0)
         {
             newPosition += direction;
         }
-        else if (scrollValue < 0) 
+        else if (scrollValue < 0)
         {
             newPosition -= direction;
         }
 
-        float distance = Vector3.Distance(newPosition, cameraHolder.transform.position);
-        if (distance >= minDistance && distance <= maxDistance)
+        // Calcola la distanza solo lungo la forward della camera
+        Vector3 offset = newPosition - cameraHolder.transform.position;
+        float projectedDistance = Vector3.Dot(offset, cameraForward);
+
+        if (projectedDistance >= minDistance && projectedDistance <= maxDistance)
         {
+            Debug.Log($"Distanza lungo la forward: {projectedDistance}");
             objectGrabPointTransform.position = newPosition;
         }
     }
+
 
     public void Interact(InputAction.CallbackContext context)
     {
