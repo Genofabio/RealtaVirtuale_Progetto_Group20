@@ -45,6 +45,7 @@ public class Breakable : MonoBehaviour
 
     private void Break()
     {
+
         // Disattiva solo la mesh e il collider di "intact" invece di disattivare l'intero GameObject
         if (intact.TryGetComponent<MeshRenderer>(out MeshRenderer meshRenderer))
         {
