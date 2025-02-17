@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     // controllo sulla modalità menu iniziale
     private bool inMainMenu = false;
+    private bool inPause = false;
 
     void Awake()
     {
@@ -91,9 +92,23 @@ public class PlayerController : MonoBehaviour
         UpdateContextUI();
     }
 
+    public void TogglePause()
+    {
+        if (inPause)
+        {
+            //Time.timeScale = 1;
+            inPause = false;
+        }
+        else
+        {
+            //Time.timeScale = 0;
+            inPause = true;
+        }
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (inMainMenu) return;
+        if (inMainMenu || inPause) return;
         movementInput = context.ReadValue<Vector2>();
     }
 
@@ -105,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
     public void TogglePickUp(InputAction.CallbackContext context)
     {
-        if (inMainMenu) return;
+        if (inMainMenu || inPause) return;
 
         if (context.performed)
         {
@@ -156,7 +171,7 @@ public class PlayerController : MonoBehaviour
         {
             SimulateUIClick();
 
-            if (inMainMenu) return;
+            if (inMainMenu || inPause) return;
 
             if (grabbedObject != null)
             {
@@ -343,7 +358,7 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateContextUI()
     {
-        if (inMainMenu) return;
+        if (inMainMenu || inPause) return;
 
         Transform cameraHolderTransform = cameraHolder.transform;
         if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
