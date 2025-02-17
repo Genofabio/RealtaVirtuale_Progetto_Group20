@@ -105,6 +105,8 @@ public class PlayerController : MonoBehaviour
 
     public void TogglePickUp(InputAction.CallbackContext context)
     {
+        if (inMainMenu) return;
+
         if (context.performed)
         {
             if (grabbedObject == null)
@@ -153,6 +155,8 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             SimulateUIClick();
+
+            if (inMainMenu) return;
 
             if (grabbedObject != null)
             {
@@ -339,6 +343,8 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateContextUI()
     {
+        if (inMainMenu) return;
+
         Transform cameraHolderTransform = cameraHolder.transform;
         if (Physics.Raycast(cameraHolderTransform.position, cameraHolderTransform.forward, out RaycastHit hit, pickUpDistance, pickUpLayerMask))
         {
