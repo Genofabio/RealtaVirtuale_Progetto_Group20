@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
-
 public class PrecisionBalance : MonoBehaviour
 {
     private float totalWeight = 0f;
@@ -14,14 +12,20 @@ public class PrecisionBalance : MonoBehaviour
 
     public void AddWeight(Rigidbody obj)
     {
-       objects.Add(obj);
-       UpdateWeightText();
+        if (!objects.Contains(obj))
+        {
+            objects.Add(obj);
+            WeightObjects();
+        }
     }
 
     public void RemoveWeight(Rigidbody obj)
     {
-        objects.Remove(obj);
-        UpdateWeightText();
+        if (objects.Contains(obj))
+        {
+            objects.Remove(obj);
+            WeightObjects();
+        }
     }
 
     public void WeightObjects()
@@ -42,17 +46,13 @@ public class PrecisionBalance : MonoBehaviour
 
     public float GetTotalWeight()
     {
-        totalWeight = 0f;
-        foreach (var obj in objects)
-        {
-            totalWeight += obj.mass;
-        }
+        WeightObjects();
         return totalWeight;
     }
 
     private float RoundToDecimalPlaces(float value, int decimalPlaces)
     {
-        float factor = Mathf.Pow(10, decimalPlaces);
+        float factor = Mathf.Pow(10f, decimalPlaces);
         return Mathf.Round(value * factor) / factor;
     }
 
@@ -60,8 +60,6 @@ public class PrecisionBalance : MonoBehaviour
     {
         if (weightText != null)
         {
-            //Debug.Log("Entrato");
-            //Debug.Log(RoundToDecimalPlaces(totalWeight + currentTare, 4));
             weightText.text = RoundToDecimalPlaces(totalWeight + currentTare, 4).ToString();
         }
     }

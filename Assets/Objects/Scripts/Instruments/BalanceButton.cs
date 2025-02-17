@@ -10,13 +10,15 @@ public class BalanceButton : MonoBehaviour
     public Vector3 pressedOffset = new Vector3(0f, -0.05f, -0.05f); 
     public float pressDuration = 0.1f;  
 
-    [SerializeField] private List<AudioClip> audioList; // Lista di suoni
+    [SerializeField] private List<AudioClip> audioList;
     private AudioSource audioSource;
+
+    private bool isTaring = false;
 
     private void Start()
     {
         originalPosition = transform.position;
-        audioSource = GetComponent<AudioSource>(); // Prende il componente AudioSource
+        audioSource = GetComponent<AudioSource>();
 
         // Debug per verificare che l'AudioSource sia presente
         if (audioSource == null)
@@ -27,33 +29,25 @@ public class BalanceButton : MonoBehaviour
 
     public void Tare()
     {
+        if (isTaring) return;
+
+        isTaring = true;
+        Invoke(nameof(ResetTareCooldown), 1f);
+
         StartCoroutine(PressButton());
 
         tare = -precisionBalance.GetTotalWeight();
         precisionBalance.SetCurrentTare(tare);
 
-        Debug.Log("Taratura bilancia effettuata, peso totale: " + RoundToDecimalPlaces(precisionBalance.GetTotalWeight() + tare, 2));
+        if (audioList != null && audioList.Count > 0 && audioSource != null)
+        {
+            audioSource.PlayOneShot(audioList[0]);
+        }
+    }
 
-        // Debug per vedere se l'AudioSource è stato trovato correttamente
-        if (audioSource == null)
-        {
-            Debug.LogError("AudioSource non trovato!");
-        }
-        else
-        {
-            Debug.Log("AudioSource trovato!");
-        }
-
-        // Verifica se audioList contiene dei clip
-        if (audioList != null && audioList.Count > 0)
-        {
-            audioSource.clip = audioList[0]; // Suono taratura
-            audioSource.Play();
-        }
-        else
-        {
-            Debug.LogError("audioList è vuota o non è inizializzata correttamente.");
-        }
+    private void ResetTareCooldown()
+    {
+        isTaring = false;
     }
 
     private System.Collections.IEnumerator PressButton()

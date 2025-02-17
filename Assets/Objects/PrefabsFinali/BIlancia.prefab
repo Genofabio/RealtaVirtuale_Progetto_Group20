@@ -233,9 +233,8 @@ GameObject:
   - component: {fileID: 4526168600159235279}
   - component: {fileID: 907176828017759581}
   - component: {fileID: 8749263727474907191}
-  - component: {fileID: 1293622884658261110}
   - component: {fileID: 4979005319296965057}
-  - component: {fileID: 6530236166599144324}
+  - component: {fileID: 1293622884658261110}
   m_Layer: 0
   m_Name: Piano bilancia
   m_TagString: Untagged
@@ -311,6 +310,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4979005319296965057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709050954337232453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15134a12cd6aac428e96be0321afaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _balance: {fileID: 8780194698189248848}
 --- !u!65 &1293622884658261110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -330,42 +342,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.022000005, y: 0.028599998, z: 0.0022292105}
-  m_Center: {x: 0.0039999997, y: -3.9843616e-17, z: 0.009988795}
---- !u!114 &4979005319296965057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3709050954337232453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f15134a12cd6aac428e96be0321afaac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _balance: {fileID: 8780194698189248848}
---- !u!65 &6530236166599144324
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3709050954337232453}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.022000004, y: 0.028600002, z: 0.0016669503}
-  m_Center: {x: 0.003999999, y: -3.6722326e-17, z: 0.009707654}
+  m_Size: {x: 0.022000004, y: 0.028599998, z: 0.0042056176}
+  m_Center: {x: 0.004, y: 2.1615804e-17, z: 0.010853023}
 --- !u!1 &3865000971209996700
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +356,7 @@ GameObject:
   - component: {fileID: 9083286845324658950}
   - component: {fileID: 7553361622388564077}
   - component: {fileID: 5044361708974889920}
+  - component: {fileID: 2655010103445973650}
   - component: {fileID: 8780194698189248848}
   m_Layer: 0
   m_Name: BilanciaStruttura
@@ -478,6 +457,27 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2876993806566165545, guid: 3e5cd122911798442a9a06a9369ab05e, type: 3}
+--- !u!65 &2655010103445973650
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865000971209996700}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.023230797, y: 0.029999997, z: 0.010530955}
+  m_Center: {x: 0.0043845954, y: 1.2595737e-17, z: 0.0052654776}
 --- !u!114 &8780194698189248848
 MonoBehaviour:
   m_ObjectHideFlags: 0
