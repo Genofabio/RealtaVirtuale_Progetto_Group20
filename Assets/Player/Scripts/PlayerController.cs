@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
                     {
                         if(grabbedObject.TryGetComponent<SubstanceVial>(out var substanceVial))
                         {
-                            if (fillableObject.GetContainedSubstanceMixture().GetCurrentVolume() > 1)
+                            if (fillableObject.GetContainedSubstanceMixture().GetCurrentVolume() > 0.6)
                             {
                                 pourSpeedMultiplier = Mathf.Min(pourSpeedMultiplier + Time.deltaTime, 10);
                             }
