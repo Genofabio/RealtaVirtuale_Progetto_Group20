@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Grabbable : MonoBehaviour
 {
+    public event Action OnDropped; // Evento che segnala il rilascio dell'oggett
+
     private Rigidbody objectRigidbody;
     private Transform objectGrabPointTransform;
 
@@ -186,6 +189,8 @@ public class Grabbable : MonoBehaviour
         objectRigidbody.interpolation = defaultInterpolation;
 
         PlayDropSound(); // Riproduci suono di drop
+
+        OnDropped?.Invoke(); // Notifica tutti gli iscritti che l'oggetto è stato rilasciato
     }
 
     private void PlayPickUpSound()

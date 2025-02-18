@@ -350,10 +350,24 @@ public class PlayerController : MonoBehaviour
                 objectGrabPointTransform.position = newPosition;
                 grabbedObject.Grab(objectGrabPointTransform);
 
+                // Iscrizione all'evento di rilascio
+                grabbedObject.OnDropped += HandleDrop;
+
                 // Riproduci l'audio
                 audioSource.clip = playerAudio.GetAudioClip(PlayerAudioKey.PickUp);
                 audioSource.Play();
             }
+        }
+    }
+
+    private void HandleDrop()
+    {
+        Debug.Log("L'oggetto è stato rilasciato!");
+
+        if (grabbedObject != null)
+        {
+            grabbedObject.OnDropped -= HandleDrop; // Disiscrizione per evitare memory leaks
+            grabbedObject = null;
         }
     }
 

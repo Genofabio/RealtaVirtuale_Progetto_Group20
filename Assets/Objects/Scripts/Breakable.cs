@@ -80,6 +80,10 @@ public class Breakable : MonoBehaviour
         {
             collider.enabled = false;
         }
+        if (intact.TryGetComponent<Grabbable>(out Grabbable grabbable))
+        {
+            grabbable.Drop();
+        }
 
         if (convexHull != null)
         {
