@@ -88,7 +88,14 @@ public class LiquidRenderer : MonoBehaviour
 
     public void SetFillSize(float volume)
     {
-        liquidAmount = volume;
+        if (volume > 0.001)
+        {
+            liquidAmount = volume;
+        } 
+        else
+        {
+            liquidAmount = -0.1f;
+        }
     }
 
     public void SetColor(Color color)

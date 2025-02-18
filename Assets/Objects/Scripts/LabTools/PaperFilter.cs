@@ -94,7 +94,7 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
         if (amountToPour > targetRemainingVolume) amountToPour = targetRemainingVolume;
 
         SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
-        pouredMix.Substances = filteredSubstances.ExtractSubstances(amountToPour);
+        pouredMix.Substances = filteredSubstances.ExtractSubstances(amountToPour, false);
 
         solidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
         //RefreshTotalWeight();
@@ -104,9 +104,31 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
         //experimentManager.CheckAndModifyStep(containedMixture);
     }
 
-    public SubstanceMixture PickUpVolume(float amount)
+    public SubstanceMixture PickUpVolume(float amountToExtract, bool picksUpOnlyLiquid) 
     {
-        throw new System.NotImplementedException();
+        if(picksUpOnlyLiquid) return new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
+        else
+        {
+            SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
+            if (filteredVolume == 0 || amountToExtract <= 0) return extractedMix;
+            if (amountToExtract > filteredVolume) amountToExtract = filteredVolume;
+
+            List<Substance> extractedSubstances = filteredSubstances.ExtractSubstances(amountToExtract, false);
+            extractedMix.Substances = extractedSubstances;
+
+            UpdateSubstanceRenderFill();
+            //RefreshTotalWeight();
+
+            return extractedMix;
+        }
+    }
+
+    public void UpdateSubstanceRenderFill()
+    {
+        if (GetCurrentVolume() > 0.01)
+        {
+            solidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+        }
     }
 
     public float GetCurrentVolume()

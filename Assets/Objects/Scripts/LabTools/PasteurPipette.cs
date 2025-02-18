@@ -29,7 +29,7 @@ public class PasteurPipe : MonoBehaviour, Dropper
     {
         if (source == null || full) return;
 
-        SubstanceMixture extractedMix = source.PickUpVolume(capacity);
+        SubstanceMixture extractedMix = source.PickUpVolume(capacity, true);
         if (extractedMix.Substances.Count == 0 ) return;
 
         containedMixture.ExperimentStepReached = extractedMix.ExperimentStepReached;

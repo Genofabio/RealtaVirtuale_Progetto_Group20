@@ -240,18 +240,33 @@ public class SubstanceMixture
         mixed = true;
     }
 
-    public List<Substance> ExtractSubstances(float amountToPour)
+    public List<Substance> ExtractSubstances(float amountToPour, bool extractsOnlyLiquid)
     {
         float totalAmount = GetCurrentVolume();
+        float liquidAmount = GetLiquidVolume();
         List<Substance> pouredSubstances = new List<Substance>();
 
         foreach (var sub in substances)
         {
-            float pouredAmount = (sub.Quantity / totalAmount) * amountToPour;
-            if (pouredAmount > 0)
+            if (extractsOnlyLiquid)
             {
-                pouredSubstances.Add(new Substance(sub.SubstanceName, pouredAmount, sub.IsSolid));
-                sub.Quantity -= pouredAmount;
+                if (sub.IsSolid) continue;
+
+                float pouredAmount = (sub.Quantity / liquidAmount) * amountToPour;
+                if (pouredAmount > 0)
+                {
+                    pouredSubstances.Add(new Substance(sub.SubstanceName, pouredAmount, sub.IsSolid));
+                    sub.Quantity -= pouredAmount;
+                }
+            }
+            else
+            {
+                float pouredAmount = (sub.Quantity / totalAmount) * amountToPour;
+                if (pouredAmount > 0)
+                {
+                    pouredSubstances.Add(new Substance(sub.SubstanceName, pouredAmount, sub.IsSolid));
+                    sub.Quantity -= pouredAmount;
+                }
             }
         }
 
