@@ -131,28 +131,37 @@ public void ToggleDoor()
     }
 
     private IEnumerator CookCoroutine()
+{
+    // Avvia il suono del forno in funzione
+    AudioSource audioSource = GetComponent<AudioSource>();
+    audioSource.clip = audioList[2]; // Suono di funzionamento
+    audioSource.loop = true; // Imposta il suono in loop finché il forno è acceso
+    audioSource.Play();
+
+    while (!IsEmpty)
     {
-        while (!IsEmpty)
+        foreach (GameObject obj in contentObjects)
         {
-            foreach (GameObject obj in contentObjects)
+            if (obj != null)
             {
-                if (obj != null)
+                Fillable fillable = obj.GetComponent<Fillable>();
+                SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
+                if (fillableSubstanceMix != null && !fillableSubstanceMix.Dried)
                 {
-                    Fillable fillable = obj.GetComponent<Fillable>();
-                    SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
-                    if (fillableSubstanceMix != null && !fillableSubstanceMix.Dried)
-                    {
-                        fillableSubstanceMix.Dry(Time.deltaTime);
-                        experimentManager.CheckAndModifyStep(fillableSubstanceMix.GetReference());
-                    }
+                    fillableSubstanceMix.Dry(Time.deltaTime);
+                    experimentManager.CheckAndModifyStep(fillableSubstanceMix.GetReference());
                 }
             }
-
-            yield return null; // Aspetta un frame prima di continuare
         }
 
-        cookRoutine = null;
+        yield return null; // Aspetta un frame prima di continuare
     }
+
+    // Ferma il suono quando il forno è vuoto
+    audioSource.Stop();
+
+    cookRoutine = null;
+}
 
     public void InsertIntoOven(GameObject obj)
     {
