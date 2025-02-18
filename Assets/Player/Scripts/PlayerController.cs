@@ -69,18 +69,23 @@ public class PlayerController : MonoBehaviour
                 {
                     if (hit.transform.TryGetComponent<Fillable>(out var fillableObject))
                     {
-                        if (fillableObject.GetContainedSubstanceMixture().GetCurrentVolume() > 1)
+                        if(grabbedObject.TryGetComponent<SubstanceVial>(out var substanceVial))
+                        {
+                            if (fillableObject.GetContainedSubstanceMixture().GetCurrentVolume() > 1)
+                            {
+                                pourSpeedMultiplier = Mathf.Min(pourSpeedMultiplier + Time.deltaTime, 10);
+                            }
+                            else
+                            {
+                                pourSpeedMultiplier = 0.2f;
+                            }
+                        } else
                         {
                             pourSpeedMultiplier = Mathf.Min(pourSpeedMultiplier + Time.deltaTime, 10);
-                        }
-                        else
-                        {
-                            pourSpeedMultiplier = 0.2f;
                         }
 
                         float pourAmount = Time.deltaTime * pourSpeedMultiplier;
                         pourableObject.Pour(fillableObject, pourAmount);
-
                     }
                     else
                     {
