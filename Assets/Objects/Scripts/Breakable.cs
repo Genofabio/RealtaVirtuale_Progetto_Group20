@@ -65,6 +65,11 @@ public class Breakable : MonoBehaviour
 
     private void Break()
     {
+        // Riproduci il suono di rottura
+        if (breakSound != null)
+        {
+            audioSource.PlayOneShot(breakSound);
+        }
 
         // Disattiva solo la mesh e il collider di "intact" invece di disattivare l'intero GameObject
         if (intact.TryGetComponent<MeshRenderer>(out MeshRenderer meshRenderer))
@@ -97,12 +102,6 @@ public class Breakable : MonoBehaviour
 
         // Attiva il modello rotto
         broken.SetActive(true);
-
-        // Riproduci il suono di rottura
-        if (breakSound != null)
-        {
-            audioSource.PlayOneShot(breakSound);
-        }
 
         // Avvia la dissolvenza e poi distrugge l'oggetto
         StartCoroutine(DestroyAfterDelay());

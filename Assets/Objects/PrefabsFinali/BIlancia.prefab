@@ -924,10 +924,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precisionBalance: {fileID: 8780194698189248848}
-  pressedOffset: {x: 0.05, y: 0, z: 0}
+  pressedOffset: {x: 0.005, y: 0, z: 0}
   pressDuration: 0.1
   audioList:
-  - {fileID: 8300000, guid: e6b604ddf5eca4002acf09c6b4ba290e, type: 3}
+  - {fileID: 8300000, guid: 02596ace69ce0b140a963c2f1b27ca15, type: 3}
 --- !u!65 &8384438349598651473
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -959,8 +959,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e6b604ddf5eca4002acf09c6b4ba290e, type: 3}
-  m_Resource: {fileID: 8300000, guid: e6b604ddf5eca4002acf09c6b4ba290e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 02596ace69ce0b140a963c2f1b27ca15, type: 3}
+  m_Resource: {fileID: 8300000, guid: 02596ace69ce0b140a963c2f1b27ca15, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

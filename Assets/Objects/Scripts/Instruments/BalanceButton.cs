@@ -29,20 +29,23 @@ public class BalanceButton : MonoBehaviour
 
     public void Tare()
     {
-        if (isTaring) return;
-
-        isTaring = true;
-        Invoke(nameof(ResetTareCooldown), 1f);
 
         StartCoroutine(PressButton());
-
-        tare = -precisionBalance.GetTotalWeight();
-        precisionBalance.SetCurrentTare(tare);
 
         if (audioList != null && audioList.Count > 0 && audioSource != null)
         {
             audioSource.PlayOneShot(audioList[0]);
         }
+
+        if (isTaring) return;
+
+        isTaring = true;
+        Invoke(nameof(ResetTareCooldown), 0.5f);
+
+        tare = -precisionBalance.GetTotalWeight();
+        precisionBalance.SetCurrentTare(tare);
+
+        
     }
 
     private void ResetTareCooldown()
