@@ -54,6 +54,11 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
             filteredVolume += solid.Quantity;
         }
 
+        if (filteredSubstances.ExperimentStepReached < mix.ExperimentStepReached)
+        {
+            experimentManager.SetMixtureStepAndUpdateCount(filteredSubstances, mix.ExperimentStepReached);
+        }
+
         filteredSubstances.AddSubstanceMixture(new SubstanceMixture(solids, mix.Mixed, mix.Dried, mix.DryingTime, mix.Cooled, mix.CoolingTime, mix.ExperimentStepReached, mix.MixtureLiquidColor, mix.MixtureSolidColor));
         solidRenderer.SetFillSize(filteredVolume / maxCapacity);
         solidRenderer.SetColor(mix.MixtureSolidColor);
@@ -101,7 +106,7 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
 
         targetContainer.Fill(pouredMix);
 
-        //experimentManager.CheckAndModifyStep(containedMixture);
+        experimentManager.CheckAndModifyStep(filteredSubstances);
     }
 
     public SubstanceMixture PickUpVolume(float amountToExtract, bool picksUpOnlyLiquid) 

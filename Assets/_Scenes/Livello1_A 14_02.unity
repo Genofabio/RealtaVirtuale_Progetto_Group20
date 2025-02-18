@@ -3125,6 +3125,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1172222109981217112, guid: 54edb4825dcc07141bbf7ad4df810b6b, type: 3}
   m_PrefabInstance: {fileID: 684831242}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &466206442
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 554828121315392971, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_Name
+      value: Becher
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181720199731944233, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.73979163
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181720199731944233, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0363467
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181720199731944233, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1141663
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181720199731944233, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181720199731944233, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181720199731944233, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181720199731944233, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181720199731944233, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181720199731944233, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181720199731944233, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e153c94dbc1ef24aaf421f031cd3999, type: 3}
 --- !u!1001 &468907538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12459,13 +12516,13 @@ MonoBehaviour:
       mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
       substances:
       - substanceName: 2-nitrobenzaldeide
-        quantity: 5
+        quantity: 0.5
         isSolid: 0
       - substanceName: Acqua
         quantity: 5
         isSolid: 0
       - substanceName: Acetone
-        quantity: 0.5
+        quantity: 5
         isSolid: 0
   - stepName: Step1
     description: Aggiunta di NaOH e cambiamento di colore
@@ -13657,3 +13714,4 @@ SceneRoots:
   - {fileID: 1216327990}
   - {fileID: 414297758}
   - {fileID: 168230517}
+  - {fileID: 466206442}

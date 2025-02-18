@@ -106,7 +106,7 @@ public class ExperimentManager : MonoBehaviour
         {
             HighestStepReached = mix.ExperimentStepReached + 1;
             assistant.SetHighestStepReached(mix.ExperimentStepReached + 1);
-            numMixturePerStep[mix.ExperimentStepReached + 1] += 1;
+            //numMixturePerStep[mix.ExperimentStepReached + 1] += 1;
         }
 
         nextStep.ApplyStepEffect(mix);
@@ -116,17 +116,16 @@ public class ExperimentManager : MonoBehaviour
     public void SetMixtureStepAndUpdateCount(SubstanceMixture mix, int nextStep)
     {
         int currentStep = mix.ExperimentStepReached;
+
         if (currentStep >= 0)
         {
             numMixturePerStep[currentStep] -= 1;
 
-            Debug.Log("Raggiunto step: " + nextStep);
-
             HighestStepReached = GetHighestStepReached();
-
-            numMixturePerStep[nextStep] += 1;
         }
-        
+
+        if (nextStep >= 0) numMixturePerStep[nextStep] += 1;
+
         mix.ExperimentStepReached = nextStep;
     }
 
