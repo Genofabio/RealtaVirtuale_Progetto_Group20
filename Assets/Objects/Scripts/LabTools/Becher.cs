@@ -53,11 +53,10 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         }
         else
         {
-            if (GetLiquidVolume() > 0.01)
-            {
-                liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
-                liquidRenderer.SetColor(initialLiquidColor);
-            }
+
+            liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+            liquidRenderer.SetColor(initialLiquidColor);
+
         }
 
         solidRenderer = GetComponentInChildren<SolidRenderer>();
@@ -173,7 +172,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         if (amountToPour > targetRemainingVolume) amountToPour = targetRemainingVolume;
 
         SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.Dried, containedMixture.DryingTime, containedMixture.Cooled, containedMixture.CoolingTime, containedMixture.ExperimentStepReached, containedMixture.MixtureLiquidColor, containedMixture.MixtureSolidColor);
-        pouredMix.Substances = containedMixture.ExtractSubstances(amountToPour);
+        pouredMix.Substances = containedMixture.ExtractSubstances(amountToPour, false);
         UpdateSubstanceRenderFill();
         RefreshTotalWeight();
 
@@ -203,21 +202,25 @@ public class Becher : MonoBehaviour, Fillable, Pourable
 
     public void UpdateSubstanceRenderFill()
     {
-        if (GetLiquidVolume() > 0.01)
+        if(GetLiquidVolume() > 0.001)
         {
             liquidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
+        }
+        else
+        {
+            liquidRenderer.SetFillSize(0);
         }
         solidRenderer.SetFillSize(GetSolidVolume() / maxCapacity);
     }
 
-    public SubstanceMixture PickUpVolume(float amountToExtract)
+    public SubstanceMixture PickUpVolume(float amountToExtract, bool picksUpOnlyLiquid)
     {
         float totalAmount = GetCurrentVolume();
         SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), containedMixture.Mixed, containedMixture.Dried, containedMixture.DryingTime, containedMixture.Cooled, containedMixture.CoolingTime, containedMixture.ExperimentStepReached, containedMixture.MixtureLiquidColor, containedMixture.MixtureSolidColor);
         if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
         if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 
-        List<Substance> extractedSubstances = containedMixture.ExtractSubstances(amountToExtract);
+        List<Substance> extractedSubstances = containedMixture.ExtractSubstances(amountToExtract, picksUpOnlyLiquid);
         extractedMix.Substances = extractedSubstances;
 
         UpdateSubstanceRenderFill();

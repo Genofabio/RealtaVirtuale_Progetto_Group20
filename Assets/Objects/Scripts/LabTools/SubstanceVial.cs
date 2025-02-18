@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SubstanceVial : MonoBehaviour, Pourable
@@ -146,36 +147,57 @@ public class SubstanceVial : MonoBehaviour, Pourable
         return substance.Quantity;
     }
 
-    public SubstanceMixture PickUpVolume(float amountToExtract)
+    public SubstanceMixture PickUpVolume(float amountToExtract, bool picksUpOnlyLiquid)
     {
         float totalAmount = GetCurrentVolume();
-        SubstanceMixture extractedMix;
-        if (substance.IsSolid)
-        {
-            extractedMix = new SubstanceMixture(new List<Substance>(), false, false, 0, false, 0, -1, Color.clear, substanceColor);
-        }
-        else
-        {
-            extractedMix = new SubstanceMixture(new List<Substance>(), false, false, 0, false, 0, -1, substanceColor, Color.clear);
-        }
-        if (totalAmount == 0 || amountToExtract <= 0) return extractedMix;
-        if (amountToExtract > totalAmount) amountToExtract = totalAmount;
 
-        List<Substance> extractedSubstance = new List<Substance> { new Substance(substance.SubstanceName, amountToExtract, substance.IsSolid) };
-        substance.Quantity -= amountToExtract;
+        // Se dobbiamo estrarre solo liquidi, filtriamo solo quelli
+        List<Substance> substancesToExtract = picksUpOnlyLiquid
+            ? new List<Substance> { new Substance(substance.SubstanceName, substance.Quantity, substance.IsSolid) }
+                .Where(sub => !sub.IsSolid).ToList()
+            : new List<Substance> { new Substance(substance.SubstanceName, substance.Quantity, substance.IsSolid) };
 
-        extractedMix.Substances = extractedSubstance;
+        float filteredTotalAmount = substancesToExtract.Sum(sub => sub.Quantity);
 
-        if (!substance.IsSolid)
+        // Se non ci sono sostanze valide da estrarre, restituisci un mix vuoto
+        if (filteredTotalAmount == 0 || amountToExtract <= 0)
         {
-            liquid.SetFillSize(GetCurrentVolume() / maxVolume);
+            return new SubstanceMixture(new List<Substance>(), false, false, 0, false, 0, -1,
+                picksUpOnlyLiquid ? substanceColor : Color.clear,
+                picksUpOnlyLiquid ? Color.clear : substanceColor);
         }
-        else
+
+        if (amountToExtract > filteredTotalAmount) amountToExtract = filteredTotalAmount;
+
+        // Creiamo il nuovo mix con le sostanze filtrate
+        List<Substance> extractedSubstances = substancesToExtract
+            .Select(sub => new Substance(sub.SubstanceName, (sub.Quantity / filteredTotalAmount) * amountToExtract, sub.IsSolid))
+            .ToList();
+
+        // Sottraiamo le quantità estratte
+        foreach (var sub in extractedSubstances)
+        {
+            if (substance.SubstanceName == sub.SubstanceName)
+                substance.Quantity -= sub.Quantity;
+        }
+
+        // Creiamo la mixture da restituire
+        SubstanceMixture extractedMix = new SubstanceMixture(extractedSubstances, false, false, 0, false, 0, -1,
+            picksUpOnlyLiquid ? substanceColor : Color.clear,
+            picksUpOnlyLiquid ? Color.clear : substanceColor);
+
+        // Aggiorniamo la visualizzazione del liquido o solido
+        if (!picksUpOnlyLiquid)
         {
             solid.SetFillSize(GetCurrentVolume() / maxVolume);
+        }
+        else
+        {
+            liquid.SetFillSize(GetCurrentVolume() / maxVolume);
         }
 
         return extractedMix;
     }
+
 
 }
