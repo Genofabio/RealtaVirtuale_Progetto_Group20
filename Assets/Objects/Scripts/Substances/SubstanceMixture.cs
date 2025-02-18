@@ -138,7 +138,7 @@ public class SubstanceMixture
 
     public void AddSubstanceMixture(SubstanceMixture mix) 
     {
-        if (mix.Mixed && ((Mixed && HasSameSubstancePercentageForAll(mix)) || GetCurrentVolume() < 0.1))
+        if (mix.Mixed && ((Mixed && HasSameSubstancePercentageForAll(mix)) || GetCurrentVolume() < 0.001))
         {
             Mixed = true;
         } 
@@ -147,7 +147,7 @@ public class SubstanceMixture
             Mixed = false;
         }
 
-        if (mix.Dried && (Dried || GetCurrentVolume() < 0.1))
+        if (mix.Dried && (Dried || GetCurrentVolume() < 0.001))
         {
             Dried = true;
         }
@@ -156,7 +156,7 @@ public class SubstanceMixture
             Dried = false;
         }
 
-        if (mix.Cooled && (Cooled || GetCurrentVolume() < 0.1))
+        if (mix.Cooled && (Cooled || GetCurrentVolume() < 0.001))
         {
             Cooled = true;
         }
@@ -277,7 +277,7 @@ public class SubstanceMixture
         foreach (Substance sostanzaMix in mix.substances)
         {
             Substance sostanzaInBecher = substances.Find(s => s.SubstanceName == sostanzaMix.SubstanceName);
-            if (sostanzaInBecher == null || sostanzaInBecher.Quantity < sostanzaMix.Quantity - sostanzaMix.Quantity / 20 || sostanzaInBecher.Quantity > sostanzaMix.Quantity + sostanzaMix.Quantity / 5 || sostanzaInBecher.IsSolid != sostanzaMix.IsSolid)
+            if (sostanzaInBecher == null || sostanzaInBecher.Quantity < sostanzaMix.Quantity - sostanzaMix.Quantity / 20 || sostanzaInBecher.Quantity > sostanzaMix.Quantity + sostanzaMix.Quantity / 20 || sostanzaInBecher.IsSolid != sostanzaMix.IsSolid)
             {
                 return false;
             }
@@ -398,7 +398,7 @@ public class SubstanceMixture
             if (beakerSubstance != null)
             {
                 // Se la quantità in becher supera il massimo tollerato, il mix non è più possibile
-                if (beakerSubstance.Quantity > mixSubstance.Quantity + mixSubstance.Quantity / 3)
+                if (beakerSubstance.Quantity > mixSubstance.Quantity + mixSubstance.Quantity / 20)
                 {
                     return false;
                 }
