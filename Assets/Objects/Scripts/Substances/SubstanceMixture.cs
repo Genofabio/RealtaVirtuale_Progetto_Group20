@@ -130,7 +130,7 @@ public class SubstanceMixture
         {
             if (substance.IsSolid)
             {
-                sum += substance.Quantity / 10; // 1 milligrammo corrisponde a 1000 millilitri
+                sum += substance.Quantity;
             }
         }
         return sum;
@@ -432,7 +432,7 @@ public class SubstanceMixture
             {
                 if (substance.IsSolid == true)
                 {
-                    solidWeight += substance.Quantity / 1000;
+                    solidWeight += substance.Quantity;
                 }
             }
         }

@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
     private bool isPouring = false;
+    [SerializeField]  private float pourSpeedMultiplier = 0.2f;
 
     // controllo sulla modalità menu iniziale
     private bool inMainMenu = false;
@@ -68,15 +69,30 @@ public class PlayerController : MonoBehaviour
                 {
                     if (hit.transform.TryGetComponent<Fillable>(out var fillableObject))
                     {
-                        float pourAmount = Time.deltaTime * 10;
+                        if (fillableObject.GetContainedSubstanceMixture().GetCurrentVolume() > 1)
+                        {
+                            pourSpeedMultiplier = Mathf.Min(pourSpeedMultiplier + Time.deltaTime, 10);
+                        }
+                        else
+                        {
+                            pourSpeedMultiplier = 0.2f;
+                        }
+
+                        float pourAmount = Time.deltaTime * pourSpeedMultiplier;
                         pourableObject.Pour(fillableObject, pourAmount);
+
                     }
                     else
                     {
                         isPouring = false;
+                        pourSpeedMultiplier = 0.2f;
                     }
                 }
             }
+        }
+        else
+        {
+            pourSpeedMultiplier = 0.2f; 
         }
     }
 
