@@ -86,6 +86,8 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     }
     void Update()
     {
+        if (becherRigidbody.linearVelocity.magnitude > 0.2) Debug.Log(becherRigidbody.linearVelocity.magnitude);
+
         if (isPouring)
         {
             pourTimer -= Time.deltaTime;
@@ -163,6 +165,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
                 }
             }
         }
+
         float totalAmount = GetCurrentVolume();
         float targetRemainingVolume = targetContainer.GetRemainingVolume();
         if (totalAmount <= 0 || amountToPour <= 0 || targetRemainingVolume <= 0) return;

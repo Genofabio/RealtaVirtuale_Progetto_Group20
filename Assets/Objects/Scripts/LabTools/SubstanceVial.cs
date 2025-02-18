@@ -86,8 +86,11 @@ public class SubstanceVial : MonoBehaviour, Pourable
     public void Pour(Fillable targetContainer, float amountToPour)
     {
         float totalAmount = GetCurrentVolume();
-        if (totalAmount == 0 || amountToPour <= 0) return;
+        float targetRemainingVolume = targetContainer.GetRemainingVolume();
+
+        if (totalAmount <= 0 || amountToPour <= 0 || targetRemainingVolume <= 0) return;
         if (amountToPour > totalAmount) amountToPour = totalAmount;
+        if (amountToPour > targetRemainingVolume) amountToPour = targetRemainingVolume;
 
         List<Substance> pouredSubstance = new List<Substance> { new Substance(substance.SubstanceName, amountToPour, substance.IsSolid) };
         substance.Quantity -= amountToPour;

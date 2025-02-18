@@ -8,6 +8,8 @@ public class Breakable : MonoBehaviour
     [SerializeField] private GameObject broken;
 
     [SerializeField] private float breakForceThreshold = 5f;
+    [SerializeField] private float grabbedBreakForceThreshold = 5f;
+
     [SerializeField] private float destructionDelay = 5f;
 
     [SerializeField] private AudioClip breakSound; // Campo per il suono di rottura configurabile nell'Inspector
@@ -15,6 +17,7 @@ public class Breakable : MonoBehaviour
 
     private Collider objCollider;
     private Rigidbody brokenRigidbody;
+    private Grabbable grabbableComponent;
 
     private void Awake()
     {
@@ -30,6 +33,9 @@ public class Breakable : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+
+        if (TryGetComponent<Grabbable>(out grabbableComponent));
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,9 +43,23 @@ public class Breakable : MonoBehaviour
         // Misura la forza dell'impatto
         float impactForce = collision.relativeVelocity.magnitude;
 
-        if (impactForce >= breakForceThreshold)
+        if (grabbableComponent != null)
         {
-            Break();
+            if (grabbableComponent.IsGrabbed() && impactForce >= grabbedBreakForceThreshold)
+            {
+                Break();
+            } 
+            else if (!grabbableComponent.IsGrabbed() && impactForce >= breakForceThreshold)
+            {
+                Break();
+            }
+        } 
+        else
+        {
+            if (impactForce >= breakForceThreshold)
+            {
+                Break();
+            }
         }
     }
 

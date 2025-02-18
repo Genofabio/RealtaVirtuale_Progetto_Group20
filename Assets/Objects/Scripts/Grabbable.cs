@@ -179,7 +179,7 @@ public class Grabbable : MonoBehaviour
 
     public void Drop()
     {
-        this.objectGrabPointTransform = null;
+        objectGrabPointTransform = null;
         objectRigidbody.useGravity = true;
         objectRigidbody.linearDamping = defaultLinearDamping;
         objectRigidbody.angularDamping = defaultAngularDamping;
@@ -233,5 +233,10 @@ public class Grabbable : MonoBehaviour
         lineRenderer.SetPosition(1, Vector3.zero);
         Destroy(hitMarker);
         hitMarker = null;
+    }
+
+    public bool IsGrabbed()
+    {
+        return objectGrabPointTransform != null;
     }
 }

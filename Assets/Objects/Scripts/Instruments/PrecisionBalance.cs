@@ -31,6 +31,9 @@ public class PrecisionBalance : MonoBehaviour
     public void WeightObjects()
     {
         totalWeight = 0f;
+
+        objects.RemoveAll(obj => obj == null);
+
         foreach (var obj in objects)
         {
             totalWeight += obj.mass;

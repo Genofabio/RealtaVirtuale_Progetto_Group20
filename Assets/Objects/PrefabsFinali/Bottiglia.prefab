@@ -285,10 +285,10 @@ GameObject:
   - component: {fileID: 8644696956794000663}
   - component: {fileID: 3932464848584536233}
   - component: {fileID: 7010135178115072542}
-  - component: {fileID: 4496984331139830320}
-  - component: {fileID: 8930778623583798917}
   - component: {fileID: 4590226565980524713}
   - component: {fileID: 2855917969494724956}
+  - component: {fileID: 4496984331139830320}
+  - component: {fileID: 8930778623583798917}
   - component: {fileID: 3343038887056261274}
   - component: {fileID: 9184788431591987153}
   - component: {fileID: 1115045706290226389}
@@ -372,42 +372,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4496984331139830320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878301506548785651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966369d1d7a48544e9d4000c111009b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  substance:
-    substanceName: H2O
-    quantity: 20
-    isSolid: 0
-  substanceColor: {r: 0.083324976, g: 0.7351791, b: 0.93962264, a: 0}
-  maxVolume: 40
-  pivot: {fileID: 6142516386909473575}
---- !u!114 &8930778623583798917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878301506548785651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55ab66d4604ae8b43a9f66379b942674, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialVelocityMultiplier: 4
-  finalVelocityMultiplier: 20
-  lineRenderer: {fileID: 0}
-  pickUpSound: {fileID: 8300000, guid: a45b1bff30c3f401ea456216b4704cb2, type: 3}
-  dropSound: {fileID: 8300000, guid: 448f18d60df074db1b215b5c43eab303, type: 3}
 --- !u!64 &4590226565980524713
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -457,6 +421,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4496984331139830320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878301506548785651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966369d1d7a48544e9d4000c111009b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  substance:
+    substanceName: H2O
+    quantity: 20
+    isSolid: 0
+  substanceColor: {r: 0.083324976, g: 0.7351791, b: 0.93962264, a: 0}
+  maxVolume: 40
+  pivot: {fileID: 6142516386909473575}
+--- !u!114 &8930778623583798917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878301506548785651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ab66d4604ae8b43a9f66379b942674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialVelocityMultiplier: 4
+  finalVelocityMultiplier: 20
+  lineRenderer: {fileID: 0}
+  pickUpSound: {fileID: 8300000, guid: a45b1bff30c3f401ea456216b4704cb2, type: 3}
+  dropSound: {fileID: 8300000, guid: 448f18d60df074db1b215b5c43eab303, type: 3}
 --- !u!114 &3343038887056261274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,6 +473,7 @@ MonoBehaviour:
   convexHull: {fileID: 0}
   broken: {fileID: 2348566230896899361}
   breakForceThreshold: 5
+  grabbedBreakForceThreshold: 20
   destructionDelay: 5
   breakSound: {fileID: 8300000, guid: c3259beddd704924f92aa5094a0d9be9, type: 3}
 --- !u!82 &9184788431591987153
