@@ -78,6 +78,7 @@ public class ExperimentManager : MonoBehaviour
             }
         } else
         {
+            Debug.Log("Entrato");
             if (mix.IsQuantityWithinTolerance(targetMixture))
             {
                 if (mix.IsSimilarTo(targetMixture))
