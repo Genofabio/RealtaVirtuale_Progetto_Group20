@@ -22,6 +22,7 @@ public class Assistant : MonoBehaviour
 
     [Header("Other")]
     [SerializeField] private GameObject endScreen;
+    private MovementController movementController;
 
     private int highestStepReached;
 
@@ -29,6 +30,7 @@ public class Assistant : MonoBehaviour
     {
         audioSource.clip = audioList[0];
         audioSource.Play();
+        movementController = GetComponent<MovementController>();
     }
     void Start()
     {
@@ -64,6 +66,7 @@ public class Assistant : MonoBehaviour
             StartCoroutine(ShowImageForDuration(failure));
         }
 
+        UpdatePath();
         UpdateImage();
         StartCoroutine(PlayStepAudioWithDelay(isSuccess));
     }
@@ -76,6 +79,13 @@ public class Assistant : MonoBehaviour
         img.enabled = false;  // Nascondi l'immagine
     }
 
+    private void UpdatePath()
+    {
+        if (movementController != null)
+        {
+            movementController.NotifyNewStep(highestStepReached);
+        }
+    }
     private void UpdateImage()
     {
         if (displayImage != null && highestStepReached < images.Count - 1)
