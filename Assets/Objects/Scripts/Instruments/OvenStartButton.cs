@@ -1,19 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
-public class BalanceButton : MonoBehaviour, Button
+public class OvenStartButton : MonoBehaviour, Button
 {
-    public PrecisionBalance precisionBalance;
-    private float tare { get; set; } = 0f;
-
-    private Vector3 originalPosition;  
-    public Vector3 pressedOffset = new Vector3(0f, -0.05f, -0.05f); 
-    public float pressDuration = 0.1f;  
+    [SerializeField] private Oven oven;
 
     [SerializeField] private List<AudioClip> audioList;
     private AudioSource audioSource;
 
-    private bool isTaring = false;
+    private Vector3 originalPosition;
+    [SerializeField] private Vector3 pressedOffset = new Vector3(0f, -0.05f, -0.05f);
+    private float pressDuration = 0.1f;  
+
+    
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class BalanceButton : MonoBehaviour, Button
         }
     }
 
-    public void Tare()
+    public void ToggleCooking()
     {
 
         StartCoroutine(PressButton());
@@ -37,20 +37,9 @@ public class BalanceButton : MonoBehaviour, Button
             audioSource.PlayOneShot(audioList[0]);
         }
 
-        if (isTaring) return;
+        Debug.Log("Pulsante premuto");
 
-        isTaring = true;
-        Invoke(nameof(ResetTareCooldown), 0.5f);
-
-        tare = -precisionBalance.GetTotalWeight();
-        precisionBalance.SetCurrentTare(tare);
-
-        
-    }
-
-    private void ResetTareCooldown()
-    {
-        isTaring = false;
+        oven.ToggleCooking(); 
     }
 
     private System.Collections.IEnumerator PressButton()
@@ -62,14 +51,9 @@ public class BalanceButton : MonoBehaviour, Button
         transform.position = originalPosition;
     }
 
-    private float RoundToDecimalPlaces(float value, int decimalPlaces)
-    {
-        float factor = Mathf.Pow(10, decimalPlaces);
-        return Mathf.Round(value * factor) / factor;
-    }
-
     public void Press()
     {
-        Tare();
+        Debug.Log("Press fatto");
+        ToggleCooking();
     }
 }

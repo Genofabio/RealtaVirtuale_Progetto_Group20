@@ -3,12 +3,7 @@ using UnityEngine;
 
 public class OvenTrigger : MonoBehaviour
 {
-    [SerializeField] private Oven oven;
-
-    private void Start()
-    {
-        oven = GetComponentInParent<Oven>();
-    }    
+    [SerializeField] private Oven oven; 
 
     private void OnTriggerEnter(Collider other)
     {
