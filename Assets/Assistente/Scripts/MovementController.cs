@@ -84,7 +84,7 @@ public class MovementController : MonoBehaviour
         }
         else if (highestStepReached == 0)
         {
-            positions = new Transform[] { pos2, posX };
+            positions = new Transform[] { pos1, posX };
             Debug.Log("entra in highstep 0");
         }
         else if (highestStepReached == 1)
