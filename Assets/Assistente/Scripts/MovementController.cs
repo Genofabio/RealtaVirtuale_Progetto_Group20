@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System.Collections;
 using UnityEngine.UIElements;
 using System.Linq;
+using System.Collections.Generic;
 
 public class MovementController : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class MovementController : MonoBehaviour
     public Transform pos6;
     public Transform pos7;
     private bool pathCompleted = false;
+
+    private int[] times;
+
+    [SerializeField] private List<AudioClip> audioList;
+
 
     private bool newStepReached = false;
     private int highestStepReached = -1;
@@ -77,37 +83,50 @@ public class MovementController : MonoBehaviour
 
     private void CheckStepAndMove()
     {
-        Debug.Log("entraa??? " + highestStepReached);
+        //Debug.Log("entraa??? " + highestStepReached);
         if (highestStepReached == -1)
         {
             positions = new Transform[] { pos1, pos2, pos3, posX };
+            times = new int[] { 5, 5, 5, 5 };
+            audioList = new List<AudioClip> { audioList[0], audioList[1], audioList[2], audioList[3] };
         }
         else if (highestStepReached == 0)
         {
             positions = new Transform[] { pos1, posX };
-            Debug.Log("entra in highstep 0");
+            times = new int[] { 5, 5 };
+            audioList = new List<AudioClip> { audioList[1], audioList[3] };
         }
         else if (highestStepReached == 1)
         {
             positions = new Transform[] { pos5, posX };
+            times = new int[] { 5, 5 };
+            audioList = new List<AudioClip> { audioList[2], audioList[3] };
         }
         else if (highestStepReached == 2)
         {
             positions = new Transform[] { pos6 };
+            times = new int[] { 5 };
+            audioList = new List<AudioClip> { audioList[3] };
         }
         else if (highestStepReached == 3)
         {
             positions = new Transform[] { pos5, posX };
+            times = new int[] { 5, 5 };
+            audioList = new List<AudioClip> { audioList[2], audioList[3] };
         }
         else if (highestStepReached == 4)
         {
             positions = new Transform[] { pos5, posX };
+            times = new int[] { 5, 5 };
+            audioList = new List<AudioClip> { audioList[2], audioList[3] };
         }
         else if (highestStepReached == 5)
         {
             positions = new Transform[] { pos7 };
+            times = new int[] { 5 };
+            audioList = new List<AudioClip> { audioList[3] };
         }
-        Debug.Log("positions: " + string.Join(", ", positions.Select(p => p.name)));
+        //Debug.Log("positions: " + string.Join(", ", positions.Select(p => p.name)));
         
         StartCoroutine(MoveBetweenPositions());
     }
@@ -119,7 +138,7 @@ public class MovementController : MonoBehaviour
         currentIndex = 0;
         while (currentIndex != positions.Length && pathCompleted == false)
         {
-            Debug.Log("currentIndex: " + currentIndex);
+            //Debug.Log("currentIndex: " + currentIndex);
             Debug.Log(positions[currentIndex]);
             // Imposta la destinazione alla posizione corrente
             _navMeshAgent.SetDestination(positions[currentIndex].position);
@@ -135,7 +154,7 @@ public class MovementController : MonoBehaviour
 
             if (currentIndex != positions.Length)
                 // Attendi 2 secondi
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(times[currentIndex-1]);
 
             
         }
