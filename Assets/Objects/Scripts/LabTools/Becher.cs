@@ -85,7 +85,7 @@ public class Becher : MonoBehaviour, Fillable, Pourable
     }
     void Update()
     {
-        if (becherRigidbody.linearVelocity.magnitude > 0.2) Debug.Log(becherRigidbody.linearVelocity.magnitude);
+        //if (becherRigidbody.linearVelocity.magnitude > 0.2) Debug.Log(becherRigidbody.linearVelocity.magnitude);
 
         if (isPouring)
         {

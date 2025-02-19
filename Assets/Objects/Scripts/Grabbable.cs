@@ -222,7 +222,7 @@ public class Grabbable : MonoBehaviour
         rotationPourPivot = pivotPoint;
 
         initialRotationAngle = initialRotation-90f;
-        Debug.Log("Initial rotation angle: " + initialRotationAngle);
+        //Debug.Log("Initial rotation angle: " + initialRotationAngle);
 
         // L'asse di rotazione è "right"
         Vector3 rotationAxis = transform.right;
@@ -239,7 +239,7 @@ public class Grabbable : MonoBehaviour
         // Salviamo l'angolo attuale con il nuovo sistema di riferimento
         currentRotationAngle = angleRelativeToPivot;
 
-        Debug.Log("Current rotation angle (Y-negative reference): " + currentRotationAngle);
+        //Debug.Log("Current rotation angle (Y-negative reference): " + currentRotationAngle);
 
         GameObject tempPivot = new GameObject("TempPivot");
         tempPivot.transform.position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
