@@ -58,15 +58,15 @@ public class Grabbable : MonoBehaviour
         if (lineRenderer == null)
         {
             lineRenderer = gameObject.AddComponent<LineRenderer>();
-            lineRenderer.startWidth = 0.02f;
-            lineRenderer.endWidth = 0.02f;
+            lineRenderer.startWidth = 0.01f;
+            lineRenderer.endWidth = 0.01f;
             lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
             lineRenderer.startColor = Color.white;
             lineRenderer.endColor = Color.white;
         }
 
         hitMarker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        hitMarker.transform.localScale = Vector3.one * 0.1f;
+        hitMarker.transform.localScale = Vector3.one * 0.04f;
         Destroy(hitMarker.GetComponent<Collider>());
 
         // Creazione di un materiale Unlit per evitare luci e ombre

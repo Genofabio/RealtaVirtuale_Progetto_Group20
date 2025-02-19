@@ -251,7 +251,8 @@ public class PlayerController : MonoBehaviour
                     {
                         if (hit.transform.TryGetComponent<Fillable>(out var fillableObject))
                         {
-                            rod.Mix(fillableObject);
+                            Vector3 position = new Vector3(hit.transform.position.x, hit.transform.position.y + 0.1f, hit.transform.position.z);
+                            rod.Mix(fillableObject, position);
                         }
                     }
                 }

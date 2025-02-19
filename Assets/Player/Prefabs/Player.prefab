@@ -270,6 +270,7 @@ MonoBehaviour:
   contextUIController: {fileID: 1049826259621849731}
   playerAudio: {fileID: 11400000, guid: 72d2038ff692b7f4bb898dca3990ef6c, type: 2}
   audioSource: {fileID: 3882064258042141555}
+  pourSpeedMultiplier: 0.2
 --- !u!114 &3598132175243571808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +376,46 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 07978ee1-a133-4a05-8695-fa8cb2b401a3
     m_ActionName: 'Player/MoveGrabbedObject[/Mouse/scroll/y]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c092fb27-806a-4df1-a586-a500f7602b03
+    m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed683c41-e180-4963-aef7-66b7bba46008
+    m_ActionName: 'UI/Submit[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ca940848-862d-4018-aa89-3cd9b820f1b4
+    m_ActionName: 'UI/Cancel[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0f3545ad-7aa0-49b3-887f-a701fdbece05
+    m_ActionName: 'UI/Point[/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d71ddfdd-830e-47f4-a6c1-93de0eaeb0b9
+    m_ActionName: 'UI/Click[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c1625562-8dfa-46da-95af-a992dd76f1c7
+    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 385324d6-4800-4fb6-aaeb-8a8e2f777727
+    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8cb86ebf-0d26-4d0e-bbaf-bf205343003c
+    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3c80676f-7b58-4aef-877c-d2967c21a6de
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2d22a18a-47e1-4c14-a778-27ba2e8f0880
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -699,7 +740,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 90
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
