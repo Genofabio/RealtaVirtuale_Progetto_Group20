@@ -98,11 +98,11 @@ public class SubstanceVial : MonoBehaviour, Pourable
         SubstanceMixture pouredMix;
         if (substance.IsSolid)
         {
-            pouredMix = new SubstanceMixture(pouredSubstance, false, false, 0, false, 0, -1, Color.clear, substanceColor);
+            pouredMix = new SubstanceMixture(pouredSubstance, false, false, 0, 0, false, 0, -1, Color.clear, substanceColor);
         }
         else
         {
-            pouredMix = new SubstanceMixture(pouredSubstance, false, false, 0, false, 0, -1, substanceColor, Color.clear);
+            pouredMix = new SubstanceMixture(pouredSubstance, false, false, 0, 0, false, 0, -1, substanceColor, Color.clear);
         }
 
         if (!substance.IsSolid)
@@ -162,7 +162,7 @@ public class SubstanceVial : MonoBehaviour, Pourable
         // Se non ci sono sostanze valide da estrarre, restituisci un mix vuoto
         if (filteredTotalAmount == 0 || amountToExtract <= 0)
         {
-            return new SubstanceMixture(new List<Substance>(), false, false, 0, false, 0, -1,
+            return new SubstanceMixture(new List<Substance>(), false, false, 0, 0, false, 0, -1,
                 picksUpOnlyLiquid ? substanceColor : Color.clear,
                 picksUpOnlyLiquid ? Color.clear : substanceColor);
         }
@@ -182,7 +182,7 @@ public class SubstanceVial : MonoBehaviour, Pourable
         }
 
         // Creiamo la mixture da restituire
-        SubstanceMixture extractedMix = new SubstanceMixture(extractedSubstances, false, false, 0, false, 0, -1,
+        SubstanceMixture extractedMix = new SubstanceMixture(extractedSubstances, false, false, 0, 0, false, 0, -1,
             picksUpOnlyLiquid ? substanceColor : Color.clear,
             picksUpOnlyLiquid ? Color.clear : substanceColor);
 

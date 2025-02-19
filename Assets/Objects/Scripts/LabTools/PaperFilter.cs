@@ -18,7 +18,7 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
 
     void Awake()
     {
-        filteredSubstances = new SubstanceMixture(new List<Substance>(), false, false, 0, false, 0, - 1, Color.clear, Color.clear);
+        filteredSubstances = new SubstanceMixture(new List<Substance>(), false, false, 0, 0, false, 0, - 1, Color.clear, Color.clear);
     }
 
     void Start()
@@ -64,7 +64,7 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
         }
 
 
-        SubstanceMixture filteredMixture = new SubstanceMixture(solids, mix.Mixed, mix.Dried, mix.DryingTime, mix.Cooled, mix.CoolingTime, mix.ExperimentStepReached, mix.MixtureLiquidColor, mix.MixtureSolidColor);
+        SubstanceMixture filteredMixture = new SubstanceMixture(solids, mix.Mixed, mix.Dried, mix.DryingTime, mix.DryingTemperature, mix.Cooled, mix.CoolingTime, mix.ExperimentStepReached, mix.MixtureLiquidColor, mix.MixtureSolidColor);
         filteredSubstances.AddSubstanceMixture(filteredMixture);
         rb.mass += filteredMixture.GetSolidWeight();
 
@@ -106,7 +106,7 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
         if (amountToPour > totalAmount) amountToPour = totalAmount;
         if (amountToPour > targetRemainingVolume) amountToPour = targetRemainingVolume;
 
-        SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
+        SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.DryingTemperature, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
         pouredMix.Substances = filteredSubstances.ExtractSubstances(amountToPour, false);
 
         rb.mass -= pouredMix.GetSolidWeight();
@@ -121,10 +121,10 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
 
     public SubstanceMixture PickUpVolume(float amountToExtract, bool picksUpOnlyLiquid) 
     {
-        if(picksUpOnlyLiquid) return new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
+        if(picksUpOnlyLiquid) return new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.DryingTemperature, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
         else
         {
-            SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
+            SubstanceMixture extractedMix = new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.DryingTemperature, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
             if (filteredVolume == 0 || amountToExtract <= 0) return extractedMix;
             if (amountToExtract > filteredVolume) amountToExtract = filteredVolume;
 

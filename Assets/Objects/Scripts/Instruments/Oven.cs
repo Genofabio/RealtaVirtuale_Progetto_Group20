@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.Audio;
 
 public class Oven : MonoBehaviour, Openable
 {
     [SerializeField] private Transform door;
     [SerializeField] private List<GameObject> contentObjects;
-    //private Collider doorCollider;
     [SerializeField] private List<AudioClip> audioList;
 
     private ExperimentManager experimentManager;
@@ -16,9 +17,22 @@ public class Oven : MonoBehaviour, Openable
 
     [SerializeField] private float openSpeed = 1f;
 
+    [SerializeField] private int temperature = 100;
+    private const int minTemperature = 30;
+    private const int maxTemperature = 250;
+
+    [SerializeField] private GameObject panelSettingPower;
+    [SerializeField] private TextMeshProUGUI powerText;
+
+    [SerializeField] private GameObject panelDrying;
+    [SerializeField] private GameObject panelStopped;
+
+    private AudioSource audioSource;
+
     public bool IsOpen { get; set;  } = false;
     public bool IsEmpty { get; set; } = true;
     public bool IsMoving { get; set; } = false;
+    public bool IsCooking { get; private set; } = false;
 
     private Coroutine cookRoutine;
 
@@ -30,58 +44,45 @@ public class Oven : MonoBehaviour, Openable
             return;
         }
 
-        contentObjects = new List<GameObject>();
+        audioSource = GetComponent<AudioSource>();
 
+        contentObjects = new List<GameObject>();
         experimentManager = FindFirstObjectByType<ExperimentManager>();
 
-        //doorCollider = door.GetComponent<Collider>(); // Trova il Rigidbody della porta
-        //if (doorCollider == null)
-        //{
-        //    Debug.LogError("La porta non ha un Rigidbody!");
-        //    return;
-        //}
 
-        // Memorizza la rotazione iniziale (chiusa)
         closedRotation = door.localRotation;
-
-        // Definisce la rotazione aperta: -90� sull'asse Y
         openRotation = Quaternion.Euler(closedRotation.eulerAngles.x, closedRotation.eulerAngles.y, closedRotation.eulerAngles.z + 90);
+
+        ShowPowerSettingPanel();
+        UpdatePowerText();
     }
 
-public void ToggleDoor()
-{
-    if (IsMoving)
+    public void ToggleDoor()
     {
-        return;
+        if (IsMoving)
+        {
+            return;
+        }
+        if (IsOpen)
+        {
+            StartCoroutine(CloseDoorCoroutine());
+            audioSource.clip = audioList[0]; // Suono chiusura
+            audioSource.Play();
+        }
+        else
+        {
+            StartCoroutine(OpenDoorCoroutine());
+            audioSource.clip = audioList[1]; // Suono apertura
+            audioSource.Play();
+        }
     }
-    if (IsOpen)
-    {
-        StartCoroutine(CloseDoorCoroutine());
-        GetComponent<AudioSource>().clip = audioList[0]; // Suono chiusura
-        GetComponent<AudioSource>().Play();
-    }
-    else
-    {
-        StartCoroutine(OpenDoorCoroutine());
-        GetComponent<AudioSource>().clip = audioList[1]; // Suono apertura
-        GetComponent<AudioSource>().Play();
-    }
-}
 
     private IEnumerator OpenDoorCoroutine()
     {
         IsMoving = true;
-
-        //doorCollider.enabled = false;
-
         IsOpen = true;
 
-        if (cookRoutine != null)
-        {
-            StopCoroutine(cookRoutine);
-            cookRoutine = null;
-            Debug.Log("Cottura interrotta!"); // Debug per confermare l'interruzione
-        }
+        StopCooking();
 
         float duration = 1f / openSpeed;
         float elapsed = 0f;
@@ -95,14 +96,12 @@ public void ToggleDoor()
         }
 
         door.localRotation = openRotation;
-        //doorCollider.enabled = true;
         IsMoving = false;
     }
 
     private IEnumerator CloseDoorCoroutine()
     {
         IsMoving = true;
-        //doorCollider.enabled = false;
 
         float duration = 1f / openSpeed;
         float elapsed = 0f;
@@ -116,52 +115,124 @@ public void ToggleDoor()
         }
 
         door.localRotation = closedRotation;
-
         IsOpen = false;
-        //doorCollider.enabled = true;
         IsMoving = false;
+    }
 
-        if(!IsEmpty)
+    public void IncreaseTemperature()
+    {
+        temperature = Mathf.Min(temperature + 10, maxTemperature);
+        UpdatePowerText();
+    }
+
+    public void DecreaseTemperature()
+    {
+        temperature = Mathf.Max(temperature - 10, minTemperature);
+        UpdatePowerText();
+    }
+
+    private void UpdatePowerText()
+    {
+        powerText.text = "" + temperature + "°C";
+    }
+
+    public void ToggleCooking()
+    {
+        if (IsCooking)
         {
-            if (cookRoutine == null)
-            {
-                cookRoutine = StartCoroutine(CookCoroutine());
-            }
+            StopCooking();
         }
+        else if (!IsOpen && !IsEmpty)
+        {
+            StartCooking();
+        }
+    }
+
+    private void StartCooking()
+    {
+        if (cookRoutine == null)
+        {
+            cookRoutine = StartCoroutine(CookCoroutine());
+            IsCooking = true;
+
+            ShowCookingPanel();
+        }
+    }
+
+    private void StopCooking()
+    {
+        if (cookRoutine != null)
+        {
+            StopCoroutine(cookRoutine);
+            cookRoutine = null;
+            IsCooking = false;
+            GetComponent<AudioSource>().Stop();
+
+            StartCoroutine(ShowStoppedPanel());
+        }
+
+        audioSource.loop = false;
     }
 
     private IEnumerator CookCoroutine()
-{
-    // Avvia il suono del forno in funzione
-    AudioSource audioSource = GetComponent<AudioSource>();
-    audioSource.clip = audioList[2]; // Suono di funzionamento
-    audioSource.loop = true; // Imposta il suono in loop finché il forno è acceso
-    audioSource.Play();
-
-    while (!IsEmpty)
     {
-        foreach (GameObject obj in contentObjects)
+        audioSource.clip = audioList[2]; // Suono di funzionamento
+        audioSource.loop = true; // Imposta il suono in loop finché il forno è acceso
+        audioSource.Play();
+
+        while (!IsEmpty)
         {
-            if (obj != null)
+            foreach (GameObject obj in contentObjects)
             {
-                Fillable fillable = obj.GetComponent<Fillable>();
-                SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
-                if (fillableSubstanceMix != null && !fillableSubstanceMix.Dried)
+                if (obj != null)
                 {
-                    fillableSubstanceMix.Dry(Time.deltaTime);
-                    experimentManager.CheckAndModifyStep(fillableSubstanceMix.GetReference());
+                    Fillable fillable = obj.GetComponent<Fillable>();
+                    SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
+                    if (fillableSubstanceMix != null && !fillableSubstanceMix.Dried)
+                    {
+                        fillableSubstanceMix.Dry(Time.deltaTime, temperature);
+                        experimentManager.CheckAndModifyStep(fillableSubstanceMix.GetReference());
+                    }
                 }
             }
+
+            yield return null; // Aspetta un frame prima di continuare
         }
 
-        yield return null; // Aspetta un frame prima di continuare
+        // Ferma il suono quando il forno è vuoto
+        audioSource.Stop();
+        IsCooking = false;
+        cookRoutine = null;
+        audioSource.loop = false;
+
+        StartCoroutine(ShowStoppedPanel());
     }
 
-    // Ferma il suono quando il forno è vuoto
-    audioSource.Stop();
+    private IEnumerator ShowStoppedPanel()
+    {
+        panelStopped.SetActive(true);
+        panelDrying.SetActive(false);
+        panelSettingPower.SetActive(false);
 
-    cookRoutine = null;
-}
+        yield return new WaitForSeconds(1f);
+
+        panelStopped.SetActive(false);
+        ShowPowerSettingPanel();
+    }
+
+    private void ShowCookingPanel()
+    {
+        panelDrying.SetActive(true);
+        panelStopped.SetActive(false);
+        panelSettingPower.SetActive(false);
+    }
+
+    private void ShowPowerSettingPanel()
+    {
+        panelSettingPower.SetActive(true);
+        panelDrying.SetActive(false);
+        panelStopped.SetActive(false);
+    }
 
     public void InsertIntoOven(GameObject obj)
     {
@@ -181,8 +252,11 @@ public void ToggleDoor()
         {
             Fillable fillable = obj.GetComponent<Fillable>();
             SubstanceMixture fillableSubstanceMix = fillable.GetContainedSubstanceMixture();
-            fillableSubstanceMix.DryingTime = 0;
-
+            if (fillableSubstanceMix != null)
+            {
+                fillableSubstanceMix.DryingTime = 0;
+                fillableSubstanceMix.DryingTemperature = 0;
+            }
             contentObjects.Remove(obj);
         }
     }
