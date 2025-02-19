@@ -31,6 +31,9 @@ public class ContextUIController : MonoBehaviour
                 if (grabbable.TryGetComponent<SubstanceVial>(out var vial))
                 {
                     SetContextActive("Pick Up: " + vial.SubstanceContained());
+                } 
+                else if (grabbable.TryGetComponent<PasteurPipe>(out var pipe)) {
+                    SetContextActive($"Pick Up: Pipette {pipe.Capacity}ml");
                 }
                 else
                 {

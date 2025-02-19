@@ -121,6 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e581bce9bec8e2948af5f7a5d1d5e145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiltAngle: 10
+  rotationSpeed: 360
+  mixDuration: 1
+  moveDuration: 0.001
 --- !u!54 &946246590316980247
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,7 +133,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8729050606833596731}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

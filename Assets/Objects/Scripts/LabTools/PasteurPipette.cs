@@ -10,6 +10,11 @@ public class PasteurPipe : MonoBehaviour, Dropper
 
     private LiquidRenderer liquid;
 
+    public float Capacity {
+        get { return capacity; }
+        set { capacity = value; }
+    }
+
     private void Start()
     {
         liquid = GetComponentInChildren<LiquidRenderer>();

@@ -8,6 +8,7 @@ public class WatchGlass : MonoBehaviour, Fillable
     public float actualVolume = 0f;
 
     private ExperimentManager experimentManager;
+    private Rigidbody rb;
 
     void Start()
     {
@@ -15,6 +16,7 @@ public class WatchGlass : MonoBehaviour, Fillable
         containedMixture = new SubstanceMixture(new System.Collections.Generic.List<Substance>(), false, false, 0, false, 0, -1, Color.clear, Color.green);
 
         experimentManager = FindFirstObjectByType<ExperimentManager>();
+        rb = GetComponent<Rigidbody>();
     }
 
     public void Fill(SubstanceMixture mix)
@@ -34,8 +36,7 @@ public class WatchGlass : MonoBehaviour, Fillable
         }
 
         containedMixture.AddSubstanceMixture(mix);
-
-        //experimentManager.CheckAndModifyStep(containedMixture);
+        rb.mass += mix.GetSolidWeight();
 
         actualVolume = 0f; 
         foreach (var sub in containedMixture.Substances)
@@ -50,7 +51,6 @@ public class WatchGlass : MonoBehaviour, Fillable
 
         solidRenderer.SetFillSize(actualVolume / maxCapacity);
         solidRenderer.SetColor(containedMixture.MixtureSolidColor);
-        //RefreshTotalWeight();
     }
 
     public float GetRemainingVolume()

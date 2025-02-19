@@ -14,6 +14,8 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
 
     private ExperimentManager experimentManager;
 
+    private Rigidbody rb;
+
     void Awake()
     {
         filteredSubstances = new SubstanceMixture(new List<Substance>(), false, false, 0, false, 0, - 1, Color.clear, Color.clear);
@@ -38,6 +40,8 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
         {
             solidRenderer.SetFillSize(0); // dando per scontato che non tu possa inizializzare un filtro con della roba dentro
         }
+
+        rb = GetComponent<Rigidbody>();
     }
 
     public SubstanceMixture FilterLiquid(SubstanceMixture mix)
@@ -59,7 +63,11 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
             experimentManager.SetMixtureStepAndUpdateCount(filteredSubstances, mix.ExperimentStepReached);
         }
 
-        filteredSubstances.AddSubstanceMixture(new SubstanceMixture(solids, mix.Mixed, mix.Dried, mix.DryingTime, mix.Cooled, mix.CoolingTime, mix.ExperimentStepReached, mix.MixtureLiquidColor, mix.MixtureSolidColor));
+
+        SubstanceMixture filteredMixture = new SubstanceMixture(solids, mix.Mixed, mix.Dried, mix.DryingTime, mix.Cooled, mix.CoolingTime, mix.ExperimentStepReached, mix.MixtureLiquidColor, mix.MixtureSolidColor);
+        filteredSubstances.AddSubstanceMixture(filteredMixture);
+        rb.mass += filteredMixture.GetSolidWeight();
+
         solidRenderer.SetFillSize(filteredVolume / maxCapacity);
         solidRenderer.SetColor(mix.MixtureSolidColor);
 
@@ -100,6 +108,8 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
 
         SubstanceMixture pouredMix = new SubstanceMixture(new List<Substance>(), filteredSubstances.Mixed, filteredSubstances.Dried, filteredSubstances.DryingTime, filteredSubstances.Cooled, filteredSubstances.CoolingTime, filteredSubstances.ExperimentStepReached, filteredSubstances.MixtureLiquidColor, filteredSubstances.MixtureSolidColor);
         pouredMix.Substances = filteredSubstances.ExtractSubstances(amountToPour, false);
+
+        rb.mass -= pouredMix.GetSolidWeight();
 
         solidRenderer.SetFillSize(GetCurrentVolume() / maxCapacity);
         //RefreshTotalWeight();
