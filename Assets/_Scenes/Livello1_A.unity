@@ -1296,6 +1296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lavandino v1
       objectReference: {fileID: 0}
+    - target: {fileID: 4881373639824745225, guid: 2236ad1f835ed47b599c21e96a9fa45e, type: 3}
+      propertyPath: openAngle
+      value: -90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
