@@ -56,4 +56,9 @@ public class OvenStartButton : MonoBehaviour, Button
         Debug.Log("Press fatto");
         ToggleCooking();
     }
+
+    public bool isCooking()
+    {
+        return oven.IsCooking;
+    }   
 }

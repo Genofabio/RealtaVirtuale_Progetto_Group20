@@ -50,7 +50,14 @@ public class ContextUIController : MonoBehaviour
             }
             else if (hit.transform.TryGetComponent<OvenStartButton>(out var ovenStart))
             {
-                SetContextActive("Turn on");
+                if(ovenStart.isCooking())
+                {
+                    SetContextActive("Turn off");
+                }
+                else
+                {
+                    SetContextActive("Turn on");
+                }
             }
             else if (hit.transform.TryGetComponent<OvenSettingPowerButton>(out var ovenTemperature))
             {
