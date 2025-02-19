@@ -162,7 +162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f5b17eebf722a4f82803ee0f2254dce9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f46f3ceaa4eba40628e5a9efa50786ef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1174,7 +1174,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f5b17eebf722a4f82803ee0f2254dce9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f46f3ceaa4eba40628e5a9efa50786ef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1202,7 +1202,7 @@ GameObject:
   - component: {fileID: 271548855761791443}
   - component: {fileID: 8480816064335705758}
   m_Layer: 0
-  m_Name: Becher2
+  m_Name: Becher40ml
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1312,7 +1312,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6671673010939446584}
   serializedVersion: 4
-  m_Mass: 50
+  m_Mass: 60
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1346,7 +1346,7 @@ MonoBehaviour:
   initialSubstances: []
   initialLiquidColor: {r: 0.07929504, g: 0.7310731, b: 0.97735846, a: 0}
   initialSolidColor: {r: 0.93207544, g: 0.6037527, b: 0.3358989, a: 0}
-  maxCapacity: 20
+  maxCapacity: 40
   containedMixture:
     mixed: 0
     dried: 0
