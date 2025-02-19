@@ -86,8 +86,8 @@ public class MovementController : MonoBehaviour
         //Debug.Log("entraa??? " + highestStepReached);
         if (highestStepReached == -1)
         {
-            positions = new Transform[] { pos1, pos2, pos3, posX };
-            times = new int[] { 5, 5, 5, 5 };
+            positions = new Transform[] { pos0, pos1, pos2, pos3, posX };
+            times = new int[] { 5, 5, 5, 5, 5 };
             audioList = new List<AudioClip> { audioList[0], audioList[1], audioList[2], audioList[3] };
         }
         else if (highestStepReached == 0)
