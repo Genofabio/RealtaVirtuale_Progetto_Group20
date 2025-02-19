@@ -31,7 +31,7 @@ public class ContextUIController : MonoBehaviour
                 if (grabbable.TryGetComponent<SubstanceVial>(out var vial))
                 {
                     SetContextActive("Pick Up: " + vial.SubstanceContained());
-                } 
+                }
                 else if (grabbable.TryGetComponent<PasteurPipe>(out var pipe)) {
                     SetContextActive($"Pick Up: Pipette {pipe.Capacity}ml");
                 }
@@ -40,9 +40,21 @@ public class ContextUIController : MonoBehaviour
                     SetContextActive("Pick Up");
                 }
             }
+            else if (hit.transform.TryGetComponent<Openable>(out var openable))
+            {
+                SetContextActive("Open");
+            }
             else if (hit.transform.TryGetComponent<BalanceButton>(out var balance))
             {
                 SetContextActive("Tare");
+            }
+            else if (hit.transform.TryGetComponent<OvenStartButton>(out var ovenStart))
+            {
+                SetContextActive("Turn on");
+            }
+            else if (hit.transform.TryGetComponent<OvenSettingPowerButton>(out var ovenTemperature))
+            {
+                SetContextActive("Change temperature");
             }
             else if (hit.transform.TryGetComponent<Oven>(out var oven))
             {
