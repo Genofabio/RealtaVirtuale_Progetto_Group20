@@ -34,14 +34,14 @@ public class MovementController : MonoBehaviour
 
         CheckStepAndMove();
 
-        StartCoroutine(DelayedStepChange());
+        //StartCoroutine(DelayedStepChange());
     }
 
-    IEnumerator DelayedStepChange()
-    {
-        yield return new WaitForSeconds(20f); // Aspetta 10 secondi
-        NotifyNewStep(++highestStepReached);  // Chiama NotifyNewStep(0)
-    }
+    //IEnumerator DelayedStepChange()
+    //{
+    //    yield return new WaitForSeconds(20f); // Aspetta 10 secondi
+    //    NotifyNewStep(++highestStepReached);  // Chiama NotifyNewStep(0)
+    //}
 
     void Update()
     {
