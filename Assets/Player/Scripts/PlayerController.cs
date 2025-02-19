@@ -160,7 +160,6 @@ public class PlayerController : MonoBehaviour
 
     public void MoveGrabbedObject(InputAction.CallbackContext context)
     {
-        Debug.Log("Scrolling");
         float scrollValue = context.ReadValue<float>(); // Ottieni il valore della rotella
 
         if (grabbedObject == null) return; // Se non c'è un oggetto preso, esci
@@ -189,7 +188,6 @@ public class PlayerController : MonoBehaviour
 
         if (projectedDistance >= minDistance && projectedDistance <= maxDistance)
         {
-            Debug.Log($"Distanza lungo la forward: {projectedDistance}");
             objectGrabPointTransform.position = newPosition;
         }
     }
@@ -368,8 +366,6 @@ public class PlayerController : MonoBehaviour
 
     private void HandleDrop()
     {
-        Debug.Log("L'oggetto è stato rilasciato!");
-
         if (grabbedObject != null)
         {
             grabbedObject.OnDropped -= HandleDrop; // Disiscrizione per evitare memory leaks

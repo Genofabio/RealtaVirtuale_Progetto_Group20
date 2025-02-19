@@ -237,63 +237,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d492c57c632d1464381e10040a8fb330, type: 3}
---- !u!1001 &303538627
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1894469472141870929, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.4992094
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894469472141870929, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.96321005
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894469472141870929, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.68213
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894469472141870929, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894469472141870929, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894469472141870929, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894469472141870929, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894469472141870929, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894469472141870929, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894469472141870929, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671673010939446584, guid: 51982ddb739b7854aad48814287a7045, type: 3}
-      propertyPath: m_Name
-      value: Becher20ml
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 51982ddb739b7854aad48814287a7045, type: 3}
 --- !u!1001 &386556722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -412,63 +355,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d492c57c632d1464381e10040a8fb330, type: 3}
---- !u!1001 &659788923
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1878301506548785651, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_Name
-      value: Bottiglia
-      objectReference: {fileID: 0}
-    - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.4843206
-      objectReference: {fileID: 0}
-    - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.9632099
-      objectReference: {fileID: 0}
-    - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.323545
-      objectReference: {fileID: 0}
-    - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
 --- !u!1001 &665517313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -526,63 +412,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40855c8cb1bd441a693e74390d5d77e7, type: 3}
---- !u!1001 &980604056
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1445515889289070204, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 1445515889289070204, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0000008326024
-      objectReference: {fileID: 0}
-    - target: {fileID: 1445515889289070204, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -15.5527
-      objectReference: {fileID: 0}
-    - target: {fileID: 1445515889289070204, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1445515889289070204, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1445515889289070204, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1445515889289070204, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1445515889289070204, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1445515889289070204, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1445515889289070204, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8264373319829111572, guid: 279253b623ac389468820fffab75a3ed, type: 3}
-      propertyPath: m_Name
-      value: Frigo
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 279253b623ac389468820fffab75a3ed, type: 3}
 --- !u!1001 &1194806494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -640,264 +469,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40855c8cb1bd441a693e74390d5d77e7, type: 3}
---- !u!1 &1225875027
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1225875029}
-  - component: {fileID: 1225875028}
-  m_Layer: 0
-  m_Name: ExperimentManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1225875028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225875027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c7af2a35573a24d83db0ef7e2f6d95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  steps:
-  - stepName: Step0
-    description: Dissoluzione
-    requiredMixture:
-      mixed: 0
-      dried: 0
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 0
-      coolingTime: 0
-      experimentStepReached: -1
-      mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
-      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
-      substances:
-      - substanceName: H2O
-        quantity: 5
-        isSolid: 0
-      - substanceName: Acetone
-        quantity: 5
-        isSolid: 0
-      - substanceName: 2-nitrobenzaldeide
-        quantity: 0.5
-        isSolid: 1
-    resultingMixture:
-      mixed: 0
-      dried: 0
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 0
-      coolingTime: 0
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
-      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
-      substances:
-      - substanceName: 2-nitrobenzaldeide
-        quantity: 0.5
-        isSolid: 0
-      - substanceName: Acqua
-        quantity: 5
-        isSolid: 0
-      - substanceName: Acetone
-        quantity: 5
-        isSolid: 0
-  - stepName: Step1
-    description: Aggiunta di NaOH e cambiamento di colore
-    requiredMixture:
-      mixed: 0
-      dried: 0
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 0
-      coolingTime: 0
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
-      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
-      substances:
-      - substanceName: 2-nitrobenzaldeide
-        quantity: 0.5
-        isSolid: 0
-      - substanceName: Acqua
-        quantity: 5
-        isSolid: 0
-      - substanceName: Acetone
-        quantity: 5
-        isSolid: 0
-      - substanceName: NaOH
-        quantity: 5
-        isSolid: 0
-    resultingMixture:
-      mixed: 0
-      dried: 0
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 0
-      coolingTime: 0
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 1, g: 0.94322073, b: 0.33773577, a: 0}
-      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
-      substances: []
-  - stepName: Step2
-    description: Mescolamento
-    requiredMixture:
-      mixed: 1
-      dried: 0
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 0
-      coolingTime: 0
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 1, g: 0.94509804, b: 0.34117648, a: 0}
-      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
-      substances:
-      - substanceName: 2-nitrobenzaldeide
-        quantity: 0.5
-        isSolid: 0
-      - substanceName: Acetone
-        quantity: 5
-        isSolid: 0
-      - substanceName: Acqua
-        quantity: 5
-        isSolid: 0
-      - substanceName: NaOH
-        quantity: 5
-        isSolid: 0
-    resultingMixture:
-      mixed: 0
-      dried: 0
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 0
-      coolingTime: 0
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 0.3764706, g: 0.07450981, b: 0.6, a: 0}
-      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
-      substances:
-      - substanceName: 2-nitrocinnamaldeide
-        quantity: 15
-        isSolid: 0
-  - stepName: Step3
-    description: Raffreddamento
-    requiredMixture:
-      mixed: 0
-      dried: 0
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 0
-      coolingTime: 10
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 0.37735164, g: 0.075849034, b: 0.5999999, a: 0}
-      mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
-      substances:
-      - substanceName: 2-nitrocinnamaldeide
-        quantity: 15
-        isSolid: 0
-    resultingMixture:
-      mixed: 0
-      dried: 0
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 1
-      coolingTime: 0
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 0.5500744, g: 0.29850477, b: 0.735849, a: 0}
-      mixtureSolidColor: {r: 0.25490198, g: 0, b: 0.44313726, a: 0}
-      substances:
-      - substanceName: 2-nitrocinnamaldeide
-        quantity: 10
-        isSolid: 0
-      - substanceName: Indaco
-        quantity: 5
-        isSolid: 1
-  - stepName: Step4
-    description: Filtraggio
-    requiredMixture:
-      mixed: 0
-      dried: 0
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 0
-      coolingTime: 0
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 0.5529412, g: 0.3019608, b: 0.7372549, a: 0}
-      mixtureSolidColor: {r: 0.25490198, g: 0, b: 0.44313726, a: 0}
-      substances:
-      - substanceName: Indaco
-        quantity: 5
-        isSolid: 1
-    resultingMixture:
-      mixed: 0
-      dried: 0
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 0
-      coolingTime: 0
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 0.5529412, g: 0.3019608, b: 0.7372549, a: 0}
-      mixtureSolidColor: {r: 0.25471693, g: 0, b: 0.4415095, a: 1}
-      substances:
-      - substanceName: Indaco
-        quantity: 5
-        isSolid: 1
-  - stepName: Step5
-    description: Essicazione
-    requiredMixture:
-      mixed: 0
-      dried: 0
-      dryingTime: 10
-      dryingTemperature: 60
-      cooled: 0
-      coolingTime: 0
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 0.5529412, g: 0.3019608, b: 0.7372549, a: 0}
-      mixtureSolidColor: {r: 0.24600862, g: 0, b: 0.4264151, a: 1}
-      substances:
-      - substanceName: Indaco
-        quantity: 5
-        isSolid: 1
-    resultingMixture:
-      mixed: 0
-      dried: 1
-      dryingTime: 0
-      dryingTemperature: 0
-      cooled: 0
-      coolingTime: 0
-      experimentStepReached: 0
-      mixtureLiquidColor: {r: 0.5529412, g: 0.3019608, b: 0.7372549, a: 0}
-      mixtureSolidColor: {r: 0.29411766, g: 0, b: 0.50980395, a: 0}
-      substances:
-      - substanceName: Indaco
-        quantity: 5
-        isSolid: 1
-  numMixturePerStep: 
-  highestStepReached: 0
-  assistant: {fileID: 0}
---- !u!4 &1225875029
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225875027}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.677349, y: -8.545864, z: 6.4948564}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1226213818 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4987852041541794690, guid: 69b47f829cf27448a8397c440d3cd9da, type: 3}
@@ -1013,7 +584,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a744ec6149ddab04da195014062605b7, type: 3}
---- !u!1001 &1279006398
+--- !u!1001 &1257905832
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1021,79 +592,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1331933836048871357, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1331933836048871357, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1331933836048871357, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1331933836048871357, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1331933836048871357, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1331933836048871357, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2140402882204370843, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
-      propertyPath: m_Name
-      value: Forno
-      objectReference: {fileID: 0}
-    - target: {fileID: 8696438514183441147, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+    - target: {fileID: -8679921383154817045, guid: a6933c4882105f1429f0081436cae08b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.493
+      value: -7.444
       objectReference: {fileID: 0}
-    - target: {fileID: 8696438514183441147, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+    - target: {fileID: -8679921383154817045, guid: a6933c4882105f1429f0081436cae08b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.9632923
       objectReference: {fileID: 0}
-    - target: {fileID: 8696438514183441147, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+    - target: {fileID: -8679921383154817045, guid: a6933c4882105f1429f0081436cae08b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.311
+      value: -11.331
       objectReference: {fileID: 0}
-    - target: {fileID: 8696438514183441147, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+    - target: {fileID: -8679921383154817045, guid: a6933c4882105f1429f0081436cae08b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8696438514183441147, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+    - target: {fileID: -8679921383154817045, guid: a6933c4882105f1429f0081436cae08b, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8696438514183441147, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+    - target: {fileID: -8679921383154817045, guid: a6933c4882105f1429f0081436cae08b, type: 3}
       propertyPath: m_LocalRotation.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8696438514183441147, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+    - target: {fileID: -8679921383154817045, guid: a6933c4882105f1429f0081436cae08b, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8696438514183441147, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+    - target: {fileID: -8679921383154817045, guid: a6933c4882105f1429f0081436cae08b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8696438514183441147, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+    - target: {fileID: -8679921383154817045, guid: a6933c4882105f1429f0081436cae08b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
-    - target: {fileID: 8696438514183441147, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+    - target: {fileID: -8679921383154817045, guid: a6933c4882105f1429f0081436cae08b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a6933c4882105f1429f0081436cae08b, type: 3}
+      propertyPath: m_Name
+      value: Forno v4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a6933c4882105f1429f0081436cae08b, type: 3}
 --- !u!1001 &1510821429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1675,6 +1222,63 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1226213826}
   m_SourcePrefab: {fileID: 100100000, guid: 69b47f829cf27448a8397c440d3cd9da, type: 3}
+--- !u!1001 &4808688617188381914
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3363889600086663729, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_Name
+      value: Frigo v2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.017199168
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
 --- !u!1001 &5043759946000714157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1794,14 +1398,13 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1726320048}
+  - {fileID: 1511175658}
   - {fileID: 4461379628177709967}
   - {fileID: 34736666}
   - {fileID: 1942016825}
   - {fileID: 386556722}
-  - {fileID: 980604056}
   - {fileID: 2451156250132878918}
   - {fileID: 1257761213}
-  - {fileID: 1511175658}
   - {fileID: 1510821429}
   - {fileID: 1819751522889902324}
   - {fileID: 8082913366142979703}
@@ -1811,7 +1414,5 @@ SceneRoots:
   - {fileID: 58890087}
   - {fileID: 1898070916}
   - {fileID: 651024227}
-  - {fileID: 303538627}
-  - {fileID: 659788923}
-  - {fileID: 1225875029}
-  - {fileID: 1279006398}
+  - {fileID: 1257905832}
+  - {fileID: 4808688617188381914}

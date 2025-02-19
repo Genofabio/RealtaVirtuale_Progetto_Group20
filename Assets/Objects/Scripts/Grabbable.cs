@@ -12,8 +12,8 @@ public class Grabbable : MonoBehaviour
     private Transform rotationPourPivot;
     private bool isRotating;
 
-    private float minRotationAngle = -90f; // Angolo minimo di inclinazione
-    private float maxRotationAngle = 0f;  // Angolo massimo di inclinazione
+    private float minRotationAngle = 0; // Angolo minimo di inclinazione
+    private float maxRotationAngle = -180f; // Angolo massimo di inclinazione
 
     private float currentRotationAngle = 0f; // Angolo attuale dell'oggetto
     private float initialRotationAngle = 0f; // Angolo iniziale dell'oggetto
@@ -48,7 +48,8 @@ public class Grabbable : MonoBehaviour
         audioSource = GetComponent<AudioSource>(); // Assicurati che l'oggetto abbia un AudioSource
 
         actualPivotPoint = transform; // Di default il pivot è l'oggetto stesso
-    
+        rotationPourPivot = transform;
+
         defaultInterpolation = objectRigidbody.interpolation;
         defaultLinearDamping = objectRigidbody.linearDamping;
 
@@ -102,7 +103,7 @@ public class Grabbable : MonoBehaviour
             {
                 Vector3 correctionAxis = Vector3.Cross(transform.up, Vector3.up);
                 float correctionMagnitude = correctionAxis.magnitude;
-                objectRigidbody.AddTorque(correctionAxis.normalized * correctionMagnitude * 20f);
+                objectRigidbody.AddTorque(correctionAxis.normalized * correctionMagnitude * 40 * 20f);
             }
             else if (isRotating)
             {
@@ -111,17 +112,18 @@ public class Grabbable : MonoBehaviour
                     float baseRotationSpeed = -27f * Time.deltaTime;
                     float rotationSpeed = baseRotationSpeed;
 
-                    if (currentRotationAngle >= minRotationAngle && currentRotationAngle >= initialRotationAngle && currentRotationAngle <= maxRotationAngle)
+                    if (currentRotationAngle >= initialRotationAngle)
                     {
                         rotationSpeed *= 10f;
                     }
 
                     float newRotationAngle = currentRotationAngle + rotationSpeed;
 
-                    if (newRotationAngle >= minRotationAngle && newRotationAngle <= maxRotationAngle)
+                    if (newRotationAngle <= minRotationAngle && newRotationAngle >= maxRotationAngle)
                     {
                         transform.RotateAround(rotationPourPivot.position, transform.right, rotationSpeed);
                         currentRotationAngle = newRotationAngle; // Aggiorna l'angolo attuale
+                        Debug.Log("Current rotation angle: " + currentRotationAngle);
                     }
                 }
             }
@@ -215,8 +217,29 @@ public class Grabbable : MonoBehaviour
     {
         isRotating = true;
 
+        objectRigidbody.isKinematic = true;
+
         rotationPourPivot = pivotPoint;
-        initialRotationAngle = initialRotation;
+
+        initialRotationAngle = initialRotation-90f;
+        //Debug.Log("Initial rotation angle: " + initialRotationAngle);
+
+        // L'asse di rotazione è "right"
+        Vector3 rotationAxis = transform.right;
+
+        // Proietta la direzione 'forward' dell'oggetto sul piano di rotazione
+        Vector3 projectedForward = Vector3.ProjectOnPlane(transform.forward, rotationAxis);
+
+        // Usa Vector3.down come riferimento invece di Vector3.forward
+        Vector3 referenceDirection = Vector3.ProjectOnPlane(Vector3.down, rotationAxis);
+
+        // Calcola l'angolo rispetto alla nuova direzione di riferimento (Vector3.down)
+        float angleRelativeToPivot = Vector3.SignedAngle(referenceDirection, projectedForward, rotationAxis);
+
+        // Salviamo l'angolo attuale con il nuovo sistema di riferimento
+        currentRotationAngle = angleRelativeToPivot;
+
+        //Debug.Log("Current rotation angle (Y-negative reference): " + currentRotationAngle);
 
         GameObject tempPivot = new GameObject("TempPivot");
         tempPivot.transform.position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
@@ -230,6 +253,8 @@ public class Grabbable : MonoBehaviour
         isRotating = false;
         actualPivotPoint = transform; // Usa il pivot di default
         currentRotationAngle = 0f; // Resetta l'angolo
+        initialRotationAngle = 0f; // Resetta l'angolo iniziale
+        objectRigidbody.isKinematic = false;
     }
 
     public void DeleteLineRenderer()
