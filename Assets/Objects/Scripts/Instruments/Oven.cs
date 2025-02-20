@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Audio;
+using UnityEngine.AI;
 
 public class Oven : MonoBehaviour, Openable
 {
@@ -28,6 +29,10 @@ public class Oven : MonoBehaviour, Openable
     [SerializeField] private GameObject panelStopped;
 
     private AudioSource audioSource;
+
+    private bool isPaused = false;
+
+    private bool wasCooking = false;
 
     public bool IsOpen { get; set;  } = false;
     public bool IsEmpty { get; set; } = true;
@@ -159,6 +164,25 @@ public class Oven : MonoBehaviour, Openable
         powerText.text = "" + temperature + "°C";
     }
 
+    public void TogglePause()
+    {
+        isPaused = !isPaused; // Inverti lo stato della pausa
+
+        if (isPaused)
+        {
+            wasCooking = true;
+            StopCooking();
+        }
+        else
+        {
+            if (wasCooking)
+            {
+                wasCooking = false;
+                StartCooking();
+            }
+        }
+    }
+
     public void ToggleCooking()
     {
         if (IsCooking)
@@ -167,7 +191,7 @@ public class Oven : MonoBehaviour, Openable
         }
         else if (!IsOpen && !IsEmpty)
         {
-            StartCooking();
+                StartCooking();
         }
     }
 

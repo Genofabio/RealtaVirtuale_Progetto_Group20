@@ -20,6 +20,9 @@ public class Fridge : MonoBehaviour
 
     private Coroutine freezeRoutine;
 
+    private bool isPaused = false;
+    private bool wasCooling = false;
+
     [SerializeField] private Assistant assistant;
 
     private SubstanceMixture coolingMixtureContained = null;
@@ -81,6 +84,28 @@ public class Fridge : MonoBehaviour
             StartCoroutine(OpenDoorCoroutine());
             GetComponent<AudioSource>().clip = audioList[1]; // Suono apertura
             GetComponent<AudioSource>().Play();
+        }
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused; // Inverti lo stato della pausa
+
+        if (isPaused)
+        {
+            if(freezeRoutine != null)
+            {
+                wasCooling = true;
+                StopCoroutine(freezeRoutine);
+            }
+        }
+        else
+        {
+            if (wasCooling)
+            {
+                wasCooling = false;
+                freezeRoutine = StartCoroutine(FreezeCoroutine());
+            }
         }
     }
 
