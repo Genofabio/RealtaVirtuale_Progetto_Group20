@@ -7,15 +7,12 @@ using UnityEngine.UI;
 public class Assistant : MonoBehaviour
 {
     [Header("Visual")]
-    [SerializeField] Canvas screen;
-    //[SerializeField] private List<Sprite> images; 
     [SerializeField] private Image displayImage;
     [SerializeField] private Image success;
     [SerializeField] private Image failure;
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
-    //[SerializeField] private List<AudioClip> audioList;
     [SerializeField] private AudioClip successClip;
     [SerializeField] private AudioClip failureClip;
     private float delayBetweenAudios = 0.5f;
