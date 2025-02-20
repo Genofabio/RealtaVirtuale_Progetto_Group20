@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 9048648753796456339}
   - component: {fileID: 996632197280841613}
   - component: {fileID: 2143758820875862118}
+  - component: {fileID: 1265139765391618614}
+  - component: {fileID: 1316197523595446355}
   m_Layer: 0
   m_Name: Anta.001
   m_TagString: Untagged
@@ -86,6 +88,41 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1265139765391618614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671886891891492370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d750cf008b61524aa653f19ac61e861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openAngle: 90
+  rotationAxis: {x: 0, y: 1, z: 0}
+--- !u!65 &1316197523595446355
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671886891891492370}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.00086151, y: 0.009074248, z: 0.0067728036}
+  m_Center: {x: -0.000430755, y: 0.0000000011641532, z: 0.0033864013}
 --- !u!1 &3633153379807036456
 GameObject:
   m_ObjectHideFlags: 0

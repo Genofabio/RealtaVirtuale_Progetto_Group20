@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7179432864476369258}
+  - component: {fileID: 1896605608130633662}
   m_Layer: 0
   m_Name: Porta v1 1
   m_TagString: Untagged
@@ -37,6 +38,27 @@ Transform:
   - {fileID: 141972452155651672}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1896605608130633662
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308089688775085192}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1931749, y: 2.8415194, z: 1.7400494}
+  m_Center: {x: -0.009638697, y: 0.038723707, z: 0}
 --- !u!1 &2326462826535651036
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,6 +70,7 @@ GameObject:
   - component: {fileID: 8044889280325685922}
   - component: {fileID: 2992350528242056441}
   - component: {fileID: 4734286402299373296}
+  - component: {fileID: 4976182450231347686}
   m_Layer: 0
   m_Name: Maniglia
   m_TagString: Untagged
@@ -123,6 +146,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4976182450231347686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2326462826535651036}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.00024966314, y: 0.012192888, z: 0.00055209326}
+  m_Center: {x: -0.0023729345, y: 0, z: -0.0016317861}
 --- !u!1 &2746325869261910509
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +351,7 @@ GameObject:
   - component: {fileID: 7594339632528275561}
   - component: {fileID: 7354120278183697187}
   - component: {fileID: 3248922018718994279}
+  - component: {fileID: 4033043068972714954}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -382,6 +427,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4033043068972714954
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5209922083674704374}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0016558522, y: 0.0007732272, z: 0.0018312056}
+  m_Center: {x: -0.0018024225, y: -0.006277779, z: -0.0011854743}
 --- !u!1 &5947583719690190160
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +718,7 @@ GameObject:
   - component: {fileID: 9110716418434918446}
   - component: {fileID: 2158124141570455386}
   - component: {fileID: 8632723569336942102}
+  - component: {fileID: 5494982954359155320}
   m_Layer: 0
   m_Name: Plane.003
   m_TagString: Untagged
@@ -727,3 +794,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5494982954359155320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8986761834671888339}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0016558522, y: 0.0007732272, z: 0.0018312056}
+  m_Center: {x: -0.0018024225, y: 0.006277778, z: -0.0011854743}
