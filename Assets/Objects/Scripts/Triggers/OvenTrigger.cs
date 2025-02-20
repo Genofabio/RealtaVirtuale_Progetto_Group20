@@ -13,6 +13,10 @@ public class OvenTrigger : MonoBehaviour
         if (fillable != null && fillable.GetContainedSubstanceMixture() != null)
         {
             oven.InsertIntoOven(other.gameObject);
+            if (fillable.GetContainedSubstanceMixture().ExperimentStepReached == 4)
+            {
+                oven.CookingMixtureContained = fillable.GetContainedSubstanceMixture();
+            }
         }
     }
     
@@ -24,6 +28,7 @@ public class OvenTrigger : MonoBehaviour
         if (fillable != null && fillable.GetContainedSubstanceMixture() != null)
         {
             oven.RemoveFromOven(other.gameObject);
+            oven.CookingMixtureContained = null;
         }
     }
 }

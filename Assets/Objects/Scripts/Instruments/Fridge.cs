@@ -20,6 +20,16 @@ public class Fridge : MonoBehaviour
 
     private Coroutine freezeRoutine;
 
+    [SerializeField] private Assistant assistant;
+
+    private SubstanceMixture coolingMixtureContained = null;
+
+    public SubstanceMixture CoolingMixtureContained
+    {
+        get { return coolingMixtureContained; }
+        set { coolingMixtureContained = value; }
+    }
+
     private void Start()
     {
         door = transform.Find("Porta");
@@ -46,6 +56,13 @@ public class Fridge : MonoBehaviour
         openRotation = Quaternion.Euler(closedRotation.eulerAngles.x, closedRotation.eulerAngles.y + 90, closedRotation.eulerAngles.z);
     }
 
+    private void Update()
+    {
+        if(coolingMixtureContained != null && !IsOpen)
+        {
+            assistant.notifyStateProcessingTime(coolingMixtureContained.CoolingTime);
+        }
+    }
     public void ToggleDoor()
 {
     if (IsMoving)
