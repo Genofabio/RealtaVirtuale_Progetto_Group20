@@ -360,8 +360,8 @@ Transform:
   m_GameObject: {fileID: 8898882561317897154}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.67396027, y: 0.62, z: 4.21967}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 110, y: 110, z: 110}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8121154338418854863}
@@ -429,7 +429,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8898882561317897154}
   serializedVersion: 4
-  m_Mass: 30
+  m_Mass: 40
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -447,7 +447,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4307994501069234516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,6 +502,7 @@ MonoBehaviour:
     mixed: 0
     dried: 0
     dryingTime: 0
+    dryingTemperature: 0
     cooled: 0
     coolingTime: 0
     experimentStepReached: 0
