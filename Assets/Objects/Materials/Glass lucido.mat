@@ -7,12 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glass 1
+  m_Name: Glass lucido
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 2100000, guid: 4610ca6589e00144e9f6a2b767b2038b, type: 2}
   m_ModifiedSerializedProperties: 18
   m_ValidKeywords:
-  - _ALPHAPREMULTIPLY_ON
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -47,11 +46,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BlendModePreserveSpecular: 0
     - _DetailAlbedoMapScale: 1
     - _DstBlend: 10
     - _DstBlendAlpha: 10
     - _Metallic: 0.416
-    - _Smoothness: 0.77
+    - _Smoothness: 1
+    - _SrcBlend: 5
     - _Surface: 1
     - _ZWrite: 0
     m_Colors:

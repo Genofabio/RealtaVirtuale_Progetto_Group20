@@ -64,24 +64,29 @@ public class Fridge : MonoBehaviour
         }
     }
     public void ToggleDoor()
-{
-    if (IsMoving)
     {
-        return;
+        if (IsMoving)
+        {
+            return;
+        }
+        if (IsOpen)
+        {
+            StartCoroutine(CloseDoorCoroutine());
+            GetComponent<AudioSource>().clip = audioList[0]; // Suono chiusura
+            GetComponent<AudioSource>().Play();
+        }
+        else
+        {
+            StartCoroutine(OpenDoorCoroutine());
+            GetComponent<AudioSource>().clip = audioList[1]; // Suono apertura
+            GetComponent<AudioSource>().Play();
+        }
     }
-    if (IsOpen)
+
+    public bool IsOpened()
     {
-        StartCoroutine(CloseDoorCoroutine());
-        GetComponent<AudioSource>().clip = audioList[0]; // Suono chiusura
-        GetComponent<AudioSource>().Play();
+        return IsOpen;
     }
-    else
-    {
-        StartCoroutine(OpenDoorCoroutine());
-        GetComponent<AudioSource>().clip = audioList[1]; // Suono apertura
-        GetComponent<AudioSource>().Play();
-    }
-}
 
     private IEnumerator OpenDoorCoroutine()
     {

@@ -656,7 +656,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8736989667515401050, guid: a6933c4882105f1429f0081436cae08b, type: 3}
+  - {fileID: 2100000, guid: 0fee75785b14d9d44af44aefe32614cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3218,6 +3218,7 @@ MonoBehaviour:
   powerText: {fileID: 2496723288402183798}
   panelDrying: {fileID: 640409369442437010}
   panelStopped: {fileID: 5799905267342167033}
+  assistant: {fileID: 0}
 --- !u!65 &8000589356869135193
 BoxCollider:
   m_ObjectHideFlags: 0
