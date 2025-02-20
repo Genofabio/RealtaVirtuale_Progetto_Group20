@@ -1727,7 +1727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.quantity
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
@@ -3296,7 +3296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.quantity
-      value: 100
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
@@ -5112,7 +5112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.quantity
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
@@ -5539,7 +5539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.quantity
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
@@ -6690,7 +6690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.quantity
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
@@ -6767,7 +6767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.quantity
-      value: 100
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
@@ -7340,7 +7340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.quantity
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
@@ -8722,7 +8722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.quantity
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
