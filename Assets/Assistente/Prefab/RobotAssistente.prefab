@@ -3414,6 +3414,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f76d96e4e0bffc94e857cb6f10233101, type: 3}
   - {fileID: 21300000, guid: ceb4ff5c0dd3b914ebab68f6cc5b7727, type: 3}
   - {fileID: 21300000, guid: fc89f330e634bf94c9a76c82b30a6982, type: 3}
+  endScreen: {fileID: 5477845394322031052}
 --- !u!64 &6254451080289551489
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3454,7 +3455,6 @@ MonoBehaviour:
   audioSource: {fileID: 6671252140542879236}
   successClip: {fileID: 8300000, guid: dac177c964a708c4386ee56b4b5bfa3f, type: 3}
   failureClip: {fileID: 8300000, guid: 7235ed1b28ebad84da334c4b9a6d2a2c, type: 3}
-  endScreen: {fileID: 5477845394322031052}
 --- !u!195 &6016040605126971500
 NavMeshAgent:
   m_ObjectHideFlags: 0
