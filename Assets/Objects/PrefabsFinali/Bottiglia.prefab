@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 8930778623583798917}
   - component: {fileID: 3343038887056261274}
   - component: {fileID: 9184788431591987153}
+  - component: {fileID: 13113279587535592}
   m_Layer: 0
   m_Name: Bottiglia
   m_TagString: Untagged
@@ -308,7 +309,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9059707237199990278}
@@ -418,7 +419,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4496984331139830320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,6 +572,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &13113279587535592
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878301506548785651}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.070000015
+  m_Height: 0.35683042
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.178585, z: -0.00000000372529}
 --- !u!1 &2291140448363560747
 GameObject:
   m_ObjectHideFlags: 0
