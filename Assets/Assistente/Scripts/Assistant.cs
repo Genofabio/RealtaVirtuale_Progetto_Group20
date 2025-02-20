@@ -27,7 +27,7 @@ public class Assistant : MonoBehaviour
     [SerializeField] private GameObject timerScreen;
     [SerializeField] private TextMeshProUGUI timeText;
     private Coroutine hideTimerCoroutine;
-    private float hideDelay = 1.0f; // Tempo di attesa prima di nascondere il timer
+    private float hideDelay = 0.5f; // Tempo di attesa prima di nascondere il timer
 
     private void Awake()
     {
