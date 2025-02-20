@@ -2341,6 +2341,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1265139765391618614, guid: 40855c8cb1bd441a693e74390d5d77e7, type: 3}
+      propertyPath: rotationAxis.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265139765391618614, guid: 40855c8cb1bd441a693e74390d5d77e7, type: 3}
+      propertyPath: rotationAxis.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265139765391618614, guid: 40855c8cb1bd441a693e74390d5d77e7, type: 3}
+      propertyPath: rotationAxis.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4071101623936622945, guid: 40855c8cb1bd441a693e74390d5d77e7, type: 3}
       propertyPath: m_Name
       value: Lavandino v1 (1)
