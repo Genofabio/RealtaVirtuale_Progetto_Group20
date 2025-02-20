@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8478254400060398920}
   - component: {fileID: 5241848405933983187}
   - component: {fileID: 8774200120308039336}
+  - component: {fileID: 4525899619835594559}
   m_Layer: 0
   m_Name: Cornice
   m_TagString: Untagged
@@ -172,6 +173,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4525899619835594559
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4404065339033437507}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02, y: 0.019999996, z: 0.019999996}
+  m_Center: {x: 0, y: -0.000000014901161, z: 0}
 --- !u!1 &5674102792947180994
 GameObject:
   m_ObjectHideFlags: 0
