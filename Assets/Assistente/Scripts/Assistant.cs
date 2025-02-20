@@ -19,7 +19,6 @@ public class Assistant : MonoBehaviour
     private float delayBetweenAudios = 0.5f;
 
     [Header("Other")]
-    [SerializeField] private GameObject endScreen;
     private MovementController movementController;
 
     private int highestStepReached;
@@ -146,7 +145,7 @@ public class Assistant : MonoBehaviour
         // Attiva il timer screen
         timerScreen.SetActive(true);
 
-        // Reset della coroutine se sta già contando per spegnere lo schermo
+        // Reset della coroutine se sta giï¿½ contando per spegnere lo schermo
         if (hideTimerCoroutine != null)
         {
             StopCoroutine(hideTimerCoroutine);

@@ -322,7 +322,7 @@ MonoBehaviour:
   intact: {fileID: 1243112997693647100}
   convexHull: {fileID: 0}
   broken: {fileID: 616249915894822937}
-  breakForceThreshold: 5
+  breakForceThreshold: 4
   grabbedBreakForceThreshold: 20
   destructionDelay: 5
   breakSound: {fileID: 8300000, guid: 59b117bf8525aaa49905de2d9f741697, type: 3}

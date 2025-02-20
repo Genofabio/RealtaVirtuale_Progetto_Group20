@@ -27,6 +27,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] private Image displayImage;
     [SerializeField] private List<Sprite> images;
     private List<Sprite> tempImageList;
+    [SerializeField] private GameObject endScreen;
 
     private int[] times;
 
@@ -50,6 +51,8 @@ public class MovementController : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
         yRobot = transform.position.y;
+
+        endScreen.SetActive(false);
 
         CheckStepAndMove();
 
@@ -114,6 +117,7 @@ public class MovementController : MonoBehaviour
             times = new int[] { 12 };
             tempAudioList = new List<AudioClip> { audioList[4] };
             tempImageList = new List<Sprite> { images[1] };
+            displayImage.sprite = tempImageList[0];
         }
         else if (highestStepReached == 0) // Da fare: Aggiunta NaOH
         {
@@ -121,6 +125,7 @@ public class MovementController : MonoBehaviour
             times = new int[] { 6, 6 };
             tempAudioList = new List<AudioClip> { audioList[5], null };
             tempImageList = new List<Sprite> { images[2], null };
+            displayImage.sprite = tempImageList[0];
         }
         else if (highestStepReached == 1) // Da fare: Mix
         {
@@ -128,6 +133,7 @@ public class MovementController : MonoBehaviour
             times = new int[] { 7, 6 };
             tempAudioList = new List<AudioClip> { audioList[6], null };
             tempImageList = new List<Sprite> { images[9], images[3] };
+            displayImage.sprite = tempImageList[0];
         }
         else if (highestStepReached == 2) // Da fare: frigo
         {
@@ -135,6 +141,7 @@ public class MovementController : MonoBehaviour
             times = new int[] { 8 };
             tempAudioList = new List<AudioClip> { audioList[7] };
             tempImageList = new List<Sprite> { images[4] };
+            displayImage.sprite = tempImageList[0];
         }
         else if (highestStepReached == 3) // Da fare: Imbuto
         {
@@ -142,6 +149,7 @@ public class MovementController : MonoBehaviour
             times = new int[] { 6, 1 };
             tempAudioList = new List<AudioClip> { audioList[8], null };
             tempImageList = new List<Sprite> { images[5], null };
+            displayImage.sprite = tempImageList[0];
         }
         else if (highestStepReached == 4) // Da fare: Vetrino e forno
         {
@@ -149,6 +157,7 @@ public class MovementController : MonoBehaviour
             times = new int[] { 4, 5 };
             tempAudioList = new List<AudioClip> { audioList[9], null };
             tempImageList = new List<Sprite> { images[6], null };
+            displayImage.sprite = tempImageList[0];
         }
         else if (highestStepReached == 5)
         {
@@ -211,6 +220,12 @@ public class MovementController : MonoBehaviour
             }
 
         }
+
+        if(highestStepReached == 5)
+        {
+            endScreen.SetActive(true);
+        }
+
         Debug.Log("esce dal while");
         pathCompleted = true;
     }
