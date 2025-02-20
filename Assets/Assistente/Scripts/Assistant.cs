@@ -7,15 +7,12 @@ using UnityEngine.UI;
 public class Assistant : MonoBehaviour
 {
     [Header("Visual")]
-    [SerializeField] Canvas screen;
-    [SerializeField] private List<Sprite> images; 
     [SerializeField] private Image displayImage;
     [SerializeField] private Image success;
     [SerializeField] private Image failure;
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private List<AudioClip> audioList;
     [SerializeField] private AudioClip successClip;
     [SerializeField] private AudioClip failureClip;
     private float delayBetweenAudios = 0.5f;
@@ -28,23 +25,23 @@ public class Assistant : MonoBehaviour
 
     private void Awake()
     {
-        audioSource.clip = audioList[0];
-        audioSource.Play();
+        //audioSource.clip = audioList[0];
+        //audioSource.Play();
         movementController = GetComponent<MovementController>();
     }
     void Start()
     {
         highestStepReached = -1;
 
-        if (displayImage != null && images.Count > 0)
-        {
-            displayImage.sprite = images[0];
-        }
+        //if (displayImage != null && images.Count > 0)
+        //{
+        //    displayImage.sprite = images[0];
+        //}
 
-        if (audioSource != null && audioList.Count > 0)
-        {
-            audioSource.clip = audioList[0];
-        }
+        //if (audioSource != null && audioList.Count > 0)
+        //{
+        //    audioSource.clip = audioList[0];
+        //}
 
         endScreen.SetActive(false);
     }
@@ -67,7 +64,7 @@ public class Assistant : MonoBehaviour
         }
 
         UpdatePath();
-        UpdateImage();
+        //UpdateImage();
         StartCoroutine(PlayStepAudioWithDelay(isSuccess));
     }
 
@@ -86,27 +83,28 @@ public class Assistant : MonoBehaviour
             movementController.NotifyNewStep(highestStepReached);
         }
     }
-    private void UpdateImage()
-    {
-        if (displayImage != null && highestStepReached < images.Count - 1)
-        {
-            displayImage.sprite = images[highestStepReached + 1]; 
-        } else
-        {
-            StartCoroutine(PlayStepAudioWithDelay(true));
-            endScreen.SetActive(true);
-            Debug.Log("Congratulazioni" + highestStepReached);
-        }
-    }
 
-    public void RepeteStep()
-    {
-        if (audioSource != null && (highestStepReached + 1) < audioList.Count)
-        {
-            audioSource.clip = audioList[highestStepReached + 1];
-            audioSource.Play();
-        }
-    }
+    //private void UpdateImage()
+    //{
+    //    if (displayImage != null && highestStepReached < images.Count - 1)
+    //    {
+    //        displayImage.sprite = images[highestStepReached + 1]; 
+    //    } else
+    //    {
+    //        StartCoroutine(PlayStepAudioWithDelay(true));
+    //        endScreen.SetActive(true);
+    //        Debug.Log("Congratulazioni" + highestStepReached);
+    //    }
+    //}
+
+    //public void RepeteStep()
+    //{
+    //    if (audioSource != null && (highestStepReached + 1) < audioList.Count)
+    //    {
+    //        audioSource.clip = audioList[highestStepReached + 1];
+    //        audioSource.Play();
+    //    }
+    //}
 
     private IEnumerator PlayStepAudioWithDelay(bool isSuccess)
     {
@@ -123,10 +121,10 @@ public class Assistant : MonoBehaviour
         }
 
         // Dopo il ritardo, riproduce l'audio dello step corrispondente
-        if (audioSource != null && (highestStepReached + 1) < audioList.Count)
-        {
-            audioSource.clip = audioList[highestStepReached + 1];
-            audioSource.Play();
-        }
+        //if (audioSource != null && (highestStepReached + 1) < audioList.Count)
+        //{
+        //    audioSource.clip = audioList[highestStepReached + 1];
+        //    audioSource.Play();
+        //}
     }
 }

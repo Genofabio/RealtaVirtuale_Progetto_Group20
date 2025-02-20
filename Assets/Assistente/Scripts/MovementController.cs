@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
-using UnityEngine.UIElements;
-using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MovementController : MonoBehaviour
 {
-    private NavMeshAgent _navMeshAgent;
+    [Header("Positions")]
     public Transform player;
     public Transform pos0;
     public Transform pos1;
@@ -17,18 +16,29 @@ public class MovementController : MonoBehaviour
     public Transform pos5;
     public Transform pos6;
     public Transform pos7;
-    private bool pathCompleted = false;
+    private NavMeshAgent _navMeshAgent;
+
+    [Header("Audio")]
+    [SerializeField] private List<AudioClip> audioList;
+    [SerializeField] private AudioSource audioSource;
+    private List<AudioClip> tempAudioList;
+
+    [Header("Images")]
+    [SerializeField] private Image displayImage;
+    [SerializeField] private List<Sprite> images;
+    private List<Sprite> tempImageList;
 
     private int[] times;
 
-    [SerializeField] private List<AudioClip> audioList;
-
+    private bool justStarted = true;
 
     private bool newStepReached = false;
     private int highestStepReached = -1;
 
     private Transform[] positions;  // Array delle posizioni
     private int currentIndex = 0;   // Indice della posizione corrente
+    private bool pathCompleted = false;
+    private Coroutine movementRoutine;
 
     private float yRobot;
 
@@ -68,14 +78,18 @@ public class MovementController : MonoBehaviour
         // Applica la fluttuazione alla posizione dell'oggetto
         transform.position = new Vector3(transform.position.x, yRobot + newY, transform.position.z);
 
-        if (pathCompleted = true && newStepReached)
+        if (newStepReached)
         {
-            Debug.Log("pathCompleted = true && newStepReached");
+            if (pathCompleted != true && movementRoutine != null)
+            {
+                StopCoroutine(movementRoutine);
+            }
+            justStarted = false;
             CheckStepAndMove();
         }
     }
 
-    public void NotifyNewStep(int highestStepReached) 
+    public void NotifyNewStep(int highestStepReached)
     {
         this.highestStepReached = highestStepReached;
         newStepReached = true;
@@ -84,51 +98,65 @@ public class MovementController : MonoBehaviour
     private void CheckStepAndMove()
     {
         //Debug.Log("entraa??? " + highestStepReached);
-        if (highestStepReached == -1)
+        if(justStarted)
         {
-            positions = new Transform[] { pos0, pos1, pos2, pos3, posX };
-            times = new int[] { 2, 2, 2, 2, 2 };
-            //audioList = new List<AudioClip> { audioList[0], audioList[1], audioList[2], audioList[3], audioList[4] };
+            positions = new Transform[] { pos0, pos2, pos1, pos3, posX };
+            times = new int[] { 12, 10, 13, 13, 11};
+            tempAudioList = new List<AudioClip> { audioList[0], audioList[1], audioList[2], audioList[3], audioList[4] };
+            tempImageList = new List<Sprite> { images[0], images[7], images[8], images[0], images[1] };
         }
-        else if (highestStepReached == 0)
+        else if (highestStepReached == -1 && !justStarted) // Da fare: Mix sostanze
+        {
+            positions = new Transform[] { posX };
+            times = new int[] { 12 };
+            tempAudioList = new List<AudioClip> { audioList[4] };
+            tempImageList = new List<Sprite> { images[1] };
+        }
+        else if (highestStepReached == 0) // Da fare: Aggiunta NaOH
         {
             positions = new Transform[] { pos1, posX };
-            times = new int[] { 5, 5 };
-            //audioList = new List<AudioClip> { audioList[1], audioList[3] };
+            times = new int[] { 6, 6 };
+            tempAudioList = new List<AudioClip> { audioList[5], null };
+            tempImageList = new List<Sprite> { images[2], null };
         }
-        else if (highestStepReached == 1)
+        else if (highestStepReached == 1) // Da fare: Mix
         {
             positions = new Transform[] { pos5, posX };
-            times = new int[] { 5, 5 };
-            //audioList = new List<AudioClip> { audioList[2], audioList[3] };
+            times = new int[] { 7, 6 };
+            tempAudioList = new List<AudioClip> { audioList[6], null };
+            tempImageList = new List<Sprite> { images[9], images[3] };
         }
-        else if (highestStepReached == 2)
+        else if (highestStepReached == 2) // Da fare: frigo
         {
             positions = new Transform[] { pos6 };
-            times = new int[] { 5 };
-            //audioList = new List<AudioClip> { audioList[3] };
+            times = new int[] { 8 };
+            tempAudioList = new List<AudioClip> { audioList[7] };
+            tempImageList = new List<Sprite> { images[4] };
         }
-        else if (highestStepReached == 3)
+        else if (highestStepReached == 3) // Da fare: Imbuto
         {
             positions = new Transform[] { pos5, posX };
-            times = new int[] { 5, 5 };
-            //audioList = new List<AudioClip> { audioList[2], audioList[3] };
+            times = new int[] { 6, 1 };
+            tempAudioList = new List<AudioClip> { audioList[8], null };
+            tempImageList = new List<Sprite> { images[5], null };
         }
-        else if (highestStepReached == 4)
+        else if (highestStepReached == 4) // Da fare: Vetrino e forno
         {
-            positions = new Transform[] { pos5, posX };
-            times = new int[] { 5, 5 };
-            //audioList = new List<AudioClip> { audioList[2], audioList[3] };
+            positions = new Transform[] { pos5, pos7 };
+            times = new int[] { 4, 5 };
+            tempAudioList = new List<AudioClip> { audioList[9], null };
+            tempImageList = new List<Sprite> { images[6], null };
         }
         else if (highestStepReached == 5)
         {
-            positions = new Transform[] { pos7 };
-            times = new int[] { 5 };
-            //audioList = new List<AudioClip> { audioList[3] };
+            positions = new Transform[] { pos0 };
+            times = new int[] { 13 };
+            tempAudioList = new List<AudioClip> { audioList[10] };
+            tempImageList = new List<Sprite> { null };
         }
         //Debug.Log("positions: " + string.Join(", ", positions.Select(p => p.name)));
-        
-        StartCoroutine(MoveBetweenPositions());
+
+        movementRoutine = StartCoroutine(MoveBetweenPositions());
     }
 
     IEnumerator MoveBetweenPositions()
@@ -150,15 +178,44 @@ public class MovementController : MonoBehaviour
             }
 
             // Passa alla prossima posizione (ciclica)
+            if (tempAudioList[currentIndex] != null)
+            {
+                StartCoroutine(PlayAudioAndWait(tempAudioList[currentIndex]));
+            }
+
+            if (tempImageList[currentIndex] != null)
+            {
+                displayImage.sprite = tempImageList[currentIndex];
+            }
+
             currentIndex++;
 
             if (currentIndex != positions.Length)
                 // Attendi 2 secondi
-                yield return new WaitForSeconds(times[currentIndex-1]);
+                yield return new WaitForSeconds(times[currentIndex - 1]);
 
-            
+
         }
         Debug.Log("esce dal while");
         pathCompleted = true;
+    }
+
+    private IEnumerator PlayAudioAndWait(AudioClip clip)
+    {
+        if (clip != null)
+        {
+
+            // Attende finché l'audio è in riproduzione
+            while (audioSource.isPlaying)
+            {
+                yield return null; // Aspetta un frame
+            }
+
+            audioSource.clip = clip;
+            audioSource.Play();
+
+            Debug.Log("Riproduzione audio terminata.");
+            // Qui puoi aggiungere il codice che deve essere eseguito dopo la riproduzione
+        }
     }
 }
