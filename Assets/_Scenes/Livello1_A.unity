@@ -1731,7 +1731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
-      value: NaOH
+      value: Sodium Hydroxide
       objectReference: {fileID: 0}
     - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2074,13 +2074,13 @@ MonoBehaviour:
       mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
       mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
       substances:
-      - substanceName: H2O
+      - substanceName: Water
         quantity: 5
         isSolid: 0
       - substanceName: Acetone
         quantity: 5
         isSolid: 0
-      - substanceName: 2-nitrobenzaldeide
+      - substanceName: 2-Nitrobenzaldehyde
         quantity: 0.5
         isSolid: 1
     resultingMixture:
@@ -2094,10 +2094,10 @@ MonoBehaviour:
       mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
       mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
       substances:
-      - substanceName: 2-nitrobenzaldeide
+      - substanceName: 2-Nitrobenzaldehyde
         quantity: 0.5
         isSolid: 0
-      - substanceName: Acqua
+      - substanceName: Water
         quantity: 5
         isSolid: 0
       - substanceName: Acetone
@@ -2116,16 +2116,16 @@ MonoBehaviour:
       mixtureLiquidColor: {r: 0, g: 0, b: 0, a: 0}
       mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
       substances:
-      - substanceName: 2-nitrobenzaldeide
+      - substanceName: 2-Nitrobenzaldehyde
         quantity: 0.5
         isSolid: 0
-      - substanceName: Acqua
+      - substanceName: Water
         quantity: 5
         isSolid: 0
       - substanceName: Acetone
         quantity: 5
         isSolid: 0
-      - substanceName: NaOH
+      - substanceName: Sodium Hydroxide
         quantity: 5
         isSolid: 0
     resultingMixture:
@@ -2152,16 +2152,16 @@ MonoBehaviour:
       mixtureLiquidColor: {r: 1, g: 0.94509804, b: 0.34117648, a: 0}
       mixtureSolidColor: {r: 0, g: 0, b: 0, a: 0}
       substances:
-      - substanceName: 2-nitrobenzaldeide
+      - substanceName: 2-Nitrobenzaldehyde
         quantity: 0.5
         isSolid: 0
       - substanceName: Acetone
         quantity: 5
         isSolid: 0
-      - substanceName: Acqua
+      - substanceName: Water
         quantity: 5
         isSolid: 0
-      - substanceName: NaOH
+      - substanceName: Sodium Hydroxide
         quantity: 5
         isSolid: 0
     resultingMixture:
@@ -5114,6 +5114,10 @@ PrefabInstance:
       propertyPath: substance.quantity
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
+      propertyPath: substance.substanceName
+      value: Water
+      objectReference: {fileID: 0}
     - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.490026
@@ -5536,6 +5540,10 @@ PrefabInstance:
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.quantity
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
+      propertyPath: substance.substanceName
+      value: Water
       objectReference: {fileID: 0}
     - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6686,7 +6694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
-      value: 2-nitrobenzaldeide
+      value: 2-Nitrobenzaldehyde
       objectReference: {fileID: 0}
     - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7336,7 +7344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
-      value: 2-nitrobenzaldeide
+      value: 2-Nitrobenzaldehyde
       objectReference: {fileID: 0}
     - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8718,7 +8726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496984331139830320, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: substance.substanceName
-      value: NaOH
+      value: Sodium Hydroxide
       objectReference: {fileID: 0}
     - target: {fileID: 8644696956794000663, guid: 93ca4ce1a32193d46ac351069323516a, type: 3}
       propertyPath: m_LocalPosition.x
