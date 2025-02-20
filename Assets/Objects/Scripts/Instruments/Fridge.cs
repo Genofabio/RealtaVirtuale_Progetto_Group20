@@ -43,7 +43,7 @@ public class Fridge : MonoBehaviour
         // Memorizza la rotazione iniziale (chiusa)
         closedRotation = door.localRotation;
 
-        openRotation = Quaternion.Euler(closedRotation.eulerAngles.x, closedRotation.eulerAngles.y - 90, closedRotation.eulerAngles.z);
+        openRotation = Quaternion.Euler(closedRotation.eulerAngles.x, closedRotation.eulerAngles.y + 90, closedRotation.eulerAngles.z);
     }
 
     public void ToggleDoor()
