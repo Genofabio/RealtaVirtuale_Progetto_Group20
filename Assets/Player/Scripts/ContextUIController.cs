@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class ContextUIController : MonoBehaviour
@@ -121,7 +122,7 @@ public class ContextUIController : MonoBehaviour
                 SetContextActive("Mix");
             }
             else if (hit.transform.TryGetComponent<Pourable>(out var pourable2) && grabbedObject.TryGetComponent<Dropper>(out var dropper2)
-            && !dropper2.IsFull() && pourable2.GetCurrentVolume() > 0)
+            && !dropper2.IsFull() && pourable2.GetCurrentVolume() > 0 && pourable2.GetContainedSubstanceMixture().Substances.Any(substance => !substance.IsSolid))
             {
                 SetContextActive("Suck");
             }
@@ -137,7 +138,7 @@ public class ContextUIController : MonoBehaviour
         }
         //guardo un oggetto pourable -> posso solo raccogliere con un dropper
         else if (hit.transform.TryGetComponent<Pourable>(out var pourable) && grabbedObject.TryGetComponent<Dropper>(out var dropper)
-            && !dropper.IsFull() && pourable.GetCurrentVolume() > 0)
+            && !dropper.IsFull() && pourable.GetCurrentVolume() > 0 && pourable.GetContainedSubstanceMixture().Substances.Any(substance => !substance.IsSolid))
         {
             SetContextActive("Suck");
         }

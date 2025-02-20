@@ -150,4 +150,9 @@ public class PaperFilter : MonoBehaviour, Filter, Pourable
     {
         return filteredSubstances.GetCurrentVolume();
     }
+
+    public SubstanceMixture GetContainedSubstanceMixture()
+    {
+        return filteredSubstances;
+    }
 }
