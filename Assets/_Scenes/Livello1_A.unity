@@ -482,7 +482,7 @@ Transform:
   m_GameObject: {fileID: 38238777}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2399998, y: 0, z: -2.445}
+  m_LocalPosition: {x: 0.269, y: 0, z: -2.346}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5286,24 +5286,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: {fileID: 1393087874}
-  images:
-  - {fileID: 21300000, guid: 40f169c7b49b873428ee0f33ae411d56, type: 3}
-  - {fileID: 21300000, guid: 2f70b11ada7447c41b115a1b077a41b2, type: 3}
-  - {fileID: 21300000, guid: a0a5273bd5fa599469befb1058bba709, type: 3}
-  - {fileID: 21300000, guid: bb11d47d8da03b3449a9b7e3947bc851, type: 3}
-  - {fileID: 21300000, guid: 901ad14e1ed9c87478507570d6f5779f, type: 3}
-  - {fileID: 21300000, guid: 9d01bfc0788fcd94ba0e7901b689eee3, type: 3}
   displayImage: {fileID: 701784538}
   success: {fileID: 612014478}
   failure: {fileID: 1267103461}
   audioSource: {fileID: 2121402813}
-  audioList:
-  - {fileID: 8300000, guid: e29eb61fa0660354c869344ddf4e2dbc, type: 3}
-  - {fileID: 8300000, guid: e2059b09c19360540bb498a11bd6d450, type: 3}
-  - {fileID: 8300000, guid: ba7177ca679d34d42933ce3e005e4040, type: 3}
-  - {fileID: 8300000, guid: d653bb53e6b5fb74ba215f2fccdc0104, type: 3}
-  - {fileID: 8300000, guid: 82c174ebfd21ae944a4aec8410a27099, type: 3}
-  - {fileID: 8300000, guid: cbb79cbb62d846a47a6d4362c1ac5c99, type: 3}
   successClip: {fileID: 8300000, guid: dac177c964a708c4386ee56b4b5bfa3f, type: 3}
   failureClip: {fileID: 8300000, guid: 7235ed1b28ebad84da334c4b9a6d2a2c, type: 3}
   endScreen: {fileID: 614226590}
@@ -5350,7 +5336,19 @@ MonoBehaviour:
   pos5: {fileID: 1757790934}
   pos6: {fileID: 38238778}
   pos7: {fileID: 1794926213}
-  audioList: []
+  audioList:
+  - {fileID: 8300000, guid: eeae88d1faf47f548be70be8c5c2156a, type: 3}
+  - {fileID: 8300000, guid: 3cb618df9848b3b47ab758ef82aafab9, type: 3}
+  - {fileID: 8300000, guid: 28e3e7648f2b8064c9c06da68fa7afa3, type: 3}
+  - {fileID: 8300000, guid: 642c927a712660342a0f70bc974bbbd6, type: 3}
+  - {fileID: 8300000, guid: 60c2e13c62ded06489cf435874e965b4, type: 3}
+  - {fileID: 8300000, guid: cf66383392bc4884e9cff35ea16da3be, type: 3}
+  - {fileID: 8300000, guid: e56f578aef81fb74e9c1759b3fe05545, type: 3}
+  - {fileID: 8300000, guid: 95ea6206ca7000a40bf3008c9f3c4212, type: 3}
+  - {fileID: 8300000, guid: 7a67cc5384de09b4897a1855437ace5b, type: 3}
+  - {fileID: 8300000, guid: 367a95c8770cd2b4181b4d9e41769472, type: 3}
+  - {fileID: 8300000, guid: 13ec6c86c41d2674fb366cbe55c1162b, type: 3}
+  audioSource: {fileID: 2121402813}
 --- !u!65 &1266886073
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7418,7 +7416,7 @@ Transform:
   m_GameObject: {fileID: 1709960097}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 5.0949993}
+  m_LocalPosition: {x: -1.753, y: 0, z: 4.629}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7640,7 +7638,7 @@ Transform:
   m_GameObject: {fileID: 1794926212}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.44, y: 0, z: 1.1149998}
+  m_LocalPosition: {x: -1.245, y: 0, z: 1.862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8527,7 +8525,7 @@ Transform:
   m_GameObject: {fileID: 2047607904}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.39, y: 0, z: 1.1949997}
+  m_LocalPosition: {x: 3.649, y: 0, z: 1.338}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
