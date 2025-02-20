@@ -123,7 +123,6 @@ public class Grabbable : MonoBehaviour
                     {
                         transform.RotateAround(rotationPourPivot.position, transform.right, rotationSpeed);
                         currentRotationAngle = newRotationAngle; // Aggiorna l'angolo attuale
-                        Debug.Log("Current rotation angle: " + currentRotationAngle);
                     }
                 }
             }

@@ -58,7 +58,7 @@ public class ExperimentManager : MonoBehaviour
         SubstanceMixture targetMixture = nextStep.GetRequiredSubstanceMixture();
         SubstanceMixture resultMixture = nextStep.GetResultingSubstanceMixture();
 
-        if(targetMixture.CanBecome(resultMixture))
+        if(targetMixture.CanBecome(resultMixture) && (currentStepReached + 1) != 4)  //serve per step filtro
         {
             if (mix.CanBecome(targetMixture))
             {
@@ -90,7 +90,7 @@ public class ExperimentManager : MonoBehaviour
             {
                 if (currentStepReached >= 0)
                 {
-                    Debug.Log("Sbagliato");
+                    Debug.Log("Sbagliato per filtro");
                     HandleStepFailure(mix);
                 }
             }
