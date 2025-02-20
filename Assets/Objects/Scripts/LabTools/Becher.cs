@@ -229,6 +229,11 @@ public class Becher : MonoBehaviour, Fillable, Pourable
         return extractedMix;
     }
 
+    public float GetMaxCapacity()
+    {
+        return maxCapacity;
+    }
+
     public float GetCurrentVolume()
     {
         return containedMixture.GetCurrentVolume();
