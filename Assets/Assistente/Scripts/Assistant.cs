@@ -18,7 +18,6 @@ public class Assistant : MonoBehaviour
     private float delayBetweenAudios = 0.5f;
 
     [Header("Other")]
-    [SerializeField] private GameObject endScreen;
     private MovementController movementController;
 
     private int highestStepReached;
@@ -42,8 +41,6 @@ public class Assistant : MonoBehaviour
         //{
         //    audioSource.clip = audioList[0];
         //}
-
-        endScreen.SetActive(false);
     }
 
     public void SetHighestStepReached(int newValue)
