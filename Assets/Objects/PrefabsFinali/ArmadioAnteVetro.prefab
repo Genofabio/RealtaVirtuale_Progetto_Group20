@@ -595,7 +595,7 @@ MonoBehaviour:
   slideDistance: 1
   direction: {x: 0, y: 0, z: 1}
   moveSpeed: 2
-  doorSound: {fileID: 8300000, guid: fbaca5c8101ac5644a4af903691bccb1, type: 3}
+  doorSound: {fileID: 8300000, guid: 41d76bb29450b0d43a5174583e00eef6, type: 3}
 --- !u!65 &3761960119010580776
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -627,8 +627,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fbaca5c8101ac5644a4af903691bccb1, type: 3}
-  m_Resource: {fileID: 8300000, guid: fbaca5c8101ac5644a4af903691bccb1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 41d76bb29450b0d43a5174583e00eef6, type: 3}
+  m_Resource: {fileID: 8300000, guid: 41d76bb29450b0d43a5174583e00eef6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -819,7 +819,7 @@ MonoBehaviour:
   slideDistance: 1
   direction: {x: 0, y: 0, z: -1}
   moveSpeed: 2
-  doorSound: {fileID: 8300000, guid: fbaca5c8101ac5644a4af903691bccb1, type: 3}
+  doorSound: {fileID: 8300000, guid: 41d76bb29450b0d43a5174583e00eef6, type: 3}
 --- !u!65 &1319559504910071339
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -851,8 +851,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fbaca5c8101ac5644a4af903691bccb1, type: 3}
-  m_Resource: {fileID: 8300000, guid: fbaca5c8101ac5644a4af903691bccb1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 41d76bb29450b0d43a5174583e00eef6, type: 3}
+  m_Resource: {fileID: 8300000, guid: 41d76bb29450b0d43a5174583e00eef6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
