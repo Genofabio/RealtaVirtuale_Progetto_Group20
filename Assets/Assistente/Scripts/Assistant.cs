@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -23,6 +24,12 @@ public class Assistant : MonoBehaviour
 
     private int highestStepReached;
 
+    [Header("Timer screen")]
+    [SerializeField] private GameObject timerScreen;
+    [SerializeField] private TextMeshProUGUI timeText;
+    private Coroutine hideTimerCoroutine;
+    private float hideDelay = 1.0f; // Tempo di attesa prima di nascondere il timer
+
     private void Awake()
     {
         //audioSource.clip = audioList[0];
@@ -42,7 +49,7 @@ public class Assistant : MonoBehaviour
         //{
         //    audioSource.clip = audioList[0];
         //}
-
+        timerScreen.SetActive(false);
         endScreen.SetActive(false);
     }
 
@@ -130,7 +137,27 @@ public class Assistant : MonoBehaviour
 
     public void notifyStateProcessingTime(float processingTime)
     {
-        float remainingTime = 10 - processingTime;
-        Debug.Log("Il tempo di cottura   di " + processingTime + " secondi. Mancano " + remainingTime + " secondi.");
+        processingTime = Mathf.Clamp(processingTime, 0f, 10f);
+        float remainingTime = 10f - processingTime;
+
+        string formattedTime = $"00:{remainingTime:00}";
+        timeText.text = formattedTime;
+
+        // Attiva il timer screen
+        timerScreen.SetActive(true);
+
+        // Reset della coroutine se sta già contando per spegnere lo schermo
+        if (hideTimerCoroutine != null)
+        {
+            StopCoroutine(hideTimerCoroutine);
+        }
+        hideTimerCoroutine = StartCoroutine(HideTimerAfterDelay());
+    }
+
+    private IEnumerator HideTimerAfterDelay()
+    {
+        yield return new WaitForSeconds(hideDelay);
+        timerScreen.SetActive(false);
+        hideTimerCoroutine = null;
     }
 }

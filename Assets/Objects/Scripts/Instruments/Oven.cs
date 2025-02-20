@@ -69,7 +69,7 @@ public class Oven : MonoBehaviour, Openable
 
     private void Update()
     {
-        if (cookingMixtureContained != null && IsCooking)
+        if (cookingMixtureContained != null && IsCooking && cookingMixtureContained.DryingTime <= 10)
         {
             assistant.notifyStateProcessingTime(cookingMixtureContained.DryingTime);
         }
