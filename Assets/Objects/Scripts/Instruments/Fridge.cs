@@ -58,7 +58,7 @@ public class Fridge : MonoBehaviour
 
     private void Update()
     {
-        if(coolingMixtureContained != null && !IsOpen && coolingMixtureContained.CoolingTime <= 10)
+        if(coolingMixtureContained != null && !IsOpen && !coolingMixtureContained.Cooled)
         {
             Debug.Log("Tempo di raffreddamento: " + coolingMixtureContained.CoolingTime);
             assistant.notifyStateProcessingTime(coolingMixtureContained.CoolingTime);
