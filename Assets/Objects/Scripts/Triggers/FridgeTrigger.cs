@@ -17,6 +17,10 @@ public class FridgeTrigger : MonoBehaviour
         if (fillable != null && fillable.GetContainedSubstanceMixture() != null)
         {
             fridge.InsertIntoFridge(other.gameObject);
+            if (fillable.GetContainedSubstanceMixture().ExperimentStepReached == 2)
+            {
+                fridge.CoolingMixtureContained = fillable.GetContainedSubstanceMixture();
+            }
         }
     }
 
@@ -28,6 +32,7 @@ public class FridgeTrigger : MonoBehaviour
         if (fillable != null && fillable.GetContainedSubstanceMixture() != null)
         {
             fridge.RemoveFromFridge(other.gameObject);
+            fridge.CoolingMixtureContained = null;
         }
     }
 }

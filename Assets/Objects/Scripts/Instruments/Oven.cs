@@ -36,6 +36,16 @@ public class Oven : MonoBehaviour, Openable
 
     private Coroutine cookRoutine;
 
+    [SerializeField] private Assistant assistant;
+
+    private SubstanceMixture cookingMixtureContained = null;
+
+    public SubstanceMixture CookingMixtureContained
+    {
+        get { return cookingMixtureContained; }
+        set { cookingMixtureContained = value; }
+    }
+
     private void Start()
     {
         if (door == null)
@@ -55,6 +65,14 @@ public class Oven : MonoBehaviour, Openable
 
         ShowPowerSettingPanel();
         UpdatePowerText();
+    }
+
+    private void Update()
+    {
+        if (cookingMixtureContained != null && IsCooking)
+        {
+            assistant.notifyStateProcessingTime(cookingMixtureContained.DryingTime);
+        }
     }
 
     public void ToggleDoor()
