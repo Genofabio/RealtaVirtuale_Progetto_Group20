@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
+using System.Collections.Generic;
 
 public class Door : MonoBehaviour, Openable
 {
@@ -10,12 +12,17 @@ public class Door : MonoBehaviour, Openable
     [SerializeField] private float openAngle = 90f; // Angolo personalizzabile dall'Inspector
     [SerializeField] private Vector3 rotationAxis = Vector3.up; // Asse di rotazione personalizzabile
 
+    [SerializeField] private List<AudioClip> doorSounds;
+    private AudioSource audioSource;
+
     public bool IsOpen { get; protected set; } = false;
     public bool IsMoving { get; protected set; } = false;
 
     protected virtual void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
+
+        audioSource = GetComponent<AudioSource>();
 
         closedRotation = transform.localRotation;
 
@@ -38,6 +45,7 @@ public class Door : MonoBehaviour, Openable
         IsMoving = true;
         IsOpen = true;
         if (boxCollider) boxCollider.enabled = false;
+        PlayDoorSound(0);
         yield return RotateDoor(openRotation);
         if (boxCollider) boxCollider.enabled = true;
         IsMoving = false;
@@ -47,6 +55,7 @@ public class Door : MonoBehaviour, Openable
     {
         IsMoving = true;
         if (boxCollider) boxCollider.enabled = false;
+        PlayDoorSound(1);
         yield return RotateDoor(closedRotation);
         if (boxCollider) boxCollider.enabled = true;
         IsOpen = false;
@@ -69,5 +78,14 @@ public class Door : MonoBehaviour, Openable
         }
 
         transform.localRotation = targetRotation;
+    }
+
+    private void PlayDoorSound(int index)
+    {
+        if (audioSource && doorSounds[index]) // Verifica che audioSource e doorSound siano validi
+        {
+            audioSource.clip = doorSounds[index];
+            audioSource.Play(); // Riproduce il suono
+        }
     }
 }
