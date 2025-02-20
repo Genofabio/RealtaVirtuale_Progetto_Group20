@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &653442613396391721
+--- !u!1 &1582452571497170765
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6122096406288779766}
-  - component: {fileID: 5471464399238147258}
-  - component: {fileID: 2966267705758049897}
+  - component: {fileID: 8233001568470455664}
+  - component: {fileID: 5059933713895906562}
+  - component: {fileID: 759814464101671630}
   m_Layer: 0
   m_Name: Vetro
   m_TagString: Untagged
@@ -18,36 +18,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6122096406288779766
+--- !u!4 &8233001568470455664
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653442613396391721}
+  m_GameObject: {fileID: 1582452571497170765}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 0.8755696, y: 75, z: 75}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 964560225117989640}
+  m_Father: {fileID: 3450226225535555980}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5471464399238147258
+--- !u!33 &5059933713895906562
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653442613396391721}
-  m_Mesh: {fileID: -101743379015977436, guid: a7b9b0469364a4c32b49bda876195633, type: 3}
---- !u!23 &2966267705758049897
+  m_GameObject: {fileID: 1582452571497170765}
+  m_Mesh: {fileID: -101743379015977436, guid: 5b179a2a08dd6460cb05a75ba3895583, type: 3}
+--- !u!23 &759814464101671630
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653442613396391721}
+  m_GameObject: {fileID: 1582452571497170765}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,7 +86,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &2178833746271599510
+--- !u!1 &3583135681656365587
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,42 +94,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 964560225117989640}
-  m_Layer: 0
-  m_Name: Finestra grande v1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &964560225117989640
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2178833746271599510}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.985, y: 1.7450018, z: -10.50909}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6161469097657804396}
-  - {fileID: 6122096406288779766}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8523561878113970506
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6161469097657804396}
-  - component: {fileID: 7256407902031152239}
-  - component: {fileID: 3154603571171686377}
+  - component: {fileID: 3294237879112336166}
+  - component: {fileID: 4697668428800224644}
+  - component: {fileID: 7334754472486882936}
   m_Layer: 0
   m_Name: Cornice
   m_TagString: Untagged
@@ -137,36 +104,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6161469097657804396
+--- !u!4 &3294237879112336166
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8523561878113970506}
+  m_GameObject: {fileID: 3583135681656365587}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 5, y: 74.99986, z: 75}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 964560225117989640}
+  m_Father: {fileID: 3450226225535555980}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7256407902031152239
+--- !u!33 &4697668428800224644
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8523561878113970506}
-  m_Mesh: {fileID: -4979377657958213153, guid: a7b9b0469364a4c32b49bda876195633, type: 3}
---- !u!23 &3154603571171686377
+  m_GameObject: {fileID: 3583135681656365587}
+  m_Mesh: {fileID: -4979377657958213153, guid: 5b179a2a08dd6460cb05a75ba3895583, type: 3}
+--- !u!23 &7334754472486882936
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8523561878113970506}
+  m_GameObject: {fileID: 3583135681656365587}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -183,7 +150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: a7b9b0469364a4c32b49bda876195633, type: 3}
+  - {fileID: 8754126835882949224, guid: 5b179a2a08dd6460cb05a75ba3895583, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,3 +172,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7521520245905049217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3450226225535555980}
+  m_Layer: 0
+  m_Name: Finestra grande v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3450226225535555980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521520245905049217}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8, y: 1.7554314, z: -10.263268}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3294237879112336166}
+  - {fileID: 8233001568470455664}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
