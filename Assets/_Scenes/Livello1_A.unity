@@ -7985,6 +7985,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 844c4145357b14ea7b4084dcb4a32a9c, type: 3}
+--- !u!1001 &3558611359148618969
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2738319706328051208, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_Name
+      value: Frigo v2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329001271717800000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.614
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329001271717800000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.009999168
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329001271717800000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.5527
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329001271717800000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329001271717800000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329001271717800000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329001271717800000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329001271717800000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329001271717800000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329001271717800000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
 --- !u!1001 &4461379628177709967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8064,63 +8121,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1226213827}
   m_SourcePrefab: {fileID: 100100000, guid: 69b47f829cf27448a8397c440d3cd9da, type: 3}
---- !u!1001 &4808688617188381914
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3363889600086663729, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_Name
-      value: Frigo v2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.017199168
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -15.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434248681026472034, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: eaf08cf12188f403baf9e91f60d9ab6c, type: 3}
 --- !u!1001 &5043759946000714157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8226,46 +8226,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
-    - target: {fileID: 674836870902020075, guid: 53839f834000c413b849428efb864d1d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0fee75785b14d9d44af44aefe32614cb, type: 2}
-    - target: {fileID: 1134787096404586084, guid: 53839f834000c413b849428efb864d1d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0fee75785b14d9d44af44aefe32614cb, type: 2}
-    - target: {fileID: 2846778523402079898, guid: 53839f834000c413b849428efb864d1d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0fee75785b14d9d44af44aefe32614cb, type: 2}
-    - target: {fileID: 3031887768205927553, guid: 53839f834000c413b849428efb864d1d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0fee75785b14d9d44af44aefe32614cb, type: 2}
-    - target: {fileID: 3207161356133838709, guid: 53839f834000c413b849428efb864d1d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0fee75785b14d9d44af44aefe32614cb, type: 2}
     - target: {fileID: 3520230771426656630, guid: 53839f834000c413b849428efb864d1d, type: 3}
       propertyPath: m_Name
       value: Tetto v2
       objectReference: {fileID: 0}
-    - target: {fileID: 4299497376232390531, guid: 53839f834000c413b849428efb864d1d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0fee75785b14d9d44af44aefe32614cb, type: 2}
-    - target: {fileID: 4857768151934336683, guid: 53839f834000c413b849428efb864d1d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0fee75785b14d9d44af44aefe32614cb, type: 2}
-    - target: {fileID: 6325913155551945193, guid: 53839f834000c413b849428efb864d1d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0fee75785b14d9d44af44aefe32614cb, type: 2}
-    - target: {fileID: 8913295335360491343, guid: 53839f834000c413b849428efb864d1d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0fee75785b14d9d44af44aefe32614cb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8462,7 +8426,6 @@ SceneRoots:
   - {fileID: 58890087}
   - {fileID: 1898070916}
   - {fileID: 651024227}
-  - {fileID: 4808688617188381914}
   - {fileID: 963314892}
   - {fileID: 1240808988}
   - {fileID: 1287093232}
@@ -8506,3 +8469,4 @@ SceneRoots:
   - {fileID: 7960826552014566042}
   - {fileID: 6991375428773977349}
   - {fileID: 739534322}
+  - {fileID: 3558611359148618969}
