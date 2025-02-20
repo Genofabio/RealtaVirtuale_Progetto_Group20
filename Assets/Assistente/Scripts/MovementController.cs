@@ -87,44 +87,44 @@ public class MovementController : MonoBehaviour
         if (highestStepReached == -1)
         {
             positions = new Transform[] { pos0, pos1, pos2, pos3, posX };
-            times = new int[] { 5, 5, 5, 5, 5 };
-            audioList = new List<AudioClip> { audioList[0], audioList[1], audioList[2], audioList[3] };
+            times = new int[] { 2, 2, 2, 2, 2 };
+            //audioList = new List<AudioClip> { audioList[0], audioList[1], audioList[2], audioList[3], audioList[4] };
         }
         else if (highestStepReached == 0)
         {
             positions = new Transform[] { pos1, posX };
             times = new int[] { 5, 5 };
-            audioList = new List<AudioClip> { audioList[1], audioList[3] };
+            //audioList = new List<AudioClip> { audioList[1], audioList[3] };
         }
         else if (highestStepReached == 1)
         {
             positions = new Transform[] { pos5, posX };
             times = new int[] { 5, 5 };
-            audioList = new List<AudioClip> { audioList[2], audioList[3] };
+            //audioList = new List<AudioClip> { audioList[2], audioList[3] };
         }
         else if (highestStepReached == 2)
         {
             positions = new Transform[] { pos6 };
             times = new int[] { 5 };
-            audioList = new List<AudioClip> { audioList[3] };
+            //audioList = new List<AudioClip> { audioList[3] };
         }
         else if (highestStepReached == 3)
         {
             positions = new Transform[] { pos5, posX };
             times = new int[] { 5, 5 };
-            audioList = new List<AudioClip> { audioList[2], audioList[3] };
+            //audioList = new List<AudioClip> { audioList[2], audioList[3] };
         }
         else if (highestStepReached == 4)
         {
             positions = new Transform[] { pos5, posX };
             times = new int[] { 5, 5 };
-            audioList = new List<AudioClip> { audioList[2], audioList[3] };
+            //audioList = new List<AudioClip> { audioList[2], audioList[3] };
         }
         else if (highestStepReached == 5)
         {
             positions = new Transform[] { pos7 };
             times = new int[] { 5 };
-            audioList = new List<AudioClip> { audioList[3] };
+            //audioList = new List<AudioClip> { audioList[3] };
         }
         //Debug.Log("positions: " + string.Join(", ", positions.Select(p => p.name)));
         
