@@ -40,6 +40,9 @@ public class MovementController : MonoBehaviour
     private bool pathCompleted = false;
     private Coroutine movementRoutine;
 
+    private bool isPaused = false;
+    private Coroutine moveCoroutine;
+
     private float yRobot;
 
     void Start()
@@ -174,6 +177,9 @@ public class MovementController : MonoBehaviour
             // Aspetta finché l'NPC non è arrivato a destinazione
             while (_navMeshAgent.pathPending || _navMeshAgent.remainingDistance > 0.1f)
             {
+                while (isPaused)
+                    yield return null;
+
                 yield return null;
             }
 
@@ -191,9 +197,18 @@ public class MovementController : MonoBehaviour
             currentIndex++;
 
             if (currentIndex != positions.Length)
-                // Attendi 2 secondi
-                yield return new WaitForSeconds(times[currentIndex - 1]);
+            {
+                float waitTime = times[currentIndex - 1];
 
+                for (float t = 0; t < waitTime; t += Time.deltaTime)
+                {
+                    if (!isPaused) // Se non è in pausa, continua ad aspettare
+                        yield return null;
+                    else // Se è in pausa, aspetta finché la pausa non viene tolta
+                        while (isPaused)
+                            yield return null;
+                }
+            }
 
         }
         Debug.Log("esce dal while");
@@ -216,6 +231,28 @@ public class MovementController : MonoBehaviour
 
             Debug.Log("Riproduzione audio terminata.");
             // Qui puoi aggiungere il codice che deve essere eseguito dopo la riproduzione
+        }
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused; // Inverti lo stato della pausa
+
+        if (isPaused)
+        {
+            // Metti in pausa l'audio e il movimento
+            if (audioSource.isPlaying)
+                audioSource.Pause();
+
+            _navMeshAgent.isStopped = true;
+        }
+        else
+        {
+            // Riprendi l'audio e il movimento
+            if (audioSource.clip != null)
+                audioSource.UnPause();
+
+            _navMeshAgent.isStopped = false;
         }
     }
 }

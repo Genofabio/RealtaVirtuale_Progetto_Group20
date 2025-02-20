@@ -127,4 +127,10 @@ public class Assistant : MonoBehaviour
         //    audioSource.Play();
         //}
     }
+
+    public void notifyStateProcessingTime(float processingTime)
+    {
+        float remainingTime = 10 - processingTime;
+        Debug.Log("Il tempo di cottura   di " + processingTime + " secondi. Mancano " + remainingTime + " secondi.");
+    }
 }
