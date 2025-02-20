@@ -62,7 +62,7 @@ public class MovementController : MonoBehaviour
 
         // Effetto di oscillazione verticale (fluttuazione)
         float oscillationSpeed = 1f;  // Velocità dell'oscillazione
-        float oscillationHeight = 0.2f; // Altezza massima dell'oscillazione
+        float oscillationHeight = 0.05f; // Altezza massima dell'oscillazione
         float newY = Mathf.Sin(Time.time * oscillationSpeed) * oscillationHeight;
 
         // Applica la fluttuazione alla posizione dell'oggetto
