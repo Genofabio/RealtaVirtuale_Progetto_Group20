@@ -95,6 +95,11 @@ public class Oven : MonoBehaviour, Openable
         }
     }
 
+    public bool IsOpened()
+    {
+        return IsOpen;
+    }
+
     private IEnumerator OpenDoorCoroutine()
     {
         IsMoving = true;

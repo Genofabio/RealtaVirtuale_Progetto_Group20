@@ -47,7 +47,14 @@ public class ContextUIController : MonoBehaviour
             }
             else if (hit.transform.TryGetComponent<Openable>(out var openable))
             {
-                SetContextActive("Open");
+                if (openable.IsOpened())
+                {
+                    SetContextActive("Close");
+                }
+                else
+                {
+                    SetContextActive("Open");
+                }
             }
             else if (hit.transform.TryGetComponent<BalanceButton>(out var balance))
             {

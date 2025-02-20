@@ -34,6 +34,13 @@ public class SlidingDoor : MonoBehaviour, Openable
             StartCoroutine(OpenDoorCoroutine());
     }
 
+
+    public bool IsOpened()
+    {
+        return IsOpen;
+    }
+
+
     protected virtual IEnumerator OpenDoorCoroutine()
     {
         IsMoving = true;
