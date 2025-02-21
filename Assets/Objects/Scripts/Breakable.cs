@@ -6,6 +6,7 @@ public class Breakable : MonoBehaviour
     [SerializeField] private GameObject intact;
     [SerializeField] private GameObject convexHull;
     [SerializeField] private GameObject broken;
+    [SerializeField] private GameObject label;
 
     [SerializeField] private float breakForceThreshold = 5f;
     [SerializeField] private float grabbedBreakForceThreshold = 5f;
@@ -102,6 +103,11 @@ public class Breakable : MonoBehaviour
                     childMeshRenderer.enabled = false;
                 }
             }
+        }
+
+        if (label != null)
+        {
+            Destroy(label);
         }
 
         // Attiva il modello rotto

@@ -614,6 +614,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1169625671}
     m_Modifications:
+    - target: {fileID: 1354004862411865134, guid: 71fc957401460445bbea791b5db5c8d0, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5822595246399207531, guid: 71fc957401460445bbea791b5db5c8d0, type: 3}
       propertyPath: m_Name
       value: Lampada v3 (1)
@@ -1526,7 +1530,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9754536, b: 0.9198113, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 116
@@ -1712,7 +1716,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9754536, b: 0.9198113, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 116
@@ -1881,7 +1885,7 @@ Transform:
   m_GameObject: {fileID: 739534321}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.6684113, y: 0.48453903, z: 1.7463441}
+  m_LocalPosition: {x: 6.6684113, y: 0.809, z: 1.7463441}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2085,7 +2089,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9754536, b: 0.9198113, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 116
@@ -2749,7 +2753,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9754536, b: 0.9198113, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 116
@@ -2984,7 +2988,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9754536, b: 0.9198113, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 116
@@ -3239,7 +3243,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9754536, b: 0.9198113, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 116
@@ -3633,7 +3637,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9754536, b: 0.9198113, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 116
@@ -4621,7 +4625,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9754536, b: 0.9198113, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 116
@@ -4742,7 +4746,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9754536, b: 0.9198113, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 116
