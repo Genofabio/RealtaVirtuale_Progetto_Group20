@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/_Scenes/MainMenu.unity
     guid: 7b3fa9ef7f88e432cacdf664e92094bc
   - enabled: 1
-    path: Assets/_Scenes/Livello1_A 14_02.unity
-    guid: 4aa58e10da1455f4a9f13ca012ab2821
+    path: Assets/_Scenes/Livello1_A.unity
+    guid: 20bf276b3304f4b4ea4c39a61ca867a6
+  - enabled: 1
+    path: Assets/_Scenes/Livello1_B.unity
+    guid: 8bd6068cc3a5c4fdfb74daf0f7c50e74
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 1897498c97431764fa56e79083800794, type: 3}
   m_UseUCBPForAssetBundles: 0
