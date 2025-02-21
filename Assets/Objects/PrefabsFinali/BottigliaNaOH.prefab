@@ -520,10 +520,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   substance:
-    substanceName: H2O
+    substanceName: Sodium Hydroxide
     quantity: 30
     isSolid: 0
-  substanceColor: {r: 0.083324976, g: 0.7351791, b: 0.93962264, a: 0}
+  substanceColor: {r: 0.62616587, g: 0.7093047, b: 0.735849, a: 0}
   maxVolume: 40
   pivot: {fileID: 6142516386909473575}
 --- !u!114 &8930778623583798917

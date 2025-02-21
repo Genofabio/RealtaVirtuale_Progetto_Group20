@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   substance:
-    substanceName: Acqua
+    substanceName: Water
     quantity: 30
     isSolid: 0
   substanceColor: {r: 0.083324976, g: 0.7351791, b: 0.93962264, a: 0}
