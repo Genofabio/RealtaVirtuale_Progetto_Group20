@@ -456,6 +456,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 0}
   pickUpSound: {fileID: 8300000, guid: a45b1bff30c3f401ea456216b4704cb2, type: 3}
   dropSound: {fileID: 8300000, guid: 448f18d60df074db1b215b5c43eab303, type: 3}
+  lineMat: {fileID: 2100000, guid: 4ab408a32b5bb4c4289e82639f34cf30, type: 2}
 --- !u!114 &3343038887056261274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,6 +472,7 @@ MonoBehaviour:
   intact: {fileID: 1878301506548785651}
   convexHull: {fileID: 0}
   broken: {fileID: 2348566230896899361}
+  label: {fileID: 0}
   breakForceThreshold: 4
   grabbedBreakForceThreshold: 20
   destructionDelay: 5

@@ -42,6 +42,8 @@ public class Grabbable : MonoBehaviour
     [SerializeField] private AudioClip dropSound;   // Suono di drop
     private AudioSource audioSource;
 
+    [SerializeField] private Material lineMat;
+
     private void Awake()
     {
         objectRigidbody = GetComponent<Rigidbody>();
@@ -61,7 +63,7 @@ public class Grabbable : MonoBehaviour
             lineRenderer = gameObject.AddComponent<LineRenderer>();
             lineRenderer.startWidth = 0.01f;
             lineRenderer.endWidth = 0.01f;
-            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            lineRenderer.material = lineMat;
             lineRenderer.startColor = Color.white;
             lineRenderer.endColor = Color.white;
         }
@@ -71,8 +73,8 @@ public class Grabbable : MonoBehaviour
         Destroy(hitMarker.GetComponent<Collider>());
 
         // Creazione di un materiale Unlit per evitare luci e ombre
-        Material unlitMaterial = new Material(Shader.Find("Unlit/Color"));
-        unlitMaterial.color = new Color(1f, 1f, 1f, 0.5f); 
+        Material unlitMaterial = lineMat;
+        unlitMaterial.color = new Color(1f, 1f, 1f, 0.5f);
 
         // Assegna il materiale all'hit marker
         Renderer hitRenderer = hitMarker.GetComponent<Renderer>();

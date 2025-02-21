@@ -111,6 +111,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 0}
   pickUpSound: {fileID: 8300000, guid: a45b1bff30c3f401ea456216b4704cb2, type: 3}
   dropSound: {fileID: 8300000, guid: 448f18d60df074db1b215b5c43eab303, type: 3}
+  lineMat: {fileID: 2100000, guid: 4ab408a32b5bb4c4289e82639f34cf30, type: 2}
 --- !u!54 &4838501182828731358
 Rigidbody:
   m_ObjectHideFlags: 0
