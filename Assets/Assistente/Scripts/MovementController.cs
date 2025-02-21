@@ -237,18 +237,31 @@ public class MovementController : MonoBehaviour
     {
         if (clip != null)
         {
-
-            // Attende finché l'audio è in riproduzione
             while (audioSource.isPlaying)
             {
+                while (isPaused) // Aggiunto controllo pausa
+                    yield return null;
+
                 yield return null; // Aspetta un frame
             }
 
             audioSource.clip = clip;
             audioSource.Play();
 
+            while (audioSource.isPlaying)
+            {
+                if (isPaused) // Mette in pausa l'audio
+                {
+                    audioSource.Pause();
+                    while (isPaused)
+                        yield return null;
+                    audioSource.UnPause(); // Riprende l'audio
+                }
+
+                yield return null;
+            }
+
             Debug.Log("Riproduzione audio terminata.");
-            // Qui puoi aggiungere il codice che deve essere eseguito dopo la riproduzione
         }
     }
 
