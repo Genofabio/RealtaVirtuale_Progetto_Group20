@@ -287,7 +287,15 @@ public class Becher : MonoBehaviour, Fillable, Pourable
 
     private void OnDestroy()
     {
-        experimentManager.SetMixtureStepAndUpdateCount(containedMixture, -1);
+        if(experimentManager.GetHighestStepReached() == containedMixture.ExperimentStepReached)
+        {
+            experimentManager.HandleStepFailure(containedMixture);
+        } 
+        else
+        {
+            experimentManager.SetMixtureStepAndUpdateCount(containedMixture, -1);
+        }
+        
         //liquidRenderer.SetFillSize(0);
         //liquidRenderer.Set
         //(Color.clear);

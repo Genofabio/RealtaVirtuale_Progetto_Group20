@@ -128,7 +128,7 @@ public class ExperimentManager : MonoBehaviour
         mix.ExperimentStepReached = nextStep;
     }
 
-    private void HandleStepFailure(SubstanceMixture mix)
+    public void HandleStepFailure(SubstanceMixture mix)
     {
         Debug.Log("Chiamata HandleStepFailure");
         int currentStep = mix.ExperimentStepReached;

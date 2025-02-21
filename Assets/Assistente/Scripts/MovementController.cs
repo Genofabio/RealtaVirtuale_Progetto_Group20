@@ -103,7 +103,6 @@ public class MovementController : MonoBehaviour
 
     private void CheckStepAndMove()
     {
-        //Debug.Log("entraa??? " + highestStepReached);
         if(justStarted)
         {
             positions = new Transform[] { pos0, pos2, pos1, pos3, posX };
@@ -178,8 +177,7 @@ public class MovementController : MonoBehaviour
         currentIndex = 0;
         while (currentIndex != positions.Length && pathCompleted == false)
         {
-            //Debug.Log("currentIndex: " + currentIndex);
-            Debug.Log(positions[currentIndex]);
+
             // Imposta la destinazione alla posizione corrente
             _navMeshAgent.SetDestination(positions[currentIndex].position);
 
@@ -192,9 +190,14 @@ public class MovementController : MonoBehaviour
                 yield return null;
             }
 
+            Debug.Log("Arrivato qui, current index: " + currentIndex);
+            Debug.Log("tempAudioList: " + (tempAudioList[currentIndex] == null));
+
+
             // Passa alla prossima posizione (ciclica)
             if (tempAudioList[currentIndex] != null)
             {
+                Debug.Log("Audio partito");
                 StartCoroutine(PlayAudioAndWait(tempAudioList[currentIndex]));
             }
 
