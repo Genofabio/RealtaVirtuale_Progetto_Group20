@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class MovementController : MonoBehaviour
+public class MovementController : MonoBehaviour, IMovementController
 {
     [Header("Positions")]
     public Transform player;

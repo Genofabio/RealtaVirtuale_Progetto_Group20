@@ -19,7 +19,7 @@ public class Assistant : MonoBehaviour
     private float delayBetweenAudios = 0.5f;
 
     [Header("Other")]
-    private MovementController movementController;
+    private IMovementController movementController;
 
     private int highestStepReached;
 
@@ -33,7 +33,7 @@ public class Assistant : MonoBehaviour
     {
         //audioSource.clip = audioList[0];
         //audioSource.Play();
-        movementController = GetComponent<MovementController>();
+        movementController = GetComponent<IMovementController>();
     }
     void Start()
     {
