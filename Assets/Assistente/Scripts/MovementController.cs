@@ -52,7 +52,7 @@ public class MovementController : MonoBehaviour, IMovementController
 
         yRobot = transform.position.y;
 
-        endScreen.SetActive(false);
+        if (endScreen != null) endScreen.SetActive(false);
 
         CheckStepAndMove();
 

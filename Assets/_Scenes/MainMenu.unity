@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 3381478850348673480, guid: 96e90e60a2f51ab4c87f3238f2520e37, type: 3}
       propertyPath: assistant
       value: 
-      objectReference: {fileID: 826023643}
+      objectReference: {fileID: 0}
     - target: {fileID: 7248508468576927587, guid: 96e90e60a2f51ab4c87f3238f2520e37, type: 3}
       propertyPath: m_Name
       value: Frigo
@@ -3094,7 +3094,9 @@ PrefabInstance:
       propertyPath: displayImage
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8921958196963710131, guid: e83202ef52b3354469952ddc524d55f6, type: 3}
+    - {fileID: 3579624534212785798, guid: e83202ef52b3354469952ddc524d55f6, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3255947589307894893, guid: e83202ef52b3354469952ddc524d55f6, type: 3}
     m_AddedGameObjects:
@@ -3103,17 +3105,6 @@ PrefabInstance:
       addedObject: {fileID: 201253741}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e83202ef52b3354469952ddc524d55f6, type: 3}
---- !u!114 &826023643 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3579624534212785798, guid: e83202ef52b3354469952ddc524d55f6, type: 3}
-  m_PrefabInstance: {fileID: 826023642}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0e882bbd9d18847bb82ef9a98d263a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &840225544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6767,7 +6758,7 @@ PrefabInstance:
     - target: {fileID: 8818095304253588974, guid: f1b09bd2c28932f4ca725ba762f99b96, type: 3}
       propertyPath: assistant
       value: 
-      objectReference: {fileID: 826023643}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
