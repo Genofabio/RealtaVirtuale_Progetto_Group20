@@ -48,7 +48,8 @@ public class Assistant : MonoBehaviour
         //{
         //    audioSource.clip = audioList[0];
         //}
-        timerScreen.SetActive(false);
+
+        if(timerScreen != null) timerScreen.SetActive(false);
     }
 
     public void SetHighestStepReached(int newValue)
