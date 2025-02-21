@@ -15,5 +15,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/Livello1_B.unity
     guid: 8bd6068cc3a5c4fdfb74daf0f7c50e74
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 970ab8649ca47458499c90dca5b9e94c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 1897498c97431764fa56e79083800794, type: 3}
   m_UseUCBPForAssetBundles: 0
