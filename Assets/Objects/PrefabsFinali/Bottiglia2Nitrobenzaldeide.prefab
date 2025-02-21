@@ -522,7 +522,7 @@ MonoBehaviour:
   substance:
     substanceName: 2-Nitrobenzaldehyde
     quantity: 30
-    isSolid: 0
+    isSolid: 1
   substanceColor: {r: 0.82785845, g: 0.8490566, b: 0.6904592, a: 0}
   maxVolume: 40
   pivot: {fileID: 6142516386909473575}
