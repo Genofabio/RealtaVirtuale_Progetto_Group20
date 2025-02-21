@@ -6875,6 +6875,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7911845797643911930, guid: 8ecd8542608aa4381a2ea71d0711b001, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: eaff73e44bd8bca4eb7441a38b6779cc, type: 2}
     - target: {fileID: 9198857884261776107, guid: 8ecd8542608aa4381a2ea71d0711b001, type: 3}
       propertyPath: m_Name
       value: Cestino
@@ -10517,6 +10521,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7911845797643911930, guid: 8ecd8542608aa4381a2ea71d0711b001, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 381f494c420e59b4fa4215f96ec7b321, type: 2}
     - target: {fileID: 9198857884261776107, guid: 8ecd8542608aa4381a2ea71d0711b001, type: 3}
       propertyPath: m_Name
       value: Cestino
@@ -11873,6 +11881,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7911845797643911930, guid: 8ecd8542608aa4381a2ea71d0711b001, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ca1a8cd24bf9e7e44b74ff0828846912, type: 2}
     - target: {fileID: 9198857884261776107, guid: 8ecd8542608aa4381a2ea71d0711b001, type: 3}
       propertyPath: m_Name
       value: Cestino
