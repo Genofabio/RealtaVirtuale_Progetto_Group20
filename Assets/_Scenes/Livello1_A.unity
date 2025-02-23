@@ -16607,6 +16607,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5353687889418928748, guid: e83202ef52b3354469952ddc524d55f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5485616246255542047, guid: e83202ef52b3354469952ddc524d55f6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -16634,6 +16638,10 @@ PrefabInstance:
     - target: {fileID: 5485616246255542047, guid: e83202ef52b3354469952ddc524d55f6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586275717524039966, guid: e83202ef52b3354469952ddc524d55f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5634142172479397877, guid: e83202ef52b3354469952ddc524d55f6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
